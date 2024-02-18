@@ -1,16 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="d47d788c-d4c3-4792-812e-655e60aa184d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/GeneratorService.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_main.http" afterDir="false" />
+    <list default="true" id="d47d788c-d4c3-4792-812e-655e60aa184d" name="Changes" comment="Initial Commit">
+      <change afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/dependencies/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/dependencies/dependencies.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/dto/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/dto/common/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/dto/common/propertydto.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/dto/request/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/dto/request/projectrequestdto.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/dto/request/vertexrequestdto.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/dto/response/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/dto/response/projectresponsedto.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/dto/response/vertexresponsedto.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/routes/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/routes/projectroute.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/routes/vertexroute.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/entities/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/entities/edge.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/entities/graph.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/entities/project.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/entities/property.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/entities/vertex.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/exceptions/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/exceptions/duplicateexception.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/repositories/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/repositories/project/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/repositories/project/projectrepository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/repositories/project/projectrepositoryinterface.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/repositories/vertex/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/repositories/vertex/vertexrepository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/repositories/vertex/vertexrepositoryinterface.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/services/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/services/project/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/services/project/projectservice.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/services/project/projectserviceinterface.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/services/vertex/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/services/vertex/vertexservice.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/services/vertex/vertexserviceinterface.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/validators/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/validators/vertexvalidator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/infrastructure/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/infrastructure/exceptions/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/infrastructure/exceptions/notfoundexception.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/infrastructure/storage/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/infrastructure/storage/picklestorage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/infrastructure/storage/storageinterface.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/infrastructure/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/infrastructure/utils/filemanager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/mappers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/mappers/mapper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/mappers/projectmapper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/mappers/vertexmapper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/integration/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/integration/test_project.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/unit/core/validators/test_vertexvalidator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/unit/mappers/test_projectmapper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/unit/mappers/test_vertexmapper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,17 +77,43 @@
       <list>
         <option value="FastAPI main" />
         <option value="FastAPI test_main" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Graf-J&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="176e15d1-92b9-4e02-839b-c9763471b1de" />
+        <option name="url" value="https://github.com/Graf-J/GeneratorService.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2cVazUOq8l4oxTf735SOJDOgbbU" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -40,20 +121,53 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "FastAPI.GeneratorService.executor": "Run",
+    "Python tests.Python tests for test_project.TestProject.test_create_with_empty_name.executor": "Run",
+    "Python tests.Python tests for test_project.TestProject.test_create_with_missing_name.executor": "Run",
+    "Python tests.Python tests for test_project.TestProject.test_create_with_specialcharacter_in_name.executor": "Run",
+    "Python tests.Python tests for test_project.TestProject.test_create_with_underscore_in_name.executor": "Run",
+    "Python tests.Python tests for test_project.TestProject.test_delete_with_wrong_id.executor": "Run",
+    "Python tests.Python tests for test_project.TestProject.test_get_with_wrong_id.executor": "Run",
+    "Python tests.Python tests for test_project.TestProject.test_lifecycle.executor": "Run",
+    "Python tests.Python tests for test_project.TestVertex.executor": "Run",
+    "Python tests.Python tests for test_project.TestVertex.test.executor": "Run",
+    "Python tests.Python tests for test_projectmapper.TestProjectMapperToDto.executor": "Run",
+    "Python tests.Python tests for test_projectmapper.TestProjectMapperToDto.test.executor": "Run",
+    "Python tests.Python tests for test_projectmapper.TestProjectMapperToEntity.executor": "Run",
+    "Python tests.Python tests for test_vertex.TestVertex.test_get_vertices.executor": "Run",
+    "Python tests.Python tests for test_vertexmapper.TestVertexMapper.executor": "Run",
+    "Python tests.Python tests for test_vertexmapper.TestVertexMapperToDto.executor": "Run",
+    "Python tests.Python tests for test_vertexmapper.TestVertexMapperToDto.test_without_properties.executor": "Run",
+    "Python tests.Python tests for test_vertexmapper.TestVertexMapperToEntity.executor": "Run",
+    "Python tests.Python tests for test_vertexvalidator.TestVertexValidator.executor": "Run",
+    "Python tests.Python tests for test_vertexvalidator.TestVertexValidator.test_new_vertex_duplicate_id.executor": "Run",
+    "Python tests.Python tests for test_vertexvalidator.TestVertexValidator.test_new_vertex_duplicate_name.executor": "Run",
+    "Python tests.Python tests for test_vertexvalidator.TestVertexValidator.test_new_vertex_valid.executor": "Run",
+    "Python tests.Unittests for test_vertex.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Johannes/Programming/Projekts/Studienarbeit/GeneratorService/tests/integration",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Console Colors",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Johannes\Programming\Projekts\Studienarbeit\GeneratorService" />
+      <recent name="C:\Users\Johannes\Programming\Projekts\Studienarbeit\GeneratorService\app\api\dto\request" />
+      <recent name="C:\Users\Johannes\Programming\Projekts\Studienarbeit\GeneratorService\app\core\services\vertex" />
+      <recent name="C:\Users\Johannes\Programming\Projekts\Studienarbeit\GeneratorService\app\core\repositories\vertex" />
+      <recent name="C:\Users\Johannes\Programming\Projekts\Studienarbeit\GeneratorService\app\core" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python tests.Python tests for test_project.TestProject.test_create_with_specialcharacter_in_name">
     <configuration name="GeneratorService" type="Python.FastAPI">
       <option name="file" value="$PROJECT_DIR$/main.py" />
       <module name="GeneratorService" />
@@ -69,6 +183,95 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
+    <configuration name="Python tests for test_project.TestProject.test_create_with_specialcharacter_in_name" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="GeneratorService" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/integration" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_project.TestProject.test_create_with_specialcharacter_in_name&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_project.TestProject.test_create_with_underscore_in_name" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="GeneratorService" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/integration" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_project.TestProject.test_create_with_underscore_in_name&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_project.TestProject.test_delete_with_wrong_id" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="GeneratorService" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/integration" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_project.TestProject.test_delete_with_wrong_id&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_project.TestProject.test_get_with_wrong_id" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="GeneratorService" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/integration" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_project.TestProject.test_get_with_wrong_id&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_project.TestProject.test_lifecycle" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="GeneratorService" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/integration" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_project.TestProject.test_lifecycle&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Python tests for test_project.TestProject.test_create_with_specialcharacter_in_name" />
+        <item itemvalue="Python tests.Python tests for test_project.TestProject.test_create_with_underscore_in_name" />
+        <item itemvalue="Python tests.Python tests for test_project.TestProject.test_delete_with_wrong_id" />
+        <item itemvalue="Python tests.Python tests for test_project.TestProject.test_get_with_wrong_id" />
+        <item itemvalue="Python tests.Python tests for test_project.TestProject.test_lifecycle" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -86,8 +289,18 @@
       <option name="presentableId" value="Default" />
       <updated>1708199463389</updated>
       <workItem from="1708199470497" duration="310000" />
-      <workItem from="1708199794837" duration="332000" />
+      <workItem from="1708199794837" duration="21054000" />
+      <workItem from="1708257413042" duration="26843000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial Commit">
+      <option name="closed" value="true" />
+      <created>1708200211276</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1708200211276</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,10 +311,31 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/GeneratorService$GeneratorService.coverage" NAME="GeneratorService Coverage Results" MODIFIED="1708289429792" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_vertex.coverage" NAME="Unittests for test_vertex Coverage Results" MODIFIED="1708206885486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration" />
+    <SUITE FILE_PATH="coverage/GeneratorService$.coverage" NAME=" Coverage Results" MODIFIED="1708291803507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration" />
   </component>
 </project>
