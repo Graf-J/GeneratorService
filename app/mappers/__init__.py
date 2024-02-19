@@ -1,3 +1,4 @@
+from .edgemapper import EdgeMapper
 from .mapper import Mapper
-from .vertexmapper import VertexMapper
 from .projectmapper import ProjectMapper
+from .vertexmapper import VertexMapper

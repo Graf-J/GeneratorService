@@ -1,7 +1,8 @@
 import uuid
-from app.mappers import Mapper
-from app.core.entities import Project
+
 from app.api.dto import ProjectRequestDto, ProjectResponseDto
+from app.core.entities import Project
+from app.mappers import Mapper
 
 
 class ProjectMapper(Mapper):

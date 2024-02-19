@@ -1,10 +1,12 @@
 from typing import List
+
 from fastapi import APIRouter, Depends, HTTPException, status
+
 from app.api.dependencies import get_project_service
 from app.api.dto import ProjectRequestDto, ProjectResponseDto
+from app.core.exceptions import NotFoundException
 from app.core.services import IProjectService
 from app.mappers import ProjectMapper
-from app.infrastructure.exceptions import NotFoundException
 
 router = APIRouter(
     prefix='/projects',

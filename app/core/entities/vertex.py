@@ -1,5 +1,7 @@
-from typing import List
-from app.core.entities.property import Property
+from typing import List, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.core.entities import Edge, Property
 
 
 class Vertex:
@@ -10,7 +12,7 @@ class Vertex:
             position_x: int,
             position_y: int,
             radius: int,
-            properties: List[Property]
+            properties: List['Property']
     ):
         self.id = _id
         self.name = name
@@ -22,8 +24,8 @@ class Vertex:
         self.out_edges = []
         self.in_edges = []
 
-    def add_out_edge(self):
-        pass
+    def add_out_edge(self, edge: 'Edge'):
+        self.out_edges.append(edge)
 
-    def add_in_edge(self):
-        pass
+    def add_in_edge(self, edge: 'Edge'):
+        self.in_edges.append(edge)

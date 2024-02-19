@@ -1,5 +1,6 @@
-from typing import List
 import uuid
+from typing import List
+
 from app.api.dto import VertexRequestDto, VertexResponseDto, PropertyDto
 from app.core.entities import Vertex, Property
 from app.mappers import Mapper
@@ -13,7 +14,6 @@ class VertexMapper(Mapper):
             properties.append(Property(key=prop.key, required=prop.required, datatype=prop.datatype))
 
         vertex_entity = Vertex(
-
             _id=str(uuid.uuid4()),
             name=dto.name,
             position_x=dto.position_x,

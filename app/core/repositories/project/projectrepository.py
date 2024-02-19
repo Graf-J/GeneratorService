@@ -1,7 +1,7 @@
 from typing import List
 
 from app.core.entities import Project
-from app.core.repositories import IProjectRepository
+from app.core.repositories.project.projectrepositoryinterface import IProjectRepository
 from app.infrastructure.storage import IStorage
 
 

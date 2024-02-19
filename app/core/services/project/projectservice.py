@@ -1,6 +1,6 @@
 from app.core.entities import Project
-from app.core.services import IProjectService
 from app.core.repositories import IProjectRepository
+from app.core.services.project.projectserviceinterface import IProjectService
 
 
 class ProjectService(IProjectService):

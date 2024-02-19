@@ -1,8 +1,9 @@
 import unittest
 import uuid
+
 from app.core.entities import Vertex
-from app.core.validators import VertexValidator
 from app.core.exceptions import DuplicateException
+from app.core.validators import VertexValidator
 
 
 class TestVertexValidator(unittest.TestCase):
@@ -68,7 +69,7 @@ class TestVertexValidator(unittest.TestCase):
             VertexValidator.validate_new_vertex(vertices, new_vertex)
 
         # Assert
-        self.assertEqual(context.exception.message, 'Id already exists')
+        self.assertEqual(context.exception.message, 'Vertex with Id already exists')
 
     def test_new_vertex_duplicate_name(self):
         # Arrange
@@ -80,4 +81,4 @@ class TestVertexValidator(unittest.TestCase):
             VertexValidator.validate_new_vertex(vertices, new_vertex)
 
         # Assert
-        self.assertEqual(context.exception.message, 'Name already exists')
+        self.assertEqual(context.exception.message, 'Vertex with Name already exists')
