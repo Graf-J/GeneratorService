@@ -15,7 +15,7 @@ router = APIRouter(
 
 
 @router.get('/')
-async def get_edges(
+def get_edges(
         project_id: str,
         edge_service: IEdgeService = Depends(get_edge_service)
 ) -> List[EdgeResponseDto]:
@@ -28,7 +28,7 @@ async def get_edges(
 
 
 @router.get('/{edge_id}')
-async def get_edge(
+def get_edge(
         project_id: str,
         edge_id: str,
         edge_service: IEdgeService = Depends(get_edge_service)
@@ -44,7 +44,7 @@ async def get_edge(
 
 
 @router.post('/')
-async def create_edge(
+def create_edge(
         edge_request_dto: EdgeRequestDto,
         project_id: str,
         edge_service: IEdgeService = Depends(get_edge_service)

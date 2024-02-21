@@ -23,3 +23,11 @@ class VertexService(IVertexService):
         vertex = self.repository.create_vertex(project_id, vertex)
 
         return vertex
+
+    def update_vertex(self, project_id: str, vertex_id: str, vertex: Vertex) -> Vertex:
+        vertex = self.repository.update_vertex(project_id, vertex_id, vertex)
+
+        return vertex
+
+    def delete_vertex(self, project_id: str, vertex_id: str):
+        self.repository.delete_vertex(project_id, vertex_id)

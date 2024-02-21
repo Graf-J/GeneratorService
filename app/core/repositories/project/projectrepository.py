@@ -1,7 +1,7 @@
 from typing import List
 
 from app.core.entities import Project
-from app.core.exceptions import ProjectNotFoundException
+from app.core.exceptions import ProjectNotFoundException, ProjectException
 from app.core.repositories.project.projectrepositoryinterface import IProjectRepository
 from app.infrastructure.storage import IStorage
 
@@ -24,6 +24,13 @@ class ProjectRepository(IProjectRepository):
             raise ProjectNotFoundException(str(ex))
 
     def create_project(self, project: Project) -> Project:
+        # Check if Project with name already exists
+        existing_projects = self.storage.get_projects()
+        existing_project_names = [existing_project.name for existing_project in existing_projects]
+        if project.name in existing_project_names:
+            raise ProjectException(f"Project '{project.name}' already exists")
+
+        # Create Project
         project = self.storage.create_project(project)
 
         return project

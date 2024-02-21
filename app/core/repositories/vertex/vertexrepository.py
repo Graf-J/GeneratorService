@@ -37,3 +37,21 @@ class VertexRepository(IVertexRepository):
             return vertex
         except ValueError as ex:
             raise ProjectNotFoundException(str(ex))
+
+    def update_vertex(self, project_id: str, vertex_id: str, vertex: Vertex) -> Vertex:
+        try:
+            graph = self.storage.load_graph(project_id)
+            updated_vertex = graph.update_vertex(vertex_id, vertex)
+            self.storage.save_graph(project_id, graph)
+
+            return updated_vertex
+        except ValueError as ex:
+            raise ProjectNotFoundException(str(ex))
+
+    def delete_vertex(self, project_id: str, vertex_id: str):
+        try:
+            graph = self.storage.load_graph(project_id)
+            graph.delete_vertex(vertex_id)
+            self.storage.save_graph(project_id, graph)
+        except ValueError as ex:
+            raise ProjectNotFoundException(str(ex))

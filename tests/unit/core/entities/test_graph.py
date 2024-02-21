@@ -1,7 +1,7 @@
 import unittest
 import uuid
 
-from app.core.entities import Graph, Vertex, Edge
+from app.core.entities import Graph, Vertex, Edge, Property
 from app.core.exceptions import EdgeNotFoundException, VertexNotFoundException, VertexException
 
 
@@ -10,7 +10,7 @@ class TestGraphFindVertexById(unittest.TestCase):
         self.id_1 = str(uuid.uuid4())
         self.vertex_1 = Vertex(
             _id=self.id_1,
-            name='Vertex-1',
+            name='Vertex1',
             position_x=0,
             position_y=0,
             radius=20,
@@ -20,7 +20,7 @@ class TestGraphFindVertexById(unittest.TestCase):
         self.id_2 = str(uuid.uuid4())
         self.vertex_2 = Vertex(
             _id=self.id_2,
-            name='Vertex-2',
+            name='Vertex2',
             position_x=30,
             position_y=30,
             radius=15,
@@ -54,7 +54,7 @@ class TestGraphAddVertex(unittest.TestCase):
         self.vertex_id = str(uuid.uuid4())
         vertex = Vertex(
             _id=self.vertex_id,
-            name='Test-Vertex',
+            name='TestVertex',
             position_x=0,
             position_y=0,
             radius=20,
@@ -66,7 +66,7 @@ class TestGraphAddVertex(unittest.TestCase):
         # Arrange
         new_vertex = Vertex(
             _id=str(uuid.uuid4()),
-            name='New-Vertex',
+            name='NewVertex',
             position_x=0,
             position_y=0,
             radius=20,
@@ -83,7 +83,7 @@ class TestGraphAddVertex(unittest.TestCase):
         # Arrange
         new_vertex = Vertex(
             _id=self.vertex_id,
-            name='New-Vertex',
+            name='NewVertex',
             position_x=0,
             position_y=0,
             radius=20,
@@ -101,7 +101,7 @@ class TestGraphAddVertex(unittest.TestCase):
         # Arrange
         new_vertex = Vertex(
             _id=str(uuid.uuid4()),
-            name='Test-Vertex',
+            name='TestVertex',
             position_x=0,
             position_y=0,
             radius=20,
@@ -113,7 +113,215 @@ class TestGraphAddVertex(unittest.TestCase):
             self.graph.add_vertex(new_vertex)
 
         # Assert
-        self.assertEqual(context.exception.message, "Vertex with Name 'Test-Vertex' already exists")
+        self.assertEqual(context.exception.message, "Vertex with Name 'TestVertex' already exists")
+
+
+class TestGraphUpdateVertex(unittest.TestCase):
+    def setUp(self):
+        # Vertices
+        self.person_vertex_id = str(uuid.uuid4())
+        self.person_vertex = Vertex(
+            _id=self.person_vertex_id,
+            name='Person',
+            position_x=0,
+            position_y=0,
+            radius=20,
+            properties=[Property(key='name', required=True, datatype='String')]
+        )
+        self.hobby_vertex_id = str(uuid.uuid4())
+        self.hobby_vertex = Vertex(
+            _id=self.hobby_vertex_id,
+            name='Hobby',
+            position_x=0,
+            position_y=0,
+            radius=20,
+            properties=[]
+        )
+        # Edge
+        self.performs_edge_id = str(uuid.uuid4())
+        self.performs_edge = Edge(
+            _id=self.performs_edge_id,
+            name='performs',
+            properties=[]
+        )
+        # Build Graph
+        self.graph = Graph()
+        self.graph.add_vertex(self.person_vertex)
+        self.graph.add_vertex(self.hobby_vertex)
+        self.graph.add_edge(self.performs_edge, self.person_vertex_id, self.hobby_vertex_id)
+
+    def test_with_invalid_vertex_id(self):
+        # Arrange
+        new_vertex = Vertex(
+            _id='',
+            name='Surgery',
+            position_x=10,
+            position_y=10,
+            radius=30,
+            properties=[]
+        )
+
+        # Act
+        with self.assertRaises(VertexNotFoundException) as context:
+            self.graph.update_vertex('invalid-id', new_vertex)
+
+        # Assert
+        self.assertEqual(context.exception.message, "Vertex with Id 'invalid-id' not found")
+
+    def test_with_duplicate_name(self):
+        # Arrange
+        new_vertex = Vertex(
+            _id='',
+            name='Person',
+            position_x=10,
+            position_y=10,
+            radius=30,
+            properties=[]
+        )
+
+        # Act
+        with self.assertRaises(VertexException) as context:
+            self.graph.update_vertex(self.hobby_vertex_id, new_vertex)
+
+        # Assert
+        self.assertEqual(context.exception.message, "Vertex with Name 'Person' already exists")
+        self.assertEqual(self.graph.find_vertex_by_id(self.hobby_vertex_id).name, 'Hobby')
+
+    def test_with_new_attributes(self):
+        # Arrange
+        new_vertex = Vertex(
+            _id='',
+            name='Surgery',
+            position_x=10,
+            position_y=10,
+            radius=30,
+            properties=[]
+        )
+
+        # Act
+        self.graph.update_vertex(self.hobby_vertex_id, new_vertex)
+
+        # Assert
+        updated_vertex = self.graph.find_vertex_by_id(self.hobby_vertex_id)
+        self.assertEqual(updated_vertex.id, self.hobby_vertex_id)
+        self.assertEqual(updated_vertex.name, 'Surgery')
+        self.assertEqual(updated_vertex.position_x, 10)
+        self.assertEqual(updated_vertex.position_y, 10)
+        self.assertEqual(updated_vertex.radius, 30)
+        self.assertIsInstance(updated_vertex.properties, list)
+        self.assertEqual(len(updated_vertex.properties), 0)
+        self.assertEqual(len(self.graph.vertices), 2)
+
+    def test_with_new_properties(self):
+        # Arrange
+        new_vertex = Vertex(
+            _id='',
+            name='Surgery',
+            position_x=10,
+            position_y=10,
+            radius=30,
+            properties=[
+                Property(key='type', required=True, datatype='String'),
+                Property(key='difficulty', required=False, datatype='Int')
+            ]
+        )
+
+        # Act
+        self.graph.update_vertex(self.hobby_vertex_id, new_vertex)
+
+        # Assert
+        updated_vertex = self.graph.find_vertex_by_id(self.hobby_vertex_id)
+        self.assertEqual(updated_vertex.id, self.hobby_vertex_id)
+        self.assertEqual(updated_vertex.name, 'Surgery')
+        self.assertEqual(updated_vertex.position_x, 10)
+        self.assertEqual(updated_vertex.position_y, 10)
+        self.assertEqual(updated_vertex.radius, 30)
+        self.assertIsInstance(updated_vertex.properties, list)
+        self.assertEqual(len(updated_vertex.properties), 2)
+        self.assertEqual(updated_vertex.properties[0].key, 'type')
+        self.assertEqual(updated_vertex.properties[0].required, True)
+        self.assertEqual(updated_vertex.properties[0].datatype, 'String')
+        self.assertEqual(updated_vertex.properties[1].key, 'difficulty')
+        self.assertEqual(updated_vertex.properties[1].required, False)
+        self.assertEqual(updated_vertex.properties[1].datatype, 'Int')
+        self.assertEqual(len(self.graph.vertices), 2)
+
+
+class TestGraphDeleteVertex(unittest.TestCase):
+    def setUp(self):
+        # Vertices
+        self.person_vertex_id = str(uuid.uuid4())
+        self.person_vertex = Vertex(
+            _id=self.person_vertex_id,
+            name='Person',
+            position_x=0,
+            position_y=0,
+            radius=20,
+            properties=[Property(key='name', required=True, datatype='String')]
+        )
+        self.hobby_vertex_id = str(uuid.uuid4())
+        self.hobby_vertex = Vertex(
+            _id=self.hobby_vertex_id,
+            name='Hobby',
+            position_x=0,
+            position_y=0,
+            radius=20,
+            properties=[]
+        )
+        # Edge
+        self.performs_edge_id = str(uuid.uuid4())
+        self.performs_edge = Edge(
+            _id=self.performs_edge_id,
+            name='performs',
+            properties=[]
+        )
+        self.likes_edge_id = str(uuid.uuid4())
+        self.likes_edge = Edge(
+            _id=self.likes_edge_id,
+            name='likes',
+            properties=[Property(key='strength', required=True, datatype='Float')]
+        )
+        # Build Graph
+        self.graph = Graph()
+        self.graph.add_vertex(self.person_vertex)
+        self.graph.add_vertex(self.hobby_vertex)
+        self.graph.add_edge(self.performs_edge, self.person_vertex_id, self.hobby_vertex_id)
+        self.graph.add_edge(self.likes_edge, self.person_vertex_id, self.person_vertex_id)
+
+    def test_with_invalid_vertex_id(self):
+        # Act
+        with self.assertRaises(VertexNotFoundException) as context:
+            self.graph.delete_vertex('invalid-id')
+
+        # Assert
+        self.assertEqual(context.exception.message, "Vertex with Id 'invalid-id' not found")
+        self.assertEqual(len(self.graph.vertices), 2)
+        self.assertEqual(len(self.graph.edges), 2)
+
+    def test_delete_ordinary_connected_vertex(self):
+        # Act
+        self.graph.delete_vertex(self.hobby_vertex_id)
+
+        # Assert
+        self.assertEqual(len(self.graph.vertices), 1)
+        self.assertEqual(self.graph.vertices[0], self.person_vertex)
+        self.assertEqual(len(self.graph.edges), 1)
+        self.assertEqual(self.graph.edges[0], self.likes_edge)
+
+        self.assertEqual(len(self.graph.vertices[0].out_edges), 1)
+        self.assertEqual(len(self.graph.vertices[0].in_edges), 1)
+
+    def test_delete_recursive_connected_vertex(self):
+        # Act
+        self.graph.delete_vertex(self.person_vertex_id)
+
+        # Assert
+        self.assertEqual(len(self.graph.vertices), 1)
+        self.assertEqual(self.graph.vertices[0], self.hobby_vertex)
+        self.assertEqual(len(self.graph.edges), 0)
+
+        self.assertEqual(len(self.graph.vertices[0].out_edges), 0)
+        self.assertEqual(len(self.graph.vertices[0].in_edges), 0)
 
 
 class TestGraphFindEdgeById(unittest.TestCase):
@@ -121,7 +329,7 @@ class TestGraphFindEdgeById(unittest.TestCase):
         self.vertex_id = str(uuid.uuid4())
         vertex = Vertex(
             _id=self.vertex_id,
-            name='Test-Vertex',
+            name='TestVertex',
             position_x=0,
             position_y=0,
             radius=20,
@@ -131,7 +339,7 @@ class TestGraphFindEdgeById(unittest.TestCase):
         self.edge_id = str(uuid.uuid4())
         self.edge = Edge(
             _id=self.edge_id,
-            name='Edge-1',
+            name='Edge1',
             properties=[]
         )
 
@@ -198,6 +406,11 @@ class TestGraphAddEdge(unittest.TestCase):
         self.assertEqual(id(new_edge), id(performs_edge))
         self.assertEqual(id(new_edge.source_vertex), id(self.person_vertex))
         self.assertEqual(id(new_edge.target_vertex), id(self.hobby_vertex))
+        self.assertEqual(len(self.graph.edges), 1)
+        self.assertEqual(len(self.person_vertex.out_edges), 1)
+        self.assertEqual(len(self.person_vertex.in_edges), 0)
+        self.assertEqual(len(self.hobby_vertex.out_edges), 0)
+        self.assertEqual(len(self.hobby_vertex.in_edges), 1)
 
     def test_new_edge_recursive(self):
         # Arrange
@@ -216,3 +429,8 @@ class TestGraphAddEdge(unittest.TestCase):
         self.assertEqual(id(new_edge.source_vertex), id(self.person_vertex))
         self.assertEqual(id(new_edge.target_vertex), id(self.person_vertex))
         self.assertEqual(id(new_edge.source_vertex), id(new_edge.target_vertex))
+        self.assertEqual(len(self.graph.edges), 1)
+        self.assertEqual(len(self.person_vertex.out_edges), 1)
+        self.assertEqual(len(self.person_vertex.in_edges), 1)
+        self.assertEqual(len(self.hobby_vertex.out_edges), 0)
+        self.assertEqual(len(self.hobby_vertex.in_edges), 0)

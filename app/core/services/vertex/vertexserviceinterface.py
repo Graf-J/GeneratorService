@@ -16,3 +16,11 @@ class IVertexService(ABC):
     @abstractmethod
     def create_vertex(self, project_id: str, vertex: Vertex) -> Vertex:
         pass
+
+    @abstractmethod
+    def update_vertex(self, project_id: str, vertex_id: str, vertex: Vertex) -> Vertex:
+        pass
+
+    @abstractmethod
+    def delete_vertex(self, project_id: str, vertex_id: str):
+        pass

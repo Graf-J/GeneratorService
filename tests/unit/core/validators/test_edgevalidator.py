@@ -3,6 +3,7 @@ import uuid
 
 from app.core.entities import Graph, Vertex, Edge
 from app.core.exceptions import EdgeException
+from app.core.validators import EdgeValidator
 
 
 class TestEdgeValidatorValidateNewEdgeWithExistingOutEdgeAndNewVertex(unittest.TestCase):
@@ -58,16 +59,17 @@ class TestEdgeValidatorValidateNewEdgeWithExistingOutEdgeAndNewVertex(unittest.T
     def test_out_edge_with_same_name(self):
         # Act
         with self.assertRaises(EdgeException) as context:
-            self.graph.add_edge(self.new_performs_edge, self.person_vertex.id, self.new_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_performs_edge, self.person_vertex.out_edges,
+                                            self.new_vertex.in_edges)
 
         # Assert
         self.assertEqual(context.exception.message,
-                         "Vertex 'Person' already has an outgoing edge with name 'performs'")
+                         "Vertex already has an outgoing edge with name 'performs'")
 
     def test_out_edge_with_different_name(self):
         try:
             # Act
-            self.graph.add_edge(self.new_likes_edge, self.person_vertex.id, self.new_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_likes_edge, self.person_vertex.out_edges, self.new_vertex.in_edges)
         except EdgeException:
             # Assume
             self.fail('Operation should now throw an exception')
@@ -75,7 +77,8 @@ class TestEdgeValidatorValidateNewEdgeWithExistingOutEdgeAndNewVertex(unittest.T
     def test_in_edge_with_same_name(self):
         try:
             # Act
-            self.graph.add_edge(self.new_performs_edge, self.new_vertex.id, self.person_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_performs_edge, self.new_vertex.out_edges,
+                                            self.person_vertex.in_edges)
         except EdgeException:
             # Assume
             self.fail('Operation should now throw an exception')
@@ -83,7 +86,7 @@ class TestEdgeValidatorValidateNewEdgeWithExistingOutEdgeAndNewVertex(unittest.T
     def test_in_edge_with_different_name(self):
         try:
             # Act
-            self.graph.add_edge(self.new_likes_edge, self.new_vertex.id, self.person_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_likes_edge, self.new_vertex.out_edges, self.person_vertex.in_edges)
         except EdgeException:
             # Assume
             self.fail('Operation should now throw an exception')
@@ -142,7 +145,8 @@ class TestEdgeValidatorValidateNewEdgeWithExistingInEdgeAndNewVertex(unittest.Te
     def test_out_edge_with_same_name(self):
         try:
             # Act
-            self.graph.add_edge(self.new_performs_edge, self.hobby_vertex.id, self.new_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_performs_edge, self.hobby_vertex.out_edges,
+                                            self.new_vertex.in_edges)
         except EdgeException:
             # Assume
             self.fail('Operation should now throw an exception')
@@ -150,7 +154,7 @@ class TestEdgeValidatorValidateNewEdgeWithExistingInEdgeAndNewVertex(unittest.Te
     def test_out_edge_with_different_name(self):
         try:
             # Act
-            self.graph.add_edge(self.new_likes_edge, self.hobby_vertex.id, self.new_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_likes_edge, self.hobby_vertex.out_edges, self.new_vertex.in_edges)
         except EdgeException:
             # Assume
             self.fail('Operation should now throw an exception')
@@ -158,16 +162,17 @@ class TestEdgeValidatorValidateNewEdgeWithExistingInEdgeAndNewVertex(unittest.Te
     def test_in_edge_with_same_name(self):
         # Act
         with self.assertRaises(EdgeException) as context:
-            self.graph.add_edge(self.new_performs_edge, self.new_vertex.id, self.hobby_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_performs_edge, self.new_vertex.out_edges,
+                                            self.hobby_vertex.in_edges)
 
         # Assert
         self.assertEqual(context.exception.message,
-                         "Vertex 'Hobby' already has an incoming edge with name 'performs'")
+                         "Vertex already has an incoming edge with name 'performs'")
 
     def test_in_edge_with_different_name(self):
         try:
             # Act
-            self.graph.add_edge(self.new_likes_edge, self.new_vertex.id, self.hobby_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_likes_edge, self.new_vertex.out_edges, self.hobby_vertex.in_edges)
         except EdgeException:
             # Assume
             self.fail('Operation should now throw an exception')
@@ -217,16 +222,18 @@ class TestEdgeValidatorValidateNewEdgeWithExistingOutEdgeAndSameVertex(unittest.
     def test_out_edge_with_same_name(self):
         # Act
         with self.assertRaises(EdgeException) as context:
-            self.graph.add_edge(self.new_performs_edge, self.person_vertex.id, self.hobby_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_performs_edge, self.person_vertex.out_edges,
+                                            self.hobby_vertex.in_edges)
 
         # Assert
         self.assertEqual(context.exception.message,
-                         "Vertex 'Person' already has an outgoing edge with name 'performs'")
+                         "Vertex already has an outgoing edge with name 'performs'")
 
     def test_out_edge_with_different_name(self):
         try:
             # Act
-            self.graph.add_edge(self.new_likes_edge, self.person_vertex.id, self.hobby_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_likes_edge, self.person_vertex.out_edges,
+                                            self.hobby_vertex.in_edges)
         except EdgeException:
             # Assume
             self.fail('Operation should now throw an exception')
@@ -234,7 +241,8 @@ class TestEdgeValidatorValidateNewEdgeWithExistingOutEdgeAndSameVertex(unittest.
     def test_in_edge_with_same_name(self):
         try:
             # Act
-            self.graph.add_edge(self.new_performs_edge, self.hobby_vertex.id, self.person_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_performs_edge, self.hobby_vertex.out_edges,
+                                            self.person_vertex.in_edges)
         except EdgeException:
             # Assume
             self.fail('Operation should now throw an exception')
@@ -242,7 +250,8 @@ class TestEdgeValidatorValidateNewEdgeWithExistingOutEdgeAndSameVertex(unittest.
     def test_in_edge_with_different_name(self):
         try:
             # Act
-            self.graph.add_edge(self.new_likes_edge, self.hobby_vertex.id, self.person_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_likes_edge, self.hobby_vertex.out_edges,
+                                            self.person_vertex.in_edges)
         except EdgeException:
             # Assume
             self.fail('Operation should now throw an exception')
@@ -292,7 +301,8 @@ class TestEdgeValidatorValidateNewEdgeWithExistingInEdgeAndSameVertex(unittest.T
     def test_out_edge_with_same_name(self):
         try:
             # Act
-            self.graph.add_edge(self.new_performs_edge, self.hobby_vertex.id, self.person_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_performs_edge, self.hobby_vertex.out_edges,
+                                            self.person_vertex.in_edges)
         except EdgeException:
             # Assume
             self.fail('Operation should now throw an exception')
@@ -300,7 +310,8 @@ class TestEdgeValidatorValidateNewEdgeWithExistingInEdgeAndSameVertex(unittest.T
     def test_out_edge_with_different_name(self):
         try:
             # Act
-            self.graph.add_edge(self.new_likes_edge, self.hobby_vertex.id, self.person_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_likes_edge, self.hobby_vertex.out_edges,
+                                            self.person_vertex.in_edges)
         except EdgeException:
             # Assume
             self.fail('Operation should now throw an exception')
@@ -308,16 +319,18 @@ class TestEdgeValidatorValidateNewEdgeWithExistingInEdgeAndSameVertex(unittest.T
     def test_in_edge_with_same_name(self):
         # Act
         with self.assertRaises(EdgeException) as context:
-            self.graph.add_edge(self.new_performs_edge, self.person_vertex.id, self.hobby_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_performs_edge, self.person_vertex.out_edges,
+                                            self.hobby_vertex.in_edges)
 
         # Assert
         self.assertEqual(context.exception.message,
-                         "Vertex 'Person' already has an outgoing edge with name 'performs'")
+                         "Vertex already has an outgoing edge with name 'performs'")
 
     def test_in_edge_with_different_name(self):
         try:
             # Act
-            self.graph.add_edge(self.new_likes_edge, self.person_vertex.id, self.hobby_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_likes_edge, self.person_vertex.out_edges,
+                                            self.hobby_vertex.in_edges)
         except EdgeException:
             # Assume
             self.fail('Operation should now throw an exception')
@@ -366,7 +379,7 @@ class TestEdgeValidatorValidateNewEdgeWithRecursion(unittest.TestCase):
     def test_one_recursive_edge(self):
         try:
             # Act
-            self.graph.add_edge(self.likes_edge, self.person_vertex.id, self.person_vertex.id)
+            EdgeValidator.validate_new_edge(self.likes_edge, self.person_vertex.out_edges, self.person_vertex.in_edges)
         except EdgeException:
             # Assert
             self.fail('Operation should now throw an exception')
@@ -377,10 +390,11 @@ class TestEdgeValidatorValidateNewEdgeWithRecursion(unittest.TestCase):
 
         # Act
         with self.assertRaises(EdgeException) as context:
-            self.graph.add_edge(self.new_likes_edge, self.person_vertex.id, self.person_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_likes_edge, self.person_vertex.out_edges,
+                                            self.person_vertex.in_edges)
 
         # Assume
-        self.assertEqual(context.exception.message, "Vertex 'Person' already has an outgoing edge with name 'likes'")
+        self.assertEqual(context.exception.message, "Vertex already has an outgoing edge with name 'likes'")
 
     def test_two_recursive_edges_with_different_name(self):
         # Arrange
@@ -388,7 +402,8 @@ class TestEdgeValidatorValidateNewEdgeWithRecursion(unittest.TestCase):
 
         try:
             # Act
-            self.graph.add_edge(self.new_performs_edge, self.person_vertex.id, self.person_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_performs_edge, self.person_vertex.out_edges,
+                                            self.person_vertex.in_edges)
         except EdgeException:
             # Assert
             self.fail('Operation should now throw an exception')
@@ -399,10 +414,11 @@ class TestEdgeValidatorValidateNewEdgeWithRecursion(unittest.TestCase):
 
         # Act
         with self.assertRaises(EdgeException) as context:
-            self.graph.add_edge(self.new_likes_edge, self.person_vertex.id, self.hobby_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_likes_edge, self.person_vertex.out_edges,
+                                            self.hobby_vertex.in_edges)
 
         # Assume
-        self.assertEqual(context.exception.message, "Vertex 'Person' already has an outgoing edge with name 'likes'")
+        self.assertEqual(context.exception.message, "Vertex already has an outgoing edge with name 'likes'")
 
     def test_one_recursive_edge_plus_edge_with_other_name_to_other_vertex(self):
         # Arrange
@@ -410,7 +426,8 @@ class TestEdgeValidatorValidateNewEdgeWithRecursion(unittest.TestCase):
 
         try:
             # Act
-            self.graph.add_edge(self.new_performs_edge, self.person_vertex.id, self.hobby_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_performs_edge, self.person_vertex.out_edges,
+                                            self.hobby_vertex.in_edges)
         except EdgeException:
             # Assert
             self.fail('Operation should now throw an exception')
@@ -421,10 +438,11 @@ class TestEdgeValidatorValidateNewEdgeWithRecursion(unittest.TestCase):
 
         # Act
         with self.assertRaises(EdgeException) as context:
-            self.graph.add_edge(self.new_likes_edge, self.hobby_vertex.id, self.person_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_likes_edge, self.hobby_vertex.out_edges,
+                                            self.person_vertex.in_edges)
 
         # Assume
-        self.assertEqual(context.exception.message, "Vertex 'Person' already has an incoming edge with name 'likes'")
+        self.assertEqual(context.exception.message, "Vertex already has an incoming edge with name 'likes'")
 
     def test_one_recursive_edge_plus_edge_with_other_name_from_other_vertex(self):
         # Arrange
@@ -432,7 +450,8 @@ class TestEdgeValidatorValidateNewEdgeWithRecursion(unittest.TestCase):
 
         try:
             # Act
-            self.graph.add_edge(self.new_performs_edge, self.hobby_vertex.id, self.person_vertex.id)
+            EdgeValidator.validate_new_edge(self.new_performs_edge, self.hobby_vertex.out_edges,
+                                            self.person_vertex.in_edges)
         except EdgeException:
             # Assert
             self.fail('Operation should now throw an exception')

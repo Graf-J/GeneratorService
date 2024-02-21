@@ -15,7 +15,7 @@ router = APIRouter(
 
 
 @router.get('/')
-async def get_vertices(
+def get_vertices(
         project_id: str,
         service: IVertexService = Depends(get_vertex_service)
 ) -> List[VertexResponseDto]:
@@ -28,7 +28,7 @@ async def get_vertices(
 
 
 @router.get('/{vertex_id}')
-async def get_vertex(
+def get_vertex(
         project_id: str,
         vertex_id: str,
         service: IVertexService = Depends(get_vertex_service)
@@ -45,7 +45,7 @@ async def get_vertex(
 
 
 @router.post('/')
-async def create_vertex(
+def create_vertex(
         vertex_request_dto: VertexRequestDto,
         project_id: str,
         service: IVertexService = Depends(get_vertex_service)
@@ -58,3 +58,36 @@ async def create_vertex(
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
     except VertexException as ex:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=[{'msg': ex.message}])
+
+
+@router.put('/{vertex_id}')
+def update_vertex(
+        vertex_request_dto: VertexRequestDto,
+        project_id: str,
+        vertex_id: str,
+        service: IVertexService = Depends(get_vertex_service)
+) -> VertexResponseDto:
+    try:
+        vertex = service.update_vertex(project_id, vertex_id, VertexMapper.to_entity(vertex_request_dto))
+
+        return VertexMapper.to_dto(vertex)
+    except ProjectNotFoundException as ex:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
+    except VertexNotFoundException as ex:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
+    except VertexException as ex:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=[{'msg': ex.message}])
+
+
+@router.delete('/{vertex_id}')
+def delete_vertex(
+        project_id: str,
+        vertex_id: str,
+        service: IVertexService = Depends(get_vertex_service)
+):
+    try:
+        service.delete_vertex(project_id, vertex_id)
+    except ProjectNotFoundException as ex:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
+    except VertexNotFoundException as ex:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
