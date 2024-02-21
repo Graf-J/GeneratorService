@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 
 from app.api.dependencies import get_project_service
 from app.api.dto import ProjectRequestDto, ProjectResponseDto
-from app.core.exceptions import NotFoundException
+from app.core.exceptions import ProjectException
 from app.core.services import IProjectService
 from app.mappers import ProjectMapper
 
@@ -27,7 +27,7 @@ async def get_project(project_id: str, service: IProjectService = Depends(get_pr
         project = service.get_project(project_id)
 
         return ProjectMapper.to_dto(project)
-    except NotFoundException as ex:
+    except ProjectException as ex:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
 
 
@@ -45,5 +45,5 @@ async def create_project(
 async def delete_project(project_id: str, service: IProjectService = Depends(get_project_service)):
     try:
         service.delete_project(project_id)
-    except NotFoundException as ex:
+    except ProjectException as ex:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])

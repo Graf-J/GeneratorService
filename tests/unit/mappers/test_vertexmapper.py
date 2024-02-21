@@ -1,7 +1,8 @@
 import unittest
 import uuid
-from app.api.dto import VertexRequestDto, VertexResponseDto, PropertyDto
-from app.core.entities import Vertex, Property
+
+from app.api.dto import VertexRequestDto, VertexResponseDto, EdgeResponseDto, PropertyDto
+from app.core.entities import Graph, Vertex, Edge, Property
 from app.mappers import VertexMapper
 
 
@@ -128,6 +129,10 @@ class TestVertexMapperToDto(unittest.TestCase):
         self.assertEqual(dto.properties[4].key, "gpa")
         self.assertEqual(dto.properties[4].required, False)
         self.assertEqual(dto.properties[4].datatype, "Float")
+        self.assertIsInstance(dto.out_edges, list)
+        self.assertEqual(len(dto.out_edges), 0)
+        self.assertIsInstance(dto.in_edges, list)
+        self.assertEqual(len(dto.in_edges), 0)
 
     def test_without_properties(self):
         # Arrange
@@ -153,3 +158,48 @@ class TestVertexMapperToDto(unittest.TestCase):
         self.assertEqual(dto.radius, 5)
         self.assertEqual(len(dto.properties), 0)
         self.assertIsInstance(dto.properties, list)
+        self.assertIsInstance(dto.out_edges, list)
+        self.assertEqual(len(dto.out_edges), 0)
+        self.assertIsInstance(dto.in_edges, list)
+        self.assertEqual(len(dto.in_edges), 0)
+
+    def test_with_edges(self):
+        # Arrange
+        vertex_id = uuid.uuid4()
+        entity = Vertex(
+            _id=str(vertex_id),
+            name="TestVertex",
+            position_x=10,
+            position_y=20,
+            radius=5,
+            properties=[]
+        )
+        edge_id = uuid.uuid4()
+        edge = Edge(
+            _id=str(edge_id),
+            name="TestEdge",
+            properties=[]
+        )
+        graph = Graph()
+        graph.add_vertex(entity)
+        graph.add_edge(edge, str(vertex_id), str(vertex_id))
+
+        # Act
+        dto = VertexMapper.to_dto(entity)
+
+        # Assert
+        self.assertIsInstance(dto, VertexResponseDto)
+        self.assertEqual(dto.id, vertex_id)
+        self.assertEqual(dto.name, "TestVertex")
+        self.assertEqual(dto.position_x, 10)
+        self.assertEqual(dto.position_y, 20)
+        self.assertEqual(dto.radius, 5)
+        self.assertIsInstance(dto.properties, list)
+        self.assertEqual(len(dto.properties), 0)
+        self.assertIsInstance(dto.out_edges, list)
+        self.assertEqual(len(dto.out_edges), 1)
+        self.assertIsInstance(dto.out_edges[0], EdgeResponseDto)
+        self.assertEqual(dto.out_edges[0].id, edge_id)
+        self.assertIsInstance(dto.in_edges, list)
+        self.assertEqual(len(dto.in_edges), 1)
+        self.assertEqual(dto.in_edges[0].id, edge_id)

@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 
 from app.api.dependencies import get_edge_service
 from app.api.dto import EdgeRequestDto, EdgeResponseDto
-from app.core.exceptions import NotFoundException, EdgeException
+from app.core.exceptions import ProjectNotFoundException, VertexNotFoundException, EdgeNotFoundException, EdgeException
 from app.core.services import IEdgeService
 from app.mappers import EdgeMapper
 
@@ -23,7 +23,7 @@ async def get_edges(
         edges = edge_service.get_edges(project_id)
 
         return [EdgeMapper.to_dto(edge) for edge in edges]
-    except NotFoundException as ex:
+    except ProjectNotFoundException as ex:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
 
 
@@ -37,7 +37,9 @@ async def get_edge(
         edge = edge_service.get_edge(project_id, edge_id)
 
         return EdgeMapper.to_dto(edge)
-    except NotFoundException as ex:
+    except ProjectNotFoundException as ex:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
+    except EdgeNotFoundException as ex:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
 
 
@@ -56,7 +58,9 @@ async def create_edge(
         )
 
         return EdgeMapper.to_dto(edge)
-    except NotFoundException as ex:
+    except ProjectNotFoundException as ex:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
+    except VertexNotFoundException as ex:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
     except EdgeException as ex:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=[{'msg': ex.message}])

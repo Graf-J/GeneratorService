@@ -3,7 +3,7 @@ from typing import List
 
 from app.api.dto import VertexRequestDto, VertexResponseDto, PropertyDto
 from app.core.entities import Vertex, Property
-from app.mappers import Mapper
+from app.mappers import Mapper, EdgeMapper
 
 
 class VertexMapper(Mapper):
@@ -36,7 +36,9 @@ class VertexMapper(Mapper):
             position_x=entity.position_x,
             position_y=entity.position_y,
             radius=entity.radius,
-            properties=properties
+            properties=properties,
+            out_edges=[EdgeMapper.to_dto(out_edge) for out_edge in entity.out_edges],
+            in_edges=[EdgeMapper.to_dto(in_edge) for in_edge in entity.in_edges]
         )
 
         return vertex_dto

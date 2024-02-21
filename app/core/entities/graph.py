@@ -1,7 +1,7 @@
 from typing import List
 
 from app.core.entities import Vertex, Edge
-from app.core.exceptions import NotFoundException
+from app.core.exceptions import VertexNotFoundException, EdgeNotFoundException
 from app.core.validators import VertexValidator, EdgeValidator
 
 
@@ -15,14 +15,14 @@ class Graph:
             if vertex.id == vertex_id:
                 return vertex
 
-        raise NotFoundException("Vertex with Id not found")
+        raise VertexNotFoundException(f"Vertex with Id '{vertex_id}' not found")
 
     def find_edge_by_id(self, edge_id: str) -> Edge:
         for edge in self.edges:
             if edge.id == edge_id:
                 return edge
 
-        raise NotFoundException("Edge with Id not found")
+        raise EdgeNotFoundException(f"Edge with Id '{edge_id}' not found")
 
     def add_vertex(self, vertex: Vertex):
         VertexValidator.validate_new_vertex(self.vertices, vertex)

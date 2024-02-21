@@ -1,6 +1,7 @@
 from typing import List
 
 from app.core.entities import Vertex
+from app.core.exceptions import ProjectNotFoundException
 from app.core.repositories.vertex.vertexrepositoryinterface import IVertexRepository
 from app.infrastructure.storage.storageinterface import IStorage
 
@@ -10,20 +11,29 @@ class VertexRepository(IVertexRepository):
         self.storage = storage
 
     def get_vertices(self, project_id: str) -> List[Vertex]:
-        graph = self.storage.load_graph(project_id)
-        vertices = graph.vertices
+        try:
+            graph = self.storage.load_graph(project_id)
+            vertices = graph.vertices
 
-        return vertices
+            return vertices
+        except ValueError as ex:
+            raise ProjectNotFoundException(str(ex))
 
     def get_vertex(self, project_id: str, vertex_id: str) -> Vertex:
-        graph = self.storage.load_graph(project_id)
-        vertex = graph.find_vertex_by_id(vertex_id)
+        try:
+            graph = self.storage.load_graph(project_id)
+            vertex = graph.find_vertex_by_id(vertex_id)
 
-        return vertex
+            return vertex
+        except ValueError as ex:
+            raise ProjectNotFoundException(str(ex))
 
     def create_vertex(self, project_id: str, vertex: Vertex) -> Vertex:
-        graph = self.storage.load_graph(project_id)
-        graph.add_vertex(vertex)
-        self.storage.save_graph(project_id, graph)
+        try:
+            graph = self.storage.load_graph(project_id)
+            graph.add_vertex(vertex)
+            self.storage.save_graph(project_id, graph)
 
-        return vertex
+            return vertex
+        except ValueError as ex:
+            raise ProjectNotFoundException(str(ex))

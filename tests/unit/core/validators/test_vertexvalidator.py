@@ -2,7 +2,7 @@ import unittest
 import uuid
 
 from app.core.entities import Vertex
-from app.core.exceptions import DuplicateException
+from app.core.exceptions import VertexException
 from app.core.validators import VertexValidator
 
 
@@ -55,9 +55,9 @@ class TestVertexValidator(unittest.TestCase):
         try:
             # Act
             VertexValidator.validate_new_vertex(vertices, new_vertex)
-        except DuplicateException:
+        except VertexException:
             # Assert
-            self.fail('DuplicateException got raised despite no duplicates')
+            self.fail('Operation should not raise an Exception')
 
     def test_new_vertex_duplicate_id(self):
         # Arrange
@@ -65,11 +65,11 @@ class TestVertexValidator(unittest.TestCase):
         new_vertex = self.duplicate_id_vertex
 
         # Act
-        with self.assertRaises(DuplicateException) as context:
+        with self.assertRaises(VertexException) as context:
             VertexValidator.validate_new_vertex(vertices, new_vertex)
 
         # Assert
-        self.assertEqual(context.exception.message, 'Vertex with Id already exists')
+        self.assertEqual(context.exception.message, f"Vertex with Id '{self.duplicate_id_vertex.id}' already exists")
 
     def test_new_vertex_duplicate_name(self):
         # Arrange
@@ -77,8 +77,8 @@ class TestVertexValidator(unittest.TestCase):
         new_vertex = self.duplicate_name_vertex
 
         # Act
-        with self.assertRaises(DuplicateException) as context:
+        with self.assertRaises(VertexException) as context:
             VertexValidator.validate_new_vertex(vertices, new_vertex)
 
         # Assert
-        self.assertEqual(context.exception.message, 'Vertex with Name already exists')
+        self.assertEqual(context.exception.message, "Vertex with Name 'Vertex' already exists")

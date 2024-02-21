@@ -21,8 +21,8 @@ class Vertex:
         self.radius = radius
         self.properties = properties
 
-        self.out_edges = []
-        self.in_edges = []
+        self.out_edges: List[Edge] = []
+        self.in_edges: List[Edge] = []
 
     def add_out_edge(self, edge: 'Edge'):
         self.out_edges.append(edge)

@@ -2,7 +2,6 @@ import unittest
 from unittest.mock import Mock
 
 from app.core.entities import Project
-from app.core.exceptions import NotFoundException
 from app.infrastructure.storage import PickleStorage
 
 
@@ -52,11 +51,11 @@ class TestPickleStorageGetProject(unittest.TestCase):
         storage = PickleStorage(self.filemanager_mock)
 
         # Act
-        with self.assertRaises(NotFoundException) as context:
+        with self.assertRaises(ValueError) as context:
             storage.get_project('non-existing-id')
 
         # Assert
-        self.assertEqual(context.exception.message, 'Project not found')
+        self.assertEqual(str(context.exception), 'Project not found')
 
     def test_with_existing_project_id(self):
         # Arrange

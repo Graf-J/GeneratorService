@@ -2,7 +2,6 @@ import os
 from typing import List
 
 from app.core.entities import Graph, Project
-from app.core.exceptions import NotFoundException
 from app.infrastructure.storage import IStorage
 from app.infrastructure.utils import FileManager
 
@@ -28,7 +27,7 @@ class PickleStorage(IStorage):
             if project.id == project_id:
                 return project
 
-        raise NotFoundException('Project not found')
+        raise ValueError('Project not found')
 
     def create_project(self, project: Project) -> Project:
         path = self.filemanager.generate_project_path(project)

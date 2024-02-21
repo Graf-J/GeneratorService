@@ -4,8 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 
 from app.api.dependencies import get_vertex_service
 from app.api.dto import VertexResponseDto, VertexRequestDto
-from app.core.exceptions import DuplicateException
-from app.core.exceptions import NotFoundException
+from app.core.exceptions import ProjectNotFoundException, VertexNotFoundException, VertexException
 from app.core.services import IVertexService
 from app.mappers import VertexMapper
 
@@ -24,7 +23,7 @@ async def get_vertices(
         vertices = service.get_vertices(project_id)
 
         return [VertexMapper.to_dto(vertex) for vertex in vertices]
-    except NotFoundException as ex:
+    except ProjectNotFoundException as ex:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
 
 
@@ -33,12 +32,15 @@ async def get_vertex(
         project_id: str,
         vertex_id: str,
         service: IVertexService = Depends(get_vertex_service)
-) -> VertexRequestDto:
+) -> VertexResponseDto:
     try:
         vertex = service.get_vertex(project_id, vertex_id)
 
-        return VertexMapper.to_dto(vertex)
-    except NotFoundException as ex:
+        output = VertexMapper.to_dto(vertex)
+        return output
+    except ProjectNotFoundException as ex:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
+    except VertexNotFoundException as ex:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
 
 
@@ -52,7 +54,7 @@ async def create_vertex(
         vertex = service.create_vertex(project_id, VertexMapper.to_entity(vertex_request_dto))
 
         return VertexMapper.to_dto(vertex)
-    except NotFoundException as ex:
+    except ProjectNotFoundException as ex:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
-    except DuplicateException as ex:
+    except VertexException as ex:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=[{'msg': ex.message}])
