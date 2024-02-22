@@ -6,7 +6,9 @@ from app.core.repositories import (
     IEdgeRepository,
     EdgeRepository,
     IProjectRepository,
-    ProjectRepository
+    ProjectRepository,
+    IGraphRepository,
+    GraphRepository
 )
 from app.core.services import (
     IVertexService,
@@ -14,7 +16,9 @@ from app.core.services import (
     IEdgeService,
     EdgeService,
     IProjectService,
-    ProjectService
+    ProjectService,
+    IGraphService,
+    GraphService
 )
 from app.infrastructure.storage import (
     IStorage,
@@ -46,6 +50,10 @@ def get_project_repository(graph_storage: IStorage = Depends(get_graph_storage))
     return ProjectRepository(graph_storage)
 
 
+def get_graph_repository(graph_storage: IStorage = Depends(get_graph_storage)) -> IGraphRepository:
+    return GraphRepository(graph_storage)
+
+
 # Services
 def get_vertex_service(vertex_repository: IVertexRepository = Depends(get_vertex_repository)) -> IVertexService:
     return VertexService(vertex_repository)
@@ -57,3 +65,7 @@ def get_edge_service(edge_repository: IEdgeRepository = Depends(get_edge_reposit
 
 def get_project_service(project_repository: IProjectRepository = Depends(get_project_repository)) -> IProjectService:
     return ProjectService(project_repository)
+
+
+def get_graph_service(graph_repository: IGraphRepository = Depends(get_graph_repository)) -> IGraphService:
+    return GraphService(graph_repository)

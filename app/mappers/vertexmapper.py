@@ -3,7 +3,8 @@ from typing import List
 
 from app.api.dto import VertexRequestDto, VertexResponseDto, PropertyDto
 from app.core.entities import Vertex, Property
-from app.mappers import Mapper, EdgeMapper
+from app.mappers.edgemapper import EdgeMapper
+from app.mappers.mapper import Mapper
 
 
 class VertexMapper(Mapper):
