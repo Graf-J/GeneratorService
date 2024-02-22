@@ -1,4 +1,5 @@
 from app.core.entities import Graph
+from app.core.exceptions import ProjectNotFoundException
 from app.core.repositories.graph.graphrepositoryinterface import IGraphRepository
 from app.infrastructure.storage import IStorage
 
@@ -8,6 +9,9 @@ class GraphRepository(IGraphRepository):
         self.storage = storage
 
     def get_graph(self, project_id: str) -> Graph:
-        graph = self.storage.load_graph(project_id)
+        try:
+            graph = self.storage.load_graph(project_id)
 
-        return graph
+            return graph
+        except ValueError as ex:
+            raise ProjectNotFoundException(str(ex))
