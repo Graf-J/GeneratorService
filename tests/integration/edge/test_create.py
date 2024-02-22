@@ -27,7 +27,13 @@ class TestEdgeCreate(unittest.TestCase):
             'position_x': 10,
             'position_y': 20,
             'radius': 30,
-            'properties': []
+            'properties': [
+                {
+                    'key': 'createsOut',
+                    'required': True,
+                    'datatype': 'String'
+                }
+            ]
         })
         self.person_vertex = response.json()
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/vertices", json={
@@ -35,7 +41,13 @@ class TestEdgeCreate(unittest.TestCase):
             'position_x': 40,
             'position_y': 50,
             'radius': 60,
-            'properties': []
+            'properties': [
+                {
+                    'key': 'checksIn',
+                    'required': False,
+                    'datatype': 'Boolean'
+                }
+            ]
         })
         self.hobby_vertex = response.json()
 
@@ -283,3 +295,31 @@ class TestEdgeCreate(unittest.TestCase):
             f"/api/v1/projects/{self.project.get('id')}/vertices/{self.hobby_vertex.get('id')}")
         self.assertEqual(hobby_vertex.json().get('out_edges')[0].get('id'), response.json().get('id'))
         self.assertEqual(hobby_vertex.json().get('in_edges')[0].get('id'), self.performs_edge.get('id'))
+
+    def test_with_source_vertex_property_conflict(self):
+        # Act
+        response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
+            'name': 'creates',
+            'properties': [],
+            'source_vertex_id': self.person_vertex.get('id'),
+            'target_vertex_id': self.hobby_vertex.get('id')
+        })
+
+        # Assume
+        self.assertEqual(response.status_code, 409)
+        self.assertEqual(response.json().get('detail')[0].get('msg'),
+                         "Edge name has conflict with property 'createsOut' of source vertex")
+
+    def test_with_target_vertex_property_conflict(self):
+        # Act
+        response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
+            'name': 'checks',
+            'properties': [],
+            'source_vertex_id': self.person_vertex.get('id'),
+            'target_vertex_id': self.hobby_vertex.get('id')
+        })
+
+        # Assume
+        self.assertEqual(response.status_code, 409)
+        self.assertEqual(response.json().get('detail')[0].get('msg'),
+                         "Edge name has conflict with property 'checksIn' of target vertex")

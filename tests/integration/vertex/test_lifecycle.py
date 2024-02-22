@@ -90,7 +90,7 @@ class TestVertexLifecycle(unittest.TestCase):
                     {
                         'key': 'name',
                         'required': False,
-                        'datatype': 'ID'
+                        'datatype': 'String'
                     }
                 ]
             })

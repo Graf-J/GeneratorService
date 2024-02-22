@@ -9,7 +9,6 @@ class Datatype(str, Enum):
     INT = 'Int'
     FLOAT = 'Float'
     BOOLEAN = 'Boolean'
-    ID = 'ID'
 
 
 class PropertyDto(BaseModel):
