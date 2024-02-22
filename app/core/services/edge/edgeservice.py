@@ -23,3 +23,18 @@ class EdgeService(IEdgeService):
         edge = self.repository.create_edge(project_id, edge, source_vertex_id, target_vertex_id)
 
         return edge
+
+    def update_edge(
+            self,
+            project_id: str,
+            edge_id: str,
+            source_vertex_id: str,
+            target_vertex_id: str,
+            edge: Edge
+    ) -> Edge:
+        edge = self.repository.update_edge(project_id, edge_id, source_vertex_id, target_vertex_id, edge)
+
+        return edge
+
+    def delete_edge(self, project_id: str, edge_id: str):
+        self.repository.delete_edge(project_id, edge_id)

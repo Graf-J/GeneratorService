@@ -37,3 +37,28 @@ class EdgeRepository(IEdgeRepository):
             return edge
         except ValueError as ex:
             raise ProjectNotFoundException(str(ex))
+
+    def update_edge(
+            self,
+            project_id: str,
+            edge_id: str,
+            source_vertex_id: str,
+            target_vertex_id: str,
+            edge: Edge
+    ) -> Edge:
+        try:
+            graph = self.storage.load_graph(project_id)
+            updated_edge = graph.update_edge(edge_id, source_vertex_id, target_vertex_id, edge)
+            self.storage.save_graph(project_id, graph)
+
+            return updated_edge
+        except ValueError as ex:
+            raise ProjectNotFoundException(str(ex))
+
+    def delete_edge(self, project_id: str, edge_id: str):
+        try:
+            graph = self.storage.load_graph(project_id)
+            graph.delete_edge(edge_id)
+            self.storage.save_graph(project_id, graph)
+        except ValueError as ex:
+            raise ProjectNotFoundException(str(ex))

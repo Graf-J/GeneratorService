@@ -46,13 +46,13 @@ class Graph:
     def delete_vertex(self, vertex_id: str):
         vertex = self.find_vertex_by_id(vertex_id)
 
-        # Delete Edge from Target-Vertex the Edge points to and the Graph
+        # Delete Edge from Target-Vertex's In-Edges + Delete Edge from Graph
         for edge in vertex.out_edges:
             edge.target_vertex.in_edges.remove(edge)
             self.edges.remove(edge)
 
-        # Delete Edge from Source-Vertex the Edge comes from and the Graph
-        # Hint: In case of recursion the in_edge already got removed in the loop above
+        # Delete Edge from Source-Vertex's Out-Edges + Delete Edge from Graph
+        # Hint: In case of recursion the in_edge already got removed in the loop above, so no duplicate deletion
         for edge in vertex.in_edges:
             edge.source_vertex.out_edges.remove(edge)
             self.edges.remove(edge)
@@ -87,3 +87,40 @@ class Graph:
         edge.target_vertex = target_vertex
 
         self.edges.append(edge)
+
+    def update_edge(self, edge_id: str, source_vertex_id: str, target_vertex_id: str, new_edge: Edge) -> Edge:
+        # Get Data
+        source_vertex = self.find_vertex_by_id(source_vertex_id)
+        target_vertex = self.find_vertex_by_id(target_vertex_id)
+        edge = self.find_edge_by_id(edge_id)
+
+        # Validate Edge
+        source_vertex_out_edges_without_new_edge = list(filter(lambda e: e != edge, source_vertex.out_edges))
+        target_vertex_in_edges_without_new_edge = list(filter(lambda e: e != edge, target_vertex.in_edges))
+        EdgeValidator.validate_new_edge(
+            new_edge,
+            source_vertex_out_edges_without_new_edge,
+            target_vertex_in_edges_without_new_edge
+        )
+
+        # Set Attributes of Edge
+        edge.name = new_edge.name
+        edge.properties = new_edge.properties
+        # Disconnect Edge from previous Vertices
+        edge.source_vertex.out_edges.remove(edge)
+        edge.target_vertex.in_edges.remove(edge)
+        # Connect Edge to new Vertices
+        source_vertex.add_out_edge(edge)
+        target_vertex.add_in_edge(edge)
+        # Set Vertices of Edge
+        edge.source_vertex = source_vertex
+        edge.target_vertex = target_vertex
+
+        return edge
+
+    def delete_edge(self, edge_id: str):
+        edge = self.find_edge_by_id(edge_id)
+
+        edge.source_vertex.out_edges.remove(edge)
+        edge.target_vertex.in_edges.remove(edge)
+        self.edges.remove(edge)
