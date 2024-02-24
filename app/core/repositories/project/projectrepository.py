@@ -3,11 +3,11 @@ from typing import List
 from app.core.entities import Project
 from app.core.exceptions import ProjectNotFoundException, ProjectException
 from app.core.repositories.project.projectrepositoryinterface import IProjectRepository
-from app.infrastructure.storage import IStorage
+from app.infrastructure.storages import IProjectStorage
 
 
 class ProjectRepository(IProjectRepository):
-    def __init__(self, storage: IStorage):
+    def __init__(self, storage: IProjectStorage):
         self.storage = storage
 
     def get_projects(self) -> List[Project]:

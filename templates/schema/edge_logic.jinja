@@ -1,0 +1,19 @@
+    {%- for edge in graph.edges %}
+    {%- if edge.has_properties()  %}
+    {#- Vertex Logic #}
+    input {{ edge.logic_input_name }} {
+        {#- Property Comparisons #}
+        {%- for property in edge.properties %}
+        {{ property.key }}_EQ: {{ property.datatype.value }}
+        {{ property.key }}_NEQ: {{ property.datatype.value }}
+        {{ property.key }}_GT: {{ property.datatype.value }}
+        {{ property.key }}_GTE: {{ property.datatype.value }}
+        {{ property.key }}_LT: {{ property.datatype.value }}
+        {{ property.key }}_LTE: {{ property.datatype.value }}
+        {%- endfor %}
+        {#- Nested Logic Components #}
+        OR: [{{ edge.logic_input_name }}!]
+        AND: [{{ edge.logic_input_name }}!]
+    }
+    {%- endif  %}
+    {%- endfor %}

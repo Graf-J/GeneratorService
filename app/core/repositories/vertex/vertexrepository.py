@@ -3,11 +3,11 @@ from typing import List
 from app.core.entities import Vertex
 from app.core.exceptions import ProjectNotFoundException
 from app.core.repositories.vertex.vertexrepositoryinterface import IVertexRepository
-from app.infrastructure.storage.storageinterface import IStorage
+from app.infrastructure.storages.project.projectstorageinterface import IProjectStorage
 
 
 class VertexRepository(IVertexRepository):
-    def __init__(self, storage: IStorage):
+    def __init__(self, storage: IProjectStorage):
         self.storage = storage
 
     def get_vertices(self, project_id: str) -> List[Vertex]:

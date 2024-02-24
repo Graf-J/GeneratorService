@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import Mock
 
 from app.core.entities import Project
-from app.infrastructure.storage import PickleStorage
+from app.infrastructure.storages import PickleProjectStorage
 
 
 class TestPickleStorageGetProjects(unittest.TestCase):
@@ -12,7 +12,7 @@ class TestPickleStorageGetProjects(unittest.TestCase):
     def test_with_no_project_files(self):
         # Arrange
         self.filemanager_mock.get_project_files.return_value = []
-        storage = PickleStorage(self.filemanager_mock)
+        storage = PickleProjectStorage(self.filemanager_mock)
 
         # Act
         projects = storage.get_projects()
@@ -26,7 +26,7 @@ class TestPickleStorageGetProjects(unittest.TestCase):
             'Project-1_f573eb01-ba2e-4eb4-8530-5412d827b429',
             'Project-2_e657629e-41de-408c-972a-600dac615dbc'
         ]
-        storage = PickleStorage(self.filemanager_mock)
+        storage = PickleProjectStorage(self.filemanager_mock)
 
         # Act
         projects = storage.get_projects()
@@ -48,7 +48,7 @@ class TestPickleStorageGetProject(unittest.TestCase):
     def test_with_non_existing_project_id(self):
         # Arrange
         self.filemanager_mock.get_project_files.return_value = ['Project-1_f573eb01-ba2e-4eb4-8530-5412d827b429']
-        storage = PickleStorage(self.filemanager_mock)
+        storage = PickleProjectStorage(self.filemanager_mock)
 
         # Act
         with self.assertRaises(ValueError) as context:
@@ -60,7 +60,7 @@ class TestPickleStorageGetProject(unittest.TestCase):
     def test_with_existing_project_id(self):
         # Arrange
         self.filemanager_mock.get_project_files.return_value = ['Project-1_f573eb01-ba2e-4eb4-8530-5412d827b429']
-        storage = PickleStorage(self.filemanager_mock)
+        storage = PickleProjectStorage(self.filemanager_mock)
 
         # Act
         project = storage.get_project('f573eb01-ba2e-4eb4-8530-5412d827b429')

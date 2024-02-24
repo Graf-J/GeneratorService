@@ -1,0 +1,14 @@
+    type Query {
+        {%- for vertex in graph.vertices %}
+        {#- Query for one Vertex #}
+        {{ vertex.name_lower }}(id: ID!): {{ vertex.name_upper }}
+        {#- Query for a list of Vertices #}
+        {{ vertex.name_lower }}List(
+            {%- if vertex.has_properties() %}
+            where: {{ vertex.logic_input_name }}
+            orderBy: [{{ vertex.order_by_input_name }}!]
+            {%- endif %}
+            pagination: PaginationInput
+        ): [{{ vertex.name_upper }}!]!{{ "\n" if loop.nextitem }}
+        {%- endfor %}
+    }

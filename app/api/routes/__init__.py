@@ -1,3 +1,4 @@
+from .buildroute import router as build_router
 from .edgeroute import router as edge_router
 from .graphroute import router as graph_router
 from .projectroute import router as project_router

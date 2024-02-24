@@ -1,0 +1,25 @@
+
+    type Mutation {
+        {#- Vertex Mutations #}
+        {%- for vertex in graph.vertices %}
+        {#- Add Vertex #}
+        add{{ vertex.name_upper }}{%- if vertex.has_properties() %}(data: {{ vertex.add_input_name }}!){%- endif %}: ID!
+        {#- Update Vertex #}
+        {%- if vertex.has_properties() %}
+        update{{ vertex.name_upper }}(id: ID!, data: {{ vertex.update_input_name }}!): ID!
+        {%- endif %}
+        {#- Delete Vertex #}
+        delete{{ vertex.name_upper }}(id: ID!): ID!{{ "\n" if loop.nextitem }}
+        {%- endfor %}{{ "\n" if graph.edges|length > 0 }}
+        {#- Edge Mutations #}
+        {%- for edge in graph.edges %}
+        {#- Add Edge #}
+        connect{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}(from: ID!, to: ID!{%- if edge.has_properties() %}, data: {{ edge.add_input_name }}!{%- endif %}): Boolean!
+        {#- Delete Edge #}
+        disconnect{{ edge.source_vertex.name_upper }}From{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}(from: ID!, to: ID!): Boolean!
+        {#- Update Edge #}
+        {%- if edge.has_properties() %}
+        update{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}(from: ID!, to: ID!, data: {{ edge.update_input_name }}!): Boolean!
+        {%- endif %}{{ "\n" if loop.nextitem }}
+        {%- endfor %}
+    }

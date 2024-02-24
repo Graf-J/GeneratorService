@@ -2,16 +2,16 @@ import os
 from typing import List
 
 from app.core.entities import Graph, Project
-from app.infrastructure.storage import IStorage
-from app.infrastructure.utils import FileManager
+from app.infrastructure.adapters import ProjectFolderAdapter
+from app.infrastructure.storages.project.projectstorageinterface import IProjectStorage
 
 
-class PickleStorage(IStorage):
-    def __init__(self, filemanager: FileManager):
-        self.filemanager = filemanager
+class PickleProjectStorage(IProjectStorage):
+    def __init__(self, folder_adapter: ProjectFolderAdapter):
+        self.folder_adapter = folder_adapter
 
     def get_projects(self) -> List[Project]:
-        project_files = self.filemanager.get_project_files()
+        project_files = self.folder_adapter.get_project_files()
 
         projects = []
         for file in project_files:
@@ -30,27 +30,27 @@ class PickleStorage(IStorage):
         raise ValueError('Project not found')
 
     def create_project(self, project: Project) -> Project:
-        path = self.filemanager.generate_project_path(project)
+        path = self.folder_adapter.generate_project_path(project)
 
         graph = Graph()
-        self.filemanager.write_pickle(path, graph)
+        self.folder_adapter.write_pickle(path, graph)
 
         return project
 
     def delete_project(self, project_id: str):
         project = self.get_project(project_id)
-        path = self.filemanager.generate_project_path(project)
+        path = self.folder_adapter.generate_project_path(project)
 
         os.remove(path)
 
     def load_graph(self, project_id: str) -> Graph:
         project = self.get_project(project_id)
-        path = self.filemanager.generate_project_path(project)
-        graph = self.filemanager.read_pickle(path)
+        path = self.folder_adapter.generate_project_path(project)
+        graph = self.folder_adapter.read_pickle(path)
 
         return graph
 
     def save_graph(self, project_id: str, graph: Graph):
         project = self.get_project(project_id)
-        path = self.filemanager.generate_project_path(project)
-        self.filemanager.write_pickle(path, graph)
+        path = self.folder_adapter.generate_project_path(project)
+        self.folder_adapter.write_pickle(path, graph)

@@ -17,7 +17,6 @@ class TestVertexMapperToEntity(unittest.TestCase):
             properties=[
                 PropertyDto(key="name", required=False, datatype="String"),
                 PropertyDto(key="age", required=True, datatype="Int"),
-                PropertyDto(key="married", required=False, datatype="Boolean"),
                 PropertyDto(key="gpa", required=False, datatype="Float"),
             ]
         )
@@ -32,23 +31,19 @@ class TestVertexMapperToEntity(unittest.TestCase):
         self.assertEqual(entity.position_x, 10)
         self.assertEqual(entity.position_y, 20)
         self.assertEqual(entity.radius, 5)
-        self.assertEqual(len(entity.properties), 4)
+        self.assertEqual(len(entity.properties), 3)
         self.assertIsInstance(entity.properties[0], Property)
         self.assertIsInstance(entity.properties[1], Property)
         self.assertIsInstance(entity.properties[2], Property)
-        self.assertIsInstance(entity.properties[3], Property)
         self.assertEqual(entity.properties[0].key, "name")
         self.assertEqual(entity.properties[0].required, False)
         self.assertEqual(entity.properties[0].datatype, "String")
         self.assertEqual(entity.properties[1].key, "age")
         self.assertEqual(entity.properties[1].required, True)
         self.assertEqual(entity.properties[1].datatype, "Int")
-        self.assertEqual(entity.properties[2].key, "married")
+        self.assertEqual(entity.properties[2].key, "gpa")
         self.assertEqual(entity.properties[2].required, False)
-        self.assertEqual(entity.properties[2].datatype, "Boolean")
-        self.assertEqual(entity.properties[3].key, "gpa")
-        self.assertEqual(entity.properties[3].required, False)
-        self.assertEqual(entity.properties[3].datatype, "Float")
+        self.assertEqual(entity.properties[2].datatype, "Float")
 
     def test_without_properties(self):
         # Arrange
@@ -87,7 +82,6 @@ class TestVertexMapperToDto(unittest.TestCase):
             properties=[
                 Property(key="name", required=False, datatype="String"),
                 Property(key="age", required=True, datatype="Int"),
-                Property(key="married", required=False, datatype="Boolean"),
                 Property(key="gpa", required=False, datatype="Float"),
             ]
         )
@@ -102,23 +96,19 @@ class TestVertexMapperToDto(unittest.TestCase):
         self.assertEqual(dto.position_x, 10)
         self.assertEqual(dto.position_y, 20)
         self.assertEqual(dto.radius, 5)
-        self.assertEqual(len(dto.properties), 4)
+        self.assertEqual(len(dto.properties), 3)
         self.assertIsInstance(dto.properties[0], PropertyDto)
         self.assertIsInstance(dto.properties[1], PropertyDto)
         self.assertIsInstance(dto.properties[2], PropertyDto)
-        self.assertIsInstance(dto.properties[3], PropertyDto)
         self.assertEqual(dto.properties[0].key, "name")
         self.assertEqual(dto.properties[0].required, False)
         self.assertEqual(dto.properties[0].datatype, "String")
         self.assertEqual(dto.properties[1].key, "age")
         self.assertEqual(dto.properties[1].required, True)
         self.assertEqual(dto.properties[1].datatype, "Int")
-        self.assertEqual(dto.properties[2].key, "married")
+        self.assertEqual(dto.properties[2].key, "gpa")
         self.assertEqual(dto.properties[2].required, False)
-        self.assertEqual(dto.properties[2].datatype, "Boolean")
-        self.assertEqual(dto.properties[3].key, "gpa")
-        self.assertEqual(dto.properties[3].required, False)
-        self.assertEqual(dto.properties[3].datatype, "Float")
+        self.assertEqual(dto.properties[2].datatype, "Float")
         self.assertIsInstance(dto.out_edges, list)
         self.assertEqual(len(dto.out_edges), 0)
         self.assertIsInstance(dto.in_edges, list)

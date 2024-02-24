@@ -3,11 +3,11 @@ from typing import List
 from app.core.entities import Edge
 from app.core.exceptions import ProjectNotFoundException
 from app.core.repositories.edge.edgerepositoryinterface import IEdgeRepository
-from app.infrastructure.storage import IStorage
+from app.infrastructure.storages import IProjectStorage
 
 
 class EdgeRepository(IEdgeRepository):
-    def __init__(self, storage: IStorage):
+    def __init__(self, storage: IProjectStorage):
         self.storage = storage
 
     def get_edges(self, project_id: str) -> List[Edge]:

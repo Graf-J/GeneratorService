@@ -2,7 +2,6 @@ import unittest
 import uuid
 
 from app.core.entities import Graph, Vertex, Edge, Property
-from app.core.entities.property import Datatype
 from app.core.exceptions import EdgeException
 from app.core.validators import EdgeValidator
 
@@ -467,11 +466,11 @@ class TestValidateConnectVerticesProperties(unittest.TestCase):
     def test_with_conflicting_source_vertex_property(self):
         # Arrange
         source_vertex_properties = [
-            Property(key='nameOut', required=True, datatype=Datatype.STRING),
-            Property(key='age', required=False, datatype=Datatype.INT)
+            Property(key='nameOut', required=True, datatype='String'),
+            Property(key='age', required=False, datatype='Int')
         ]
         target_vertex_properties = [
-            Property(key='key', required=True, datatype=Datatype.FLOAT)
+            Property(key='key', required=True, datatype='Float')
         ]
 
         # Act
@@ -488,11 +487,11 @@ class TestValidateConnectVerticesProperties(unittest.TestCase):
     def test_with_conflicting_target_vertex_property(self):
         # Arrange
         source_vertex_properties = [
-            Property(key='name', required=True, datatype=Datatype.STRING),
-            Property(key='age', required=False, datatype=Datatype.INT)
+            Property(key='name', required=True, datatype='String'),
+            Property(key='age', required=False, datatype='Int')
         ]
         target_vertex_properties = [
-            Property(key='keyIn', required=True, datatype=Datatype.FLOAT)
+            Property(key='keyIn', required=True, datatype='Float')
         ]
 
         # Act
@@ -509,11 +508,11 @@ class TestValidateConnectVerticesProperties(unittest.TestCase):
     def test_with_valid_properties(self):
         # Arrange
         source_vertex_properties = [
-            Property(key='name', required=True, datatype=Datatype.STRING),
-            Property(key='age', required=False, datatype=Datatype.INT)
+            Property(key='name', required=True, datatype='String'),
+            Property(key='age', required=False, datatype='Int')
         ]
         target_vertex_properties = [
-            Property(key='key', required=True, datatype=Datatype.FLOAT)
+            Property(key='key', required=True, datatype='Float')
         ]
 
         # Act

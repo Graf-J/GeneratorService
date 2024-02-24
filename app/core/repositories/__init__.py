@@ -2,6 +2,8 @@ from .edge.edgerepository import EdgeRepository
 from .edge.edgerepositoryinterface import IEdgeRepository
 from .graph.graphrepository import GraphRepository
 from .graph.graphrepositoryinterface import IGraphRepository
+from .output.outputrepository import OutputRepository
+from .output.outputrepositoryinterface import IOutputRepository
 from .project.projectrepository import ProjectRepository
 from .project.projectrepositoryinterface import IProjectRepository
 from .vertex.vertexrepository import VertexRepository

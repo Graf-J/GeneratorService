@@ -1,3 +1,5 @@
+from .build.buildservice import BuildService
+from .build.buildserviceinterface import IBuildService
 from .edge.edgeservice import EdgeService
 from .edge.edgeserviceinterface import IEdgeService
 from .graph.graphservice import GraphService

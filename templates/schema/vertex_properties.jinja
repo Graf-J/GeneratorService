@@ -1,0 +1,9 @@
+    {%- for vertex in graph.vertices %}
+    {%- if vertex.has_properties() %}
+    enum {{ vertex.property_name }} {
+        {%- for property in vertex.properties %}
+        {{ property.key }}
+        {%- endfor %}
+    }
+    {%- endif %}
+    {%- endfor %}

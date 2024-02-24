@@ -4,7 +4,7 @@ from typing import List
 from app.core.entities import Graph, Project
 
 
-class IStorage(ABC):
+class IProjectStorage(ABC):
     @abstractmethod
     def get_projects(self) -> List[Project]:
         pass

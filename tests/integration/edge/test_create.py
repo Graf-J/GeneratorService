@@ -45,7 +45,7 @@ class TestEdgeCreate(unittest.TestCase):
                 {
                     'key': 'checksIn',
                     'required': False,
-                    'datatype': 'Boolean'
+                    'datatype': 'String'
                 }
             ]
         })

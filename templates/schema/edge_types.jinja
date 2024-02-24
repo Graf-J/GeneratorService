@@ -1,0 +1,30 @@
+    {#- Interface every Edge inherits from #}
+    interface EdgeInterface {
+        label: String!
+    }
+    {#- Two Types (In and Out) for each Edge (for recursive Edge only one) #}
+    {%- for edge in graph.edges %}
+    {# Source -> Target #}
+    type {{ edge.out_type_name }} implements EdgeInterface {
+        {#- Property Fields #}
+        label: String!
+        {%- for property in edge.properties %}
+        {{ property.key }}: {{ property.datatype.value }}{%- if property.required %}!{%- endif %}
+        {%- endfor %}
+        {#- Vertex #}
+        {{ edge.target_vertex.name_lower }}: {{ edge.target_vertex.name_upper }}!
+    }
+
+    {%- if not edge.is_recursive() %}
+    {# Target -> Source #}
+    type {{ edge.in_type_name }} implements EdgeInterface {
+        {#- Property Fields #}
+        label: String!
+        {%- for property in edge.properties %}
+        {{ property.key }}: {{ property.datatype.value }}{%- if property.required %}!{%- endif %}
+        {%- endfor %}
+        {#- Vertex #}
+        {{ edge.source_vertex.name_lower }}: {{ edge.source_vertex.name_upper }}!
+    }
+    {%- endif %}
+    {%- endfor %}

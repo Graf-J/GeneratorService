@@ -1,0 +1,9 @@
+    {%- for edge in graph.edges %}
+    {%- if edge.has_properties() %}
+    enum {{ edge.property_name }} {
+        {%- for property in edge.properties %}
+        {{ property.key }}
+        {%- endfor %}
+    }
+    {%- endif %}
+    {%- endfor %}

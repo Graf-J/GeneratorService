@@ -24,6 +24,37 @@ class Vertex:
         self.out_edges: List[Edge] = []
         self.in_edges: List[Edge] = []
 
+    @property
+    def name_upper(self) -> str:
+        return self.name[0].upper() + self.name[1:]
+
+    @property
+    def name_lower(self) -> str:
+        return self.name[0].lower() + self.name[1:]
+
+    @property
+    def logic_input_name(self) -> str:
+        return self.name_upper + 'VertexLogicInput'
+
+    @property
+    def order_by_input_name(self) -> str:
+        return self.name_upper + 'VertexOrderByInput'
+
+    @property
+    def add_input_name(self) -> str:
+        return 'Add' + self.name_upper + 'Input'
+
+    @property
+    def update_input_name(self) -> str:
+        return 'Update' + self.name_upper + 'Input'
+
+    @property
+    def property_name(self) -> str:
+        return self.name_upper + 'VertexProperty'
+
+    def has_properties(self) -> bool:
+        return len(self.properties) > 0
+
     def add_out_edge(self, edge: 'Edge'):
         self.out_edges.append(edge)
 

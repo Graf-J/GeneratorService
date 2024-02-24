@@ -1,0 +1,8 @@
+    {%- for vertex in graph.vertices %}
+    {%- if vertex.has_properties() %}
+    input {{ vertex.order_by_input_name }} {
+        property: {{ vertex.property_name }}!
+        order: OrderDirection!
+    }
+    {%- endif %}
+    {%- endfor %}

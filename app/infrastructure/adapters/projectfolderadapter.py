@@ -5,14 +5,14 @@ from typing import List
 from app.core.entities import Project, Graph
 
 
-class FileManager:
+class ProjectFolderAdapter:
     def __init__(self, project_folder='projects'):
         self.project_folder = project_folder
 
     def get_project_files(self) -> List[str]:
         base_directory = os.getcwd()
         path = os.path.join(base_directory, self.project_folder)
-        project_files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
+        project_files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f)) and f != '.gitkeep']
 
         return project_files
 

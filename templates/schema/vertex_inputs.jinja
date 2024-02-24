@@ -1,0 +1,16 @@
+    {%- for vertex in graph.vertices %}
+    {%- if vertex.has_properties()  %}
+    {#- Add Input #}
+    input {{ vertex.add_input_name }} {
+        {%- for property in vertex.properties %}
+        {{ property.key }}: {{ property.datatype.value }}{%- if property.required %}!{%- endif %}
+        {%- endfor %}
+    }{{ "\n" }}
+    {#- Update Input #}
+    input {{ vertex.update_input_name }} {
+        {%- for property in vertex.properties %}
+        {{ property.key }}: {{ property.datatype.value }}
+        {%- endfor %}
+    }
+    {%- endif %}
+    {%- endfor %}

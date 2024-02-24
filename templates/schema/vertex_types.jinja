@@ -1,0 +1,44 @@
+    {#- Interface every Vertex inherits from #}
+    interface VertexInterface {
+        id: ID!
+        label: String!
+    }{{ "\n" }}
+    {#- One Type for each Vertex #}
+    {%- for vertex in graph.vertices %}
+    type {{ vertex.name_upper }} implements VertexInterface {
+        {#- Property Fields #}
+        id: ID!
+        label: String!
+        {%- for property in vertex.properties %}
+        {{ property.key }}: {{ property.datatype.value }}{%- if property.required %}!{%- endif %}
+        {%- endfor %}
+        {#- Out Edges Fields #}
+        {%- for edge in vertex.out_edges %}
+        {{ edge.out_field_name }}(
+            {%- if edge.target_vertex.has_properties() %}
+            whereVertex: {{ edge.target_vertex.logic_input_name }}
+            vertexOrderBy: [{{ edge.target_vertex.order_by_input_name }}!]
+            {%- endif %}
+            {%- if edge.has_properties() %}
+            whereEdge: {{ edge.logic_input_name }}
+            edgeOrderBy: [{{ edge.order_by_input_name }}!]
+            {%- endif %}
+            pagination: PaginationInput
+        ): [{{ edge.out_type_name }}!]!
+        {%- endfor %}
+        {#- In Edges Fields #}
+        {%- for edge in vertex.in_edges  %}
+        {{ edge.in_field_name }}(
+            {%- if edge.source_vertex.has_properties() %}
+            whereVertex: {{ edge.source_vertex.logic_input_name }}
+            vertexOrderBy: [{{ edge.source_vertex.order_by_input_name }}!]
+            {%- endif %}
+            {%- if edge.has_properties() %}
+            whereEdge: {{ edge.logic_input_name }}
+            edgeOrderBy: [{{ edge.order_by_input_name }}!]
+            {%- endif %}
+            pagination: PaginationInput
+        ): [{{ edge.in_type_name }}!]!
+        {%- endfor %}
+    }{{ "\n" if loop.nextitem }}
+    {%- endfor %}

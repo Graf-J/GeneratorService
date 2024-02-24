@@ -4,21 +4,67 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d47d788c-d4c3-4792-812e-655e60aa184d" name="Changes" comment="Add GET Graph Functionality">
-      <change afterPath="$PROJECT_DIR$/tests/unit/api/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/unit/api/dto/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/unit/api/dto/test_edgerequestdto.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/unit/api/dto/test_vertexrequestdto.py" afterDir="false" />
+    <list default="true" id="d47d788c-d4c3-4792-812e-655e60aa184d" name="Changes" comment="Include important Folders">
+      <change afterPath="$PROJECT_DIR$/app/api/routes/buildroute.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/exceptions/build/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/exceptions/build/buildexception.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/operations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/operations/schema/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/operations/schema/schemaoperation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/repositories/output/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/repositories/output/outputrepository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/repositories/output/outputrepositoryinterface.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/services/build/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/services/build/buildservice.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/services/build/buildserviceinterface.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/infrastructure/adapters/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/infrastructure/adapters/outputfolderadapter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/infrastructure/storages/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/infrastructure/storages/output/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/infrastructure/storages/output/outputstorage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/infrastructure/storages/output/outputstorageinterface.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/infrastructure/storages/project/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/schema/edge_inputs.jinja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/schema/edge_logic.jinja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/schema/edge_order.jinja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/schema/edge_properties.jinja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/schema/edge_types.jinja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/schema/mutation.jinja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/schema/query.jinja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/schema/schema.jinja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/schema/static.jinja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/schema/vertex_inputs.jinja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/schema/vertex_logic.jinja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/schema/vertex_order.jinja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/schema/vertex_properties.jinja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/schema/vertex_types.jinja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/static/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/dependencies/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/dependencies/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/dependencies/dependencies.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/dependencies/dependencies.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/api/dto/common/propertydto.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/dto/common/propertydto.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/dto/request/edgerequestdto.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/dto/request/edgerequestdto.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/dto/request/vertexrequestdto.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/dto/request/vertexrequestdto.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/entities/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/entities/graph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/routes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/routes/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/entities/edge.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/entities/edge.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/core/entities/property.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/entities/property.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/validators/edgevalidator.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/validators/edgevalidator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/entities/vertex.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/entities/vertex.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/exceptions/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/exceptions/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/repositories/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repositories/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/repositories/edge/edgerepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repositories/edge/edgerepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/repositories/graph/graphrepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repositories/graph/graphrepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/repositories/project/projectrepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repositories/project/projectrepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/repositories/vertex/vertexrepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repositories/vertex/vertexrepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/services/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/services/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/infrastructure/storage/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/infrastructure/storage/picklestorage.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/infrastructure/storages/project/pickleprojectstorage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/infrastructure/storage/storageinterface.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/infrastructure/storages/project/projectstorageinterface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/infrastructure/utils/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/infrastructure/utils/filemanager.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/infrastructure/adapters/projectfolderadapter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_main.http" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/integration/edge/test_create.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integration/edge/test_create.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/integration/vertex/test_lifecycle.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integration/vertex/test_lifecycle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/unit/core/validators/test_edgevalidator.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/core/validators/test_edgevalidator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/infrastructure/test_picklestorage.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/infrastructure/test_picklestorage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/unit/mappers/test_vertexmapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/mappers/test_vertexmapper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +84,61 @@
   </component>
   <component name="FormatOnSaveOptions">
     <option name="myRunOnSave" value="true" />
+    <option name="myAllFileTypesSelected" value="false" />
+    <option name="mySelectedFileTypes">
+      <set>
+        <option value="ActionScript" />
+        <option value="Angular2Html" />
+        <option value="CSS" />
+        <option value="CassandraQL" />
+        <option value="Chameleon" />
+        <option value="Cucumber" />
+        <option value="Cython" />
+        <option value="DTD" />
+        <option value="ECMAScript 6" />
+        <option value="EditorConfig" />
+        <option value="Flow" />
+        <option value="HTML" />
+        <option value="HTTP Request" />
+        <option value="HiveQL" />
+        <option value="Ini" />
+        <option value="JSHint" />
+        <option value="JSON" />
+        <option value="JSON-lines" />
+        <option value="JSON5" />
+        <option value="JSX Harmony" />
+        <option value="JavaScript" />
+        <option value="Jupyter" />
+        <option value="Less" />
+        <option value="Markdown" />
+        <option value="PostCSS" />
+        <option value="Properties" />
+        <option value="Puppet" />
+        <option value="Python" />
+        <option value="PythonStub" />
+        <option value="QmlType" />
+        <option value="Qt UI file" />
+        <option value="RNG Compact" />
+        <option value="ReST" />
+        <option value="Redis" />
+        <option value="SARIF" />
+        <option value="SCSS" />
+        <option value="SQL" />
+        <option value="SVG" />
+        <option value="Sass" />
+        <option value="Shell Script" />
+        <option value="SourceMap" />
+        <option value="TOML" />
+        <option value="TypeScript" />
+        <option value="TypeScript JSX" />
+        <option value="Vue.js" />
+        <option value="XHTML" />
+        <option value="XML" />
+        <option value="YAML" />
+        <option value="qrc" />
+        <option value="tsconfig" />
+      </set>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -62,6 +163,9 @@
   </component>
   <component name="OptimizeOnSaveOptions">
     <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -125,6 +229,7 @@
     "Python tests.Unittests for test_create.TestEdgeCreate.test_with_recursive_edge_with_different_name.executor": "Run",
     "Python tests.Unittests for test_create.TestEdgeCreate.test_with_recursive_edge_with_same_name.executor": "Run",
     "Python tests.Unittests for test_create.TestEdgeCreate.test_with_source_vertex_property_conflict.executor": "Run",
+    "Python tests.Unittests for test_create.TestEdgeCreate.test_with_target_vertex_property_conflict.executor": "Run",
     "Python tests.Unittests for test_create.TestEdgeCreate.test_with_wrong_project_id.executor": "Run",
     "Python tests.Unittests for test_create.TestEdgeCreate.test_with_wrong_source_vertex_id.executor": "Run",
     "Python tests.Unittests for test_create.TestEdgeCreate.test_with_wrong_target_vertex_id.executor": "Run",
@@ -290,27 +395,28 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Johannes/Programming/Projekts/Studienarbeit/GeneratorService/tests/integration",
+    "last_opened_file_path": "C:/Users/Johannes/Programming/Projekts/Studienarbeit/GeneratorService/tests/unit/api/dto/test_edgerequestdto.py",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable",
+    "settings.editor.selected.configurable": "actions.on.save",
+    "two.files.diff.last.used.file": "C:/Users/Johannes/Programming/Projekts/Studienarbeit/GeneratorService/tests/unit/api/dto/test_edgerequestdto.py",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Johannes\Programming\Projekts\Studienarbeit\GeneratorService\templates\schema" />
+      <recent name="C:\Users\Johannes\Programming\Projekts\Studienarbeit\GeneratorService\app\infrastructure\adapters" />
+      <recent name="C:\Users\Johannes\Programming\Projekts\Studienarbeit\GeneratorService\app\infrastructure\storage\project" />
       <recent name="C:\Users\Johannes\Programming\Projekts\Studienarbeit\GeneratorService\app\core\exceptions\vertex" />
       <recent name="C:\Users\Johannes\Programming\Projekts\Studienarbeit\GeneratorService\app\core\exceptions\edge" />
-      <recent name="C:\Users\Johannes\Programming\Projekts\Studienarbeit\GeneratorService\app\core\exceptions\project" />
-      <recent name="C:\Users\Johannes\Programming\Projekts\Studienarbeit\GeneratorService\app\core\exceptions" />
-      <recent name="C:\Users\Johannes\Programming\Projekts\Studienarbeit\GeneratorService" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for test_create.TestEdgeCreate.test_with_source_vertex_property_conflict">
+  <component name="RunManager" selected="FastAPI.GeneratorService">
     <configuration name="GeneratorService" type="Python.FastAPI">
       <option name="file" value="$PROJECT_DIR$/main.py" />
       <module name="GeneratorService" />
@@ -359,6 +465,22 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Unittests for test_create.TestEdgeCreate.test_with_target_vertex_property_conflict" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="GeneratorService" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/integration/edge" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_create.TestEdgeCreate.test_with_target_vertex_property_conflict&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="Unittests for test_edgevalidator.TestValidateConnectVerticesProperties" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="GeneratorService" />
       <option name="ENV_FILES" value="" />
@@ -372,22 +494,6 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_edgevalidator.TestValidateConnectVerticesProperties&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests for test_edgevalidator.TestValidateConnectVerticesProperties.test_with_conflicting_source_vertex_property" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="GeneratorService" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/unit/core/validators" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_edgevalidator.TestValidateConnectVerticesProperties.test_with_conflicting_source_vertex_property&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -445,18 +551,18 @@
       <item itemvalue="Python tests.Unittests" />
       <item itemvalue="Python tests.Integrationtests" />
       <item itemvalue="Python tests.Unittests for test_create.TestEdgeCreate.test_with_source_vertex_property_conflict" />
+      <item itemvalue="Python tests.Unittests for test_create.TestEdgeCreate.test_with_target_vertex_property_conflict" />
       <item itemvalue="Python tests.Unittests for test_edgevalidator.TestValidateConnectVerticesProperties" />
-      <item itemvalue="Python tests.Unittests for test_edgevalidator.TestValidateConnectVerticesProperties.test_with_conflicting_source_vertex_property" />
       <item itemvalue="Python tests.Unittests for test_edgevalidator.TestValidateConnectVerticesProperties.test_with_conflicting_target_vertex_property" />
       <item itemvalue="Python tests.Unittests for test_edgevalidator.TestValidateConnectVerticesProperties.test_with_valid_properties" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests for test_create.TestEdgeCreate.test_with_target_vertex_property_conflict" />
         <item itemvalue="Python tests.Unittests for test_create.TestEdgeCreate.test_with_source_vertex_property_conflict" />
         <item itemvalue="Python tests.Unittests for test_edgevalidator.TestValidateConnectVerticesProperties" />
         <item itemvalue="Python tests.Unittests for test_edgevalidator.TestValidateConnectVerticesProperties.test_with_valid_properties" />
         <item itemvalue="Python tests.Unittests for test_edgevalidator.TestValidateConnectVerticesProperties.test_with_conflicting_target_vertex_property" />
-        <item itemvalue="Python tests.Unittests for test_edgevalidator.TestValidateConnectVerticesProperties.test_with_conflicting_source_vertex_property" />
       </list>
     </recent_temporary>
   </component>
@@ -483,6 +589,7 @@
       <workItem from="1708515409632" duration="14917000" />
       <workItem from="1708532169390" duration="26056000" />
       <workItem from="1708604457883" duration="17969000" />
+      <workItem from="1708680272717" duration="44042000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -540,7 +647,31 @@
       <option name="project" value="LOCAL" />
       <updated>1708626127803</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Improve Name and Property Name-Checks">
+      <option name="closed" value="true" />
+      <created>1708643371131</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1708643371131</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Include important Folders">
+      <option name="closed" value="true" />
+      <created>1708690757524</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1708690757524</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Include important Folders">
+      <option name="closed" value="true" />
+      <created>1708697040889</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1708697040889</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -576,15 +707,18 @@
     <MESSAGE value="Add Unittests for basic Edge Functionality" />
     <MESSAGE value="Add Edge Integration-Tests" />
     <MESSAGE value="Add GET Graph Functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add GET Graph Functionality" />
+    <MESSAGE value="Improve Name and Property Name-Checks" />
+    <MESSAGE value="Include important Folders" />
+    <option name="LAST_COMMIT_MESSAGE" value="Include important Folders" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_update_TestEdgeCreate_test_with_name_with_starting_number.coverage" NAME="Unittests for test_update.TestEdgeCreate.test_with_name_with_starting_number Coverage Results" MODIFIED="1708617425722" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/edge" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_graph_TestGraphDeleteVertex_test_delete_recursive_connected_vertex.coverage" NAME="Unittests for test_graph.TestGraphDeleteVertex.test_delete_recursive_connected_vertex Coverage Results" MODIFIED="1708538610062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/entities" />
+    <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_create_TestEdgeCreate_test_with_target_vertex_property_conflict.coverage" NAME="Unittests for test_create.TestEdgeCreate.test_with_target_vertex_property_conflict Coverage Results" MODIFIED="1708643242900" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/edge" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_in_mappers.coverage" NAME="Unittests Coverage Results" MODIFIED="1708299137316" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_edgemapper_TestEdgeMapperToDto_test_with_properties.coverage" NAME="Unittests for test_edgemapper.TestEdgeMapperToDto.test_with_properties Coverage Results" MODIFIED="1708387545769" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/mappers" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_edgemapper_TestEdgeMapperToEntity.coverage" NAME="Unittests for test_edgemapper.TestEdgeMapperToEntity Coverage Results" MODIFIED="1708386805625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/mappers" />
-    <SUITE FILE_PATH="coverage/GeneratorService$Unittests.coverage" NAME="Unittests Coverage Results" MODIFIED="1708642672354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit" />
+    <SUITE FILE_PATH="coverage/GeneratorService$Unittests.coverage" NAME="Unittests Coverage Results" MODIFIED="1708728367299" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_lifecycle_TestVertexLifecycle.coverage" NAME="Unittests for test_lifecycle.TestVertexLifecycle Coverage Results" MODIFIED="1708536906922" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/vertex" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_create_TestEdgeCreate_test_with_wrong_project_id.coverage" NAME="Unittests for test_create.TestEdgeCreate.test_with_wrong_project_id Coverage Results" MODIFIED="1708610896598" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/edge" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_update_TestEdgeCreate_test_with_missing_name.coverage" NAME="Unittests for test_update.TestEdgeCreate.test_with_missing_name Coverage Results" MODIFIED="1708617262245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/edge" />
@@ -603,8 +737,8 @@
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_edgevalidator_TestEdgeValidatorValidateNewEdgeWithRecursion_test_one_recursive_edge_plus_edge_with_same_name_from_other_vertex.coverage" NAME="Unittests for test_edgevalidator.TestEdgeValidatorValidateNewEdgeWithRecursion.test_one_recursive_edge_plus_edge_with_same_name_from_other_vertex Coverage Results" MODIFIED="1708470312916" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/validators" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_graph_TestGraphDeleteEdge_test_delete_recursive_edge.coverage" NAME="Unittests for test_graph.TestGraphDeleteEdge.test_delete_recursive_edge Coverage Results" MODIFIED="1708559687369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/entities" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_graph_TestGraphUpdateVertex.coverage" NAME="Unittests for test_graph.TestGraphUpdateVertex Coverage Results" MODIFIED="1708522378910" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/entities" />
-    <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_delete_TestProjectDelete_test_with_wrong_id.coverage" NAME="Unittests for test_delete.TestProjectDelete.test_with_wrong_id Coverage Results" MODIFIED="1708544489439" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/project" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_vertex_TestVertexCreate_test_with_property_name_with_minus.coverage" NAME="Unittests for test_vertex.TestVertexCreate.test_with_property_name_with_minus Coverage Results" MODIFIED="1708529458377" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration" />
+    <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_delete_TestProjectDelete_test_with_wrong_id.coverage" NAME="Unittests for test_delete.TestProjectDelete.test_with_wrong_id Coverage Results" MODIFIED="1708544489439" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/project" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_picklestorage_TestPickleStorageGetProjects_test_with_project_files.coverage" NAME="Unittests for test_picklestorage.TestPickleStorageGetProjects.test_with_project_files Coverage Results" MODIFIED="1708371134382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/infrastructure" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_getone_TestProjectGetOne.coverage" NAME="Unittests for test_getone.TestProjectGetOne Coverage Results" MODIFIED="1708545029414" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/project" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_edgevalidator_TestValidateConnectVerticesProperties_test_with_conflicting_target_vertex_property.coverage" NAME="Unittests for test_edgevalidator.TestValidateConnectVerticesProperties.test_with_conflicting_target_vertex_property Coverage Results" MODIFIED="1708642388648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/validators" />
@@ -614,8 +748,8 @@
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_vertex_TestVertexGetAll_test_with_valid_project_id.coverage" NAME="Unittests for test_vertex.TestVertexGetAll.test_with_valid_project_id Coverage Results" MODIFIED="1708527337796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_vertexrequestdto_TestVertexRequestDto_test_with_id_in_property_keys.coverage" NAME="Unittests for test_vertexrequestdto.TestVertexRequestDto.test_with_id_in_property_keys Coverage Results" MODIFIED="1708636715897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/api/dto" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_create_TestEdgeCreate_test_with_source_vertex_property_conflict.coverage" NAME="Unittests for test_create.TestEdgeCreate.test_with_source_vertex_property_conflict Coverage Results" MODIFIED="1708643149896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/edge" />
-    <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_vertexmapper_TestVertexMapperToDto_test_with_edges.coverage" NAME="Unittests for test_vertexmapper.TestVertexMapperToDto.test_with_edges Coverage Results" MODIFIED="1708477194570" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/mappers" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_lifecycle_TestEdgeCreate_test_lifecycle.coverage" NAME="Unittests for test_lifecycle.TestEdgeCreate.test_lifecycle Coverage Results" MODIFIED="1708623834380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/edge" />
+    <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_vertexmapper_TestVertexMapperToDto_test_with_edges.coverage" NAME="Unittests for test_vertexmapper.TestVertexMapperToDto.test_with_edges Coverage Results" MODIFIED="1708477194570" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/mappers" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_edgerequestdto_TestEdgeRequestDto_test_with_starting_underscores_name.coverage" NAME="Unittests for test_edgerequestdto.TestEdgeRequestDto.test_with_starting_underscores_name Coverage Results" MODIFIED="1708639954367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/api/dto" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_create_TestProjectCreate_test_with_valid_name.coverage" NAME="Unittests for test_create.TestProjectCreate.test_with_valid_name Coverage Results" MODIFIED="1708544060872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/project" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_vertex_TestVertexCreate_test_with_name_with_minus.coverage" NAME="Unittests for test_vertex.TestVertexCreate.test_with_name_with_minus Coverage Results" MODIFIED="1708529276935" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration" />
@@ -637,10 +771,10 @@
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_create_TestEdgeCreate_test_with_opposite_edge_with_same_name.coverage" NAME="Unittests for test_create.TestEdgeCreate.test_with_opposite_edge_with_same_name Coverage Results" MODIFIED="1708615253546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/edge" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_graph_TestGraphUpdateEdge_test_recursive_edge_with_duplicate_name.coverage" NAME="Unittests for test_graph.TestGraphUpdateEdge.test_recursive_edge_with_duplicate_name Coverage Results" MODIFIED="1708570185626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/entities" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_create_TestVertexCreate_test_with_wrong_project_id.coverage" NAME="Unittests for test_create.TestVertexCreate.test_with_wrong_project_id Coverage Results" MODIFIED="1708542652646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/vertex" />
-    <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_vertexrequestdto_TestVertexRequestDto.coverage" NAME="Unittests for test_vertexrequestdto.TestVertexRequestDto Coverage Results" MODIFIED="1708638816037" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/api/dto" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_graph_TestGraphAddEdge_test_new_edge_with_same_name_and_same_direction_to_new_vertex.coverage" NAME="Unittests for test_graph.TestGraphAddEdge.test_new_edge_with_same_name_and_same_direction_to_new_vertex Coverage Results" MODIFIED="1708446854492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/entities" />
-    <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_delete_TestVertexDelete_test_with_valid_project_id_and_valid_vertex_id_scenario_2.coverage" NAME="Unittests for test_delete.TestVertexDelete.test_with_valid_project_id_and_valid_vertex_id_scenario_2 Coverage Results" MODIFIED="1708622045128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/vertex" />
+    <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_vertexrequestdto_TestVertexRequestDto.coverage" NAME="Unittests for test_vertexrequestdto.TestVertexRequestDto Coverage Results" MODIFIED="1708638816037" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/api/dto" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_vertexrequestdto_TestVertexRequestDto_test_with_missing_name.coverage" NAME="Unittests for test_vertexrequestdto.TestVertexRequestDto.test_with_missing_name Coverage Results" MODIFIED="1708636029445" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/api/dto" />
+    <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_delete_TestVertexDelete_test_with_valid_project_id_and_valid_vertex_id_scenario_2.coverage" NAME="Unittests for test_delete.TestVertexDelete.test_with_valid_project_id_and_valid_vertex_id_scenario_2 Coverage Results" MODIFIED="1708622045128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/vertex" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_vertex_TestVertexCreate_test_with_missing_properties.coverage" NAME="Unittests for test_vertex.TestVertexCreate.test_with_missing_properties Coverage Results" MODIFIED="1708529290724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_vertexmapper_TestVertexMapperToDto_test_without_properties.coverage" NAME="Unittests for test_vertexmapper.TestVertexMapperToDto.test_without_properties Coverage Results" MODIFIED="1708476932179" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/mappers" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_edgevalidator_TestEdgeValidatorValidateNewEdgeWithExistingInEdgeAndSameVertex_test_in_edge_with_same_name.coverage" NAME="Unittests for test_edgevalidator.TestEdgeValidatorValidateNewEdgeWithExistingInEdgeAndSameVertex.test_in_edge_with_same_name Coverage Results" MODIFIED="1708455525334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/validators" />
@@ -655,7 +789,7 @@
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_vertexrequestdto_TestVertexRequestDto_test_with_missing_position_x.coverage" NAME="Unittests for test_vertexrequestdto.TestVertexRequestDto.test_with_missing_position_x Coverage Results" MODIFIED="1708636115563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/api/dto" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_update_TestEdgeCreate_test_redirect_recursive_edge_to_ordinary.coverage" NAME="Unittests for test_update.TestEdgeCreate.test_redirect_recursive_edge_to_ordinary Coverage Results" MODIFIED="1708619680654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/edge" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_get_TestVertexGetAll_test_with_wrong_project_id.coverage" NAME="Unittests for test_get.TestVertexGetAll.test_with_wrong_project_id Coverage Results" MODIFIED="1708626798703" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/graph" />
-    <SUITE FILE_PATH="coverage/GeneratorService$GeneratorService.coverage" NAME="GeneratorService Coverage Results" MODIFIED="1708625854037" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/GeneratorService$GeneratorService.coverage" NAME="GeneratorService Coverage Results" MODIFIED="1708734682573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_in_integration.coverage" NAME="Integrationtests Coverage Results" MODIFIED="1708299142857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_vertex_TestVertexCreate_test_with_missing_position_x.coverage" NAME="Unittests for test_vertex.TestVertexCreate.test_with_missing_position_x Coverage Results" MODIFIED="1708529280609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_edgevalidator_TestEdgeValidatorValidateNewEdgeWithRecursion_test_one_recursive_edge_plus_edge_with_same_name_to_other_vertex.coverage" NAME="Unittests for test_edgevalidator.TestEdgeValidatorValidateNewEdgeWithRecursion.test_one_recursive_edge_plus_edge_with_same_name_to_other_vertex Coverage Results" MODIFIED="1708470170702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/validators" />
@@ -666,8 +800,8 @@
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_getall_TestEdgeCreate_test_with_wrong_project_id.coverage" NAME="Unittests for test_getall.TestEdgeCreate.test_with_wrong_project_id Coverage Results" MODIFIED="1708616701522" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/edge" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_graph_TestGraphDeleteEdge.coverage" NAME="Unittests for test_graph.TestGraphDeleteEdge Coverage Results" MODIFIED="1708559692115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/entities" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_lifecycle_TestVertexLifecycle_test_lifecycle.coverage" NAME="Unittests for test_lifecycle.TestVertexLifecycle.test_lifecycle Coverage Results" MODIFIED="1708640216756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/vertex" />
-    <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_graph_TestGraphDeleteVertex_test_with_invalid_vertex_id.coverage" NAME="Unittests for test_graph.TestGraphDeleteVertex.test_with_invalid_vertex_id Coverage Results" MODIFIED="1708538484960" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/entities" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_graph_TestGraphAddEdge_test_new_edge.coverage" NAME="Unittests for test_graph.TestGraphAddEdge.test_new_edge Coverage Results" MODIFIED="1708450741856" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/entities" />
+    <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_graph_TestGraphDeleteVertex_test_with_invalid_vertex_id.coverage" NAME="Unittests for test_graph.TestGraphDeleteVertex.test_with_invalid_vertex_id Coverage Results" MODIFIED="1708538484960" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/entities" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_edgevalidator_TestEdgeValidatorValidateNewEdgeWithExistingInEdgeAndNewVertex.coverage" NAME="Unittests for test_edgevalidator.TestEdgeValidatorValidateNewEdgeWithExistingInEdgeAndNewVertex Coverage Results" MODIFIED="1708541513537" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/validators" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_update_TestEdgeCreate_test_with_missing_source_vertex_id.coverage" NAME="Unittests for test_update.TestEdgeCreate.test_with_missing_source_vertex_id Coverage Results" MODIFIED="1708617488587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/edge" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_update_TestEdgeCreate_test_with_wrong_edge_id.coverage" NAME="Unittests for test_update.TestEdgeCreate.test_with_wrong_edge_id Coverage Results" MODIFIED="1708617084800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/edge" />
@@ -691,7 +825,7 @@
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_create_TestEdgeCreate_test_with_name_with_starting_number.coverage" NAME="Unittests for test_create.TestEdgeCreate.test_with_name_with_starting_number Coverage Results" MODIFIED="1708611734112" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/edge" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_vertex_TestVertexGetAll.coverage" NAME="Unittests for test_vertex.TestVertexGetAll Coverage Results" MODIFIED="1708527035251" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_create_TestEdgeCreate_test_with_minus_in_property_name.coverage" NAME="Unittests for test_create.TestEdgeCreate.test_with_minus_in_property_name Coverage Results" MODIFIED="1708613903446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/edge" />
-    <SUITE FILE_PATH="coverage/GeneratorService$Integrationtests.coverage" NAME="Integrationtests Coverage Results" MODIFIED="1708642679110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration" />
+    <SUITE FILE_PATH="coverage/GeneratorService$Integrationtests.coverage" NAME="Integrationtests Coverage Results" MODIFIED="1708728413985" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_edgevalidator_TestEdgeValidatorValidateNewEdge_TestWithExistingOutEdgeAndNewVertex_test_in_edge_with_different_name.coverage" NAME="Unittests for test_edgevalidator.TestEdgeValidatorValidateNewEdge.TestWithExistingOutEdgeAndNewVertex.test_in_edge_with_different_name Coverage Results" MODIFIED="1708453896149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/validators" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_graph_TestGraphUpdateVertex_test_with_duplicate_name.coverage" NAME="Unittests for test_graph.TestGraphUpdateVertex.test_with_duplicate_name Coverage Results" MODIFIED="1708522971468" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/entities" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_projectrepository_TestProjectRepositoryCreateProject.coverage" NAME="Unittests for test_projectrepository.TestProjectRepositoryCreateProject Coverage Results" MODIFIED="1708545745379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/repositories" />

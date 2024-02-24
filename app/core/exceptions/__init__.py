@@ -1,3 +1,4 @@
+from .build.buildexception import BuildException
 from .edge.edgeexception import EdgeException
 from .edge.edgenotfoundexception import EdgeNotFoundException
 from .project.projectexception import ProjectException
