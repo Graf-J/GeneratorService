@@ -524,7 +524,7 @@ class TestGraphUpdateEdge(unittest.TestCase):
             self.graph.update_edge(self.likes_edge_id, self.person_vertex_id, self.person_vertex_id, duplicate_edge)
 
         # Assert
-        self.assertEqual(context.exception.message, "Vertex already has an outgoing edge with name 'performs'")
+        self.assertEqual(context.exception.message, "Source-Vertex already has an outgoing edge with name 'performs'")
         self.assertEqual(len(self.graph.edges), 2)
 
     def test_ordinary_edge_with_duplicate_name(self):
@@ -540,7 +540,7 @@ class TestGraphUpdateEdge(unittest.TestCase):
             self.graph.update_edge(self.performs_edge_id, self.person_vertex_id, self.hobby_vertex_id, duplicate_edge)
 
         # Assert
-        self.assertEqual(context.exception.message, "Vertex already has an outgoing edge with name 'likes'")
+        self.assertEqual(context.exception.message, "Source-Vertex already has an outgoing edge with name 'likes'")
         self.assertEqual(len(self.graph.edges), 2)
 
     def test_update_ordinary_edge(self):
@@ -658,7 +658,7 @@ class TestGraphUpdateEdge(unittest.TestCase):
             self.graph.update_edge(self.performs_edge_id, self.person_vertex_id, self.person_vertex_id, self.likes_edge)
 
         # Assert
-        self.assertEqual(context.exception.message, "Vertex already has an outgoing edge with name 'likes'")
+        self.assertEqual(context.exception.message, "Source-Vertex already has an outgoing edge with name 'likes'")
         self.assertEqual(len(self.graph.edges), 2)
 
     def test_redirect_recursive_edge_to_ordinary_with_duplicate_name(self):
@@ -667,7 +667,7 @@ class TestGraphUpdateEdge(unittest.TestCase):
             self.graph.update_edge(self.likes_edge_id, self.person_vertex_id, self.hobby_vertex_id, self.performs_edge)
 
         # Assert
-        self.assertEqual(context.exception.message, "Vertex already has an outgoing edge with name 'performs'")
+        self.assertEqual(context.exception.message, "Source-Vertex already has an outgoing edge with name 'performs'")
         self.assertEqual(len(self.graph.edges), 2)
 
 

@@ -12,7 +12,7 @@
         {{ property.key }}: {{ property.datatype.value }}{%- if property.required %}!{%- endif %}
         {%- endfor %}
         {#- Vertex #}
-        {{ edge.target_vertex.name_lower }}: {{ edge.target_vertex.name_upper }}!
+        {{ edge.target_vertex.name_lower }}: {{ edge.target_vertex.type_name }}!
     }
 
     {%- if not edge.is_recursive() %}
@@ -24,7 +24,7 @@
         {{ property.key }}: {{ property.datatype.value }}{%- if property.required %}!{%- endif %}
         {%- endfor %}
         {#- Vertex #}
-        {{ edge.source_vertex.name_lower }}: {{ edge.source_vertex.name_upper }}!
+        {{ edge.source_vertex.name_lower }}: {{ edge.source_vertex.type_name }}!
     }
     {%- endif %}
     {%- endfor %}

@@ -76,13 +76,13 @@ class Graph:
         target_vertex = self.find_vertex_by_id(target_vertex_id)
 
         # Validate the Edge
-        EdgeValidator.validate_new_edge_name(
-            edge.name,
+        EdgeValidator.validate_connected_vertices_connections(
+            edge,
             source_vertex.out_edges,
             target_vertex.in_edges
         )
         EdgeValidator.validate_connected_vertices_properties(
-            edge.name,
+            edge,
             source_vertex.properties,
             target_vertex.properties
         )
@@ -106,13 +106,13 @@ class Graph:
         # Validate Edge
         source_vertex_out_edges_without_new_edge = list(filter(lambda e: e != edge, source_vertex.out_edges))
         target_vertex_in_edges_without_new_edge = list(filter(lambda e: e != edge, target_vertex.in_edges))
-        EdgeValidator.validate_new_edge_name(
-            new_edge.name,
+        EdgeValidator.validate_connected_vertices_connections(
+            new_edge,
             source_vertex_out_edges_without_new_edge,
             target_vertex_in_edges_without_new_edge
         )
         EdgeValidator.validate_connected_vertices_properties(
-            new_edge.name,
+            new_edge,
             source_vertex.properties,
             target_vertex.properties
         )

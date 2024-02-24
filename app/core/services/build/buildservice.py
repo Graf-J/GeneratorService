@@ -1,6 +1,6 @@
 from app.core.exceptions import BuildException
-from app.core.operations import SchemaOperation
-from app.core.repositories import IGraphRepository, IProjectRepository, IOutputRepository
+from app.core.operations import RenderOperation
+from app.core.repositories import IGraphRepository, IProjectRepository, IOutputRepository, ITemplateRepository
 from app.core.services.build.buildserviceinterface import IBuildService
 
 
@@ -9,10 +9,12 @@ class BuildService(IBuildService):
             self,
             graph_repository: IGraphRepository,
             project_repository: IProjectRepository,
+            template_repository: ITemplateRepository,
             output_repository: IOutputRepository
     ):
         self.graph_repository = graph_repository
         self.project_repository = project_repository
+        self.template_repository = template_repository
         self.output_repository = output_repository
 
     def build_project(self, project_id: str):
@@ -28,13 +30,14 @@ class BuildService(IBuildService):
         self.output_repository.create_folder_structure(project.name)
 
         # Generate and Move GraphQL Schema to Output
-        schema_template = self.output_repository.get_schema_template(project.name)
-        schema_content = SchemaOperation.render_schema(schema_template, graph)
-        self.output_repository.insert_schema(project.name, schema_content)
+        schema_template = self.template_repository.get_schema_template()
+        schema_file = RenderOperation.render_schema(schema_template, graph)
+        self.output_repository.save_file(project.name, schema_file)
 
         # Generate and Move main.py with all the Resolvers to Output
         # TODO: Operator Create main.py with Resolvers
         # TODO: Add main.py via Repository
 
         # Copy all the remaining Files to Output
-        self.output_repository.copy_static_files(project.name)
+        static_files = self.template_repository.get_static_files()
+        self.output_repository.save_files(project.name, static_files)

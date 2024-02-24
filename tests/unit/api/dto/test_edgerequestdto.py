@@ -73,17 +73,6 @@ class TestEdgeRequestDto(unittest.TestCase):
                 target_vertex_id=uuid.uuid4()
             )
 
-    def test_with_id_in_property_keys(self):
-        with self.assertRaises(ValidationError):
-            EdgeRequestDto(
-                name='name',
-                properties=[
-                    PropertyDto(key='id', required=False, datatype=Datatype.INT)
-                ],
-                source_vertex_id=uuid.uuid4(),
-                target_vertex_id=uuid.uuid4()
-            )
-
     def test_with_label_in_property_keys(self):
         with self.assertRaises(ValidationError):
             EdgeRequestDto(

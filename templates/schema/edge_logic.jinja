@@ -15,5 +15,5 @@
         OR: [{{ edge.logic_input_name }}!]
         AND: [{{ edge.logic_input_name }}!]
     }
-    {%- endif  %}
+    {%- endif  %}{{ "\n" if loop.nextitem }}
     {%- endfor %}

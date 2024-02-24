@@ -4,5 +4,5 @@
         property: {{ edge.property_name }}!
         order: OrderDirection!
     }
-    {%- endif %}
+    {%- endif %}{{ "\n" if loop.nextitem }}
     {%- endfor %}

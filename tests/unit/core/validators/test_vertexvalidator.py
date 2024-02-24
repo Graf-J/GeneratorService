@@ -8,39 +8,19 @@ from app.core.validators import VertexValidator
 
 class TestVertexValidator(unittest.TestCase):
     def setUp(self):
-        uuid_1 = uuid.uuid4()
-        uuid_2 = uuid.uuid4()
-
-        self.vertex = Vertex(
-            _id=str(uuid_1),
-            name="Vertex",
+        self.first_vertex_id = str(uuid.uuid4())
+        self.first_vertex = Vertex(
+            _id=self.first_vertex_id,
+            name="FirstVertex",
             position_x=10,
             position_y=20,
             radius=5,
             properties=[]
         )
-
-        self.other_vertex = Vertex(
-            _id=str(2),
-            name="OtherVertex",
-            position_x=10,
-            position_y=20,
-            radius=5,
-            properties=[]
-        )
-
-        self.duplicate_id_vertex = Vertex(
-            _id=str(uuid_1),
-            name="OtherVertex",
-            position_x=10,
-            position_y=20,
-            radius=5,
-            properties=[]
-        )
-
-        self.duplicate_name_vertex = Vertex(
-            _id=str(uuid_2),
-            name="Vertex",
+        self.second_vertex_id = str(uuid.uuid4())
+        self.second_vertex = Vertex(
+            _id=self.second_vertex_id,
+            name="SecondVertex",
             position_x=10,
             position_y=20,
             radius=5,
@@ -49,36 +29,49 @@ class TestVertexValidator(unittest.TestCase):
 
     def test_new_vertex_valid(self):
         # Arrange
-        vertices = [self.vertex]
-        new_vertex = self.other_vertex
+        vertices = [self.first_vertex]
 
         try:
             # Act
-            VertexValidator.validate_new_vertex(vertices, new_vertex)
+            VertexValidator.validate_new_vertex(vertices, self.second_vertex)
         except VertexException:
             # Assert
             self.fail('Operation should not raise an Exception')
 
-    def test_new_vertex_duplicate_id(self):
+    def test_new_vertex_with_duplicate_id(self):
         # Arrange
-        vertices = [self.vertex, self.other_vertex]
-        new_vertex = self.duplicate_id_vertex
+        duplicate_id_vertex = Vertex(
+            _id=self.second_vertex_id,
+            name="NewVertex",
+            position_x=20,
+            position_y=43,
+            radius=10,
+            properties=[]
+        )
+        vertices = [self.first_vertex, self.second_vertex]
 
         # Act
         with self.assertRaises(VertexException) as context:
-            VertexValidator.validate_new_vertex(vertices, new_vertex)
+            VertexValidator.validate_new_vertex(vertices, duplicate_id_vertex)
 
         # Assert
-        self.assertEqual(context.exception.message, f"Vertex with Id '{self.duplicate_id_vertex.id}' already exists")
+        self.assertEqual(context.exception.message, f"Vertex with Id '{self.second_vertex_id}' already exists")
 
-    def test_new_vertex_duplicate_name(self):
+    def test_new_vertex_with_duplicate_name(self):
         # Arrange
-        vertices = [self.vertex, self.other_vertex]
-        new_vertex = self.duplicate_name_vertex
+        duplicate_name_vertex = Vertex(
+            _id=str(uuid.uuid4()),
+            name=self.second_vertex.name,
+            position_x=20,
+            position_y=43,
+            radius=10,
+            properties=[]
+        )
+        vertices = [self.first_vertex, self.second_vertex]
 
         # Act
         with self.assertRaises(VertexException) as context:
-            VertexValidator.validate_new_vertex(vertices, new_vertex)
+            VertexValidator.validate_new_vertex(vertices, duplicate_name_vertex)
 
         # Assert
-        self.assertEqual(context.exception.message, "Vertex with Name 'Vertex' already exists")
+        self.assertEqual(context.exception.message, f"Vertex with Name '{self.second_vertex.name}' already exists")

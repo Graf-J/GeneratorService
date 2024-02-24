@@ -231,7 +231,7 @@ class TestEdgeCreate(unittest.TestCase):
         # Assume
         self.assertEqual(response.status_code, 409)
         self.assertEqual(response.json().get('detail')[0].get('msg'),
-                         "Vertex already has an outgoing edge with name 'performs'")
+                         "Source-Vertex already has an outgoing edge with name 'performs'")
 
     def test_with_recursive_edge_with_different_name(self):
         # Act
@@ -267,7 +267,7 @@ class TestEdgeCreate(unittest.TestCase):
         # Assume
         self.assertEqual(response.status_code, 409)
         self.assertEqual(response.json().get('detail')[0].get('msg'),
-                         "Vertex already has an outgoing edge with name 'performs'")
+                         "Source-Vertex already has an outgoing edge with name 'performs'")
 
     def test_with_opposite_edge_with_same_name(self):
         # Act
@@ -308,7 +308,7 @@ class TestEdgeCreate(unittest.TestCase):
         # Assume
         self.assertEqual(response.status_code, 409)
         self.assertEqual(response.json().get('detail')[0].get('msg'),
-                         "Edge name has conflict with property 'createsOut' of source vertex")
+                         "Edge name has conflict with property 'createsOut' of Source-Vertex")
 
     def test_with_target_vertex_property_conflict(self):
         # Act
@@ -322,4 +322,4 @@ class TestEdgeCreate(unittest.TestCase):
         # Assume
         self.assertEqual(response.status_code, 409)
         self.assertEqual(response.json().get('detail')[0].get('msg'),
-                         "Edge name has conflict with property 'checksIn' of target vertex")
+                         "Edge name has conflict with property 'checksIn' of Target-Vertex")

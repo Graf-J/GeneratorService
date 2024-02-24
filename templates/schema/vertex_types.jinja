@@ -5,7 +5,7 @@
     }{{ "\n" }}
     {#- One Type for each Vertex #}
     {%- for vertex in graph.vertices %}
-    type {{ vertex.name_upper }} implements VertexInterface {
+    type {{ vertex.type_name }} implements VertexInterface {
         {#- Property Fields #}
         id: ID!
         label: String!
@@ -17,11 +17,11 @@
         {{ edge.out_field_name }}(
             {%- if edge.target_vertex.has_properties() %}
             whereVertex: {{ edge.target_vertex.logic_input_name }}
-            vertexOrderBy: [{{ edge.target_vertex.order_by_input_name }}!]
+            orderByVertex: [{{ edge.target_vertex.order_by_input_name }}!]
             {%- endif %}
             {%- if edge.has_properties() %}
             whereEdge: {{ edge.logic_input_name }}
-            edgeOrderBy: [{{ edge.order_by_input_name }}!]
+            orderByEdge: [{{ edge.order_by_input_name }}!]
             {%- endif %}
             pagination: PaginationInput
         ): [{{ edge.out_type_name }}!]!
@@ -31,11 +31,11 @@
         {{ edge.in_field_name }}(
             {%- if edge.source_vertex.has_properties() %}
             whereVertex: {{ edge.source_vertex.logic_input_name }}
-            vertexOrderBy: [{{ edge.source_vertex.order_by_input_name }}!]
+            orderByVertex: [{{ edge.source_vertex.order_by_input_name }}!]
             {%- endif %}
             {%- if edge.has_properties() %}
             whereEdge: {{ edge.logic_input_name }}
-            edgeOrderBy: [{{ edge.order_by_input_name }}!]
+            orderByEdge: [{{ edge.order_by_input_name }}!]
             {%- endif %}
             pagination: PaginationInput
         ): [{{ edge.in_type_name }}!]!

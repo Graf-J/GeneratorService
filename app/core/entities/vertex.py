@@ -33,6 +33,10 @@ class Vertex:
         return self.name[0].lower() + self.name[1:]
 
     @property
+    def type_name(self) -> str:
+        return self.name_upper + 'Vertex'
+
+    @property
     def logic_input_name(self) -> str:
         return self.name_upper + 'VertexLogicInput'
 
@@ -42,11 +46,11 @@ class Vertex:
 
     @property
     def add_input_name(self) -> str:
-        return 'Add' + self.name_upper + 'Input'
+        return 'Add' + self.name_upper + 'VertexInput'
 
     @property
     def update_input_name(self) -> str:
-        return 'Update' + self.name_upper + 'Input'
+        return 'Update' + self.name_upper + 'VertexInput'
 
     @property
     def property_name(self) -> str:

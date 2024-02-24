@@ -1,7 +1,7 @@
     type Query {
         {%- for vertex in graph.vertices %}
         {#- Query for one Vertex #}
-        {{ vertex.name_lower }}(id: ID!): {{ vertex.name_upper }}
+        {{ vertex.name_lower }}(id: ID!): {{ vertex.type_name }}
         {#- Query for a list of Vertices #}
         {{ vertex.name_lower }}List(
             {%- if vertex.has_properties() %}
@@ -9,6 +9,6 @@
             orderBy: [{{ vertex.order_by_input_name }}!]
             {%- endif %}
             pagination: PaginationInput
-        ): [{{ vertex.name_upper }}!]!{{ "\n" if loop.nextitem }}
+        ): [{{ vertex.type_name }}!]!{{ "\n" if loop.nextitem }}
         {%- endfor %}
     }

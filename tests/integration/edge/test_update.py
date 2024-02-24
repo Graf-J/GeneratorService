@@ -312,7 +312,7 @@ class TestEdgeCreate(unittest.TestCase):
         # Assert
         self.assertEqual(response.status_code, 409)
         self.assertEqual(response.json().get('detail')[0].get('msg'),
-                         "Vertex already has an outgoing edge with name 'likes'")
+                         "Source-Vertex already has an outgoing edge with name 'likes'")
 
     def test_update_recursive_edge_name_to_duplicate(self):
         # Act
@@ -328,7 +328,7 @@ class TestEdgeCreate(unittest.TestCase):
         # Assert
         self.assertEqual(response.status_code, 409)
         self.assertEqual(response.json().get('detail')[0].get('msg'),
-                         "Vertex already has an outgoing edge with name 'performs'")
+                         "Source-Vertex already has an outgoing edge with name 'performs'")
 
     def test_redirect_ordinary_edge_to_recursive(self):
         # Act

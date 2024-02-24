@@ -1,2 +1,3 @@
 from .outputfolderadapter import OutputFolderAdapter
 from .projectfolderadapter import ProjectFolderAdapter
+from .templatefolderadapter import TemplateFolderAdapter

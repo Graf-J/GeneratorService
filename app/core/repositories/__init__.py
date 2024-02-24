@@ -6,5 +6,7 @@ from .output.outputrepository import OutputRepository
 from .output.outputrepositoryinterface import IOutputRepository
 from .project.projectrepository import ProjectRepository
 from .project.projectrepositoryinterface import IProjectRepository
+from .template.templaterepository import TemplateRepository
+from .template.templaterepositoryinterface import ITemplateRepository
 from .vertex.vertexrepository import VertexRepository
 from .vertex.vertexrepositoryinterface import IVertexRepository

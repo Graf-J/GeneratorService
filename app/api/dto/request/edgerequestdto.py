@@ -33,9 +33,7 @@ class EdgeRequestDto(BaseModel):
             if prop.key in keys_seen:
                 raise ValueError(f"Duplicate key found in properties: {prop.key}")
 
-            # Check for forbidden keys ("id" or "label")
-            if prop.key == 'id':
-                raise ValueError("Property with key 'id' is not allowed")
+            # Check for forbidden key "label"
             if prop.key == 'label':
                 raise ValueError("Property with key 'label' is not allowed")
 

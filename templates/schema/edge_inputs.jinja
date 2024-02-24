@@ -1,3 +1,4 @@
+
     {%- for edge in graph.edges %}
     {%- if edge.has_properties() %}
     {#- Add Input #}
@@ -12,5 +13,5 @@
         {{ property.key }}: {{ property.datatype.value }}
         {%- endfor %}
     }
-    {%- endif %}
+    {%- endif %}{{ "\n" if loop.nextitem }}
     {%- endfor %}
