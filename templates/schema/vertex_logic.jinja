@@ -6,10 +6,12 @@
         {%- for property in vertex.properties %}
         {{ property.key }}_EQ: {{ property.datatype.value }}
         {{ property.key }}_NEQ: {{ property.datatype.value }}
+        {%- if not property.datatype.value == 'Boolean' %}
         {{ property.key }}_GT: {{ property.datatype.value }}
         {{ property.key }}_GTE: {{ property.datatype.value }}
         {{ property.key }}_LT: {{ property.datatype.value }}
         {{ property.key }}_LTE: {{ property.datatype.value }}
+        {%- endif %}
         {%- endfor %}
         {#- Nested Logic Components #}
         OR: [{{ vertex.logic_input_name }}!]

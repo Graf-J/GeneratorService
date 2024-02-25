@@ -1,1 +1,1 @@
-from .schema.renderoperation import RenderOperation
+from app.core.operations.renderoperation import RenderOperation

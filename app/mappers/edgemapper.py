@@ -16,7 +16,8 @@ class EdgeMapper(Mapper):
         edge_entity = Edge(
             _id=str(uuid.uuid4()),
             name=dto.name,
-            properties=properties
+            properties=properties,
+            multi_edge=dto.multi_edge
         )
 
         return edge_entity
@@ -31,6 +32,7 @@ class EdgeMapper(Mapper):
             id=entity.id,
             name=entity.name,
             properties=properties,
+            multi_edge=entity.multi_edge,
             source_vertex_id=entity.source_vertex.id,
             target_vertex_id=entity.target_vertex.id
         )

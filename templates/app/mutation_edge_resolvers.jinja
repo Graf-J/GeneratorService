@@ -1,0 +1,26 @@
+{% for edge in graph.edges %}
+# {{ edge.name_upper }} Edge Mutation-Resolvers
+{#- Add Edge Resolver #}
+@mutation.field('connect{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}')
+def resolve_connect{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}(_, info, source, target{%- if edge.has_properties() %}, data{%- endif %}):
+    {%- if edge.has_properties() %}
+    # Call function with data
+    {%- else %}
+    # Call function without data
+    {%- endif %}
+    return True
+
+{{ "\n" }}
+{#- Delete Edge Resolver #}
+@mutation.field('disconnect{{ edge.source_vertex.name_upper }}From{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}')
+def resolve_disconnect{{ edge.source_vertex.name_upper }}From{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}(_, info, source, target):
+    return True
+
+{%- if edge.has_properties() %}
+{{ "\n" }}
+{#- Update Edge Resolver #}
+@mutation.field('update{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}')
+def resolve_update{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}(_, info, source, target, data):
+    return True
+{%- endif %}
+{% endfor %}

@@ -15,3 +15,14 @@ class RenderOperation:
         )
 
         return file
+
+    @staticmethod
+    def render_app(template: Template, graph: Graph) -> File:
+        app = template.render(graph=graph)
+
+        file = File(
+            file_name='app.py',
+            byte_content=app.encode('utf-8')
+        )
+
+        return file

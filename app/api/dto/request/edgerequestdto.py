@@ -9,6 +9,7 @@ from app.api.dto import PropertyDto
 class EdgeRequestDto(BaseModel):
     name: str = Field(..., min_length=1)
     properties: List[PropertyDto]
+    multi_edge: bool
     source_vertex_id: UUID4
     target_vertex_id: UUID4
 

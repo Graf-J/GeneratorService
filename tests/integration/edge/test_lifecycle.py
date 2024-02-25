@@ -53,6 +53,7 @@ class TestEdgeCreate(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
             'name': 'performs',
             'properties': [],
+            'multi_edge': False,
             'source_vertex_id': person_vertex.get('id'),
             'target_vertex_id': hobby_vertex.get('id')
         })
@@ -63,6 +64,7 @@ class TestEdgeCreate(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
             'name': 'likes',
             'properties': [],
+            'multi_edge': False,
             'source_vertex_id': person_vertex.get('id'),
             'target_vertex_id': person_vertex.get('id')
         })
@@ -97,6 +99,7 @@ class TestEdgeCreate(unittest.TestCase):
             json={
                 'name': 'gets_played',
                 'properties': [],
+                'multi_edge': False,
                 'source_vertex_id': hobby_vertex.get('id'),
                 'target_vertex_id': person_vertex.get('id')
             })
@@ -107,6 +110,7 @@ class TestEdgeCreate(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json().get('id'), performs_edge.get('id'))
         self.assertEqual(response.json().get('name'), 'gets_played')
+        self.assertEqual(response.json().get('multi_edge'), False)
         self.assertEqual(response.json().get('source_vertex_id'), hobby_vertex.get('id'))
         self.assertEqual(response.json().get('target_vertex_id'), person_vertex.get('id'))
 

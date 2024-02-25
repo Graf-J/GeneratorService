@@ -120,6 +120,7 @@ class Graph:
         # Set Attributes of Edge
         edge.name = new_edge.name
         edge.properties = new_edge.properties
+        edge.multi_edge = new_edge.multi_edge
         # Disconnect Edge from previous Vertices
         edge.source_vertex.out_edges.remove(edge)
         edge.target_vertex.in_edges.remove(edge)

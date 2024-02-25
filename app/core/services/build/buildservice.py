@@ -35,8 +35,9 @@ class BuildService(IBuildService):
         self.output_repository.save_file(project.name, schema_file)
 
         # Generate and Move main.py with all the Resolvers to Output
-        # TODO: Operator Create main.py with Resolvers
-        # TODO: Add main.py via Repository
+        app_template = self.template_repository.get_app_template()
+        app_file = RenderOperation.render_app(app_template, graph)
+        self.output_repository.save_file(project.name, app_file)
 
         # Copy all the remaining Files to Output
         static_files = self.template_repository.get_static_files()

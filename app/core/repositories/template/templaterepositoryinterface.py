@@ -12,5 +12,9 @@ class ITemplateRepository(ABC):
         pass
 
     @abstractmethod
+    def get_app_template(self) -> Template:
+        pass
+
+    @abstractmethod
     def get_static_files(self) -> List[File]:
         pass

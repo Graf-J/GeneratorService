@@ -55,6 +55,7 @@ class TestVertexLifecycle(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
             'name': 'recursive_edge',
             'properties': [],
+            'multi_edge': False,
             'source_vertex_id': first_vertex.get('id'),
             'target_vertex_id': first_vertex.get('id')
         })
@@ -65,6 +66,7 @@ class TestVertexLifecycle(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
             'name': 'ordinary_edge',
             'properties': [],
+            'multi_edge': False,
             'source_vertex_id': first_vertex.get('id'),
             'target_vertex_id': second_vertex.get('id')
         })

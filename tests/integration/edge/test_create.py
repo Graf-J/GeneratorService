@@ -55,6 +55,7 @@ class TestEdgeCreate(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
             'name': 'performs',
             'properties': [],
+            'multi_edge': True,
             'source_vertex_id': self.person_vertex.get('id'),
             'target_vertex_id': self.hobby_vertex.get('id')
         })
@@ -70,6 +71,7 @@ class TestEdgeCreate(unittest.TestCase):
         response = self.client.post('/api/v1/projects/invalid-id/edges', json={
             'name': 'likes',
             'properties': [],
+            'multi_edge': True,
             'source_vertex_id': self.person_vertex.get('id'),
             'target_vertex_id': self.person_vertex.get('id')
         })
@@ -86,6 +88,7 @@ class TestEdgeCreate(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
             'name': 'likes',
             'properties': [],
+            'multi_edge': False,
             'source_vertex_id': wrong_id,
             'target_vertex_id': self.person_vertex.get('id')
         })
@@ -102,6 +105,7 @@ class TestEdgeCreate(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
             'name': 'likes',
             'properties': [],
+            'multi_edge': False,
             'source_vertex_id': self.person_vertex.get('id'),
             'target_vertex_id': wrong_id
         })
@@ -195,6 +199,19 @@ class TestEdgeCreate(unittest.TestCase):
         self.assertEqual(response.json().get('detail')[0].get('msg'),
                          "Value error, Key must start with a letter or underscore, followed by letters, numbers, or underscores.")
 
+    def test_with_missing_multi_edge(self):
+        # Act
+        response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
+            'name': 'likes',
+            'properties': [],
+            'source_vertex_id': self.person_vertex.get('id'),
+            'target_vertex_id': self.person_vertex.get('id')
+        })
+
+        # Assert
+        self.assertEqual(response.status_code, 422)
+        self.assertEqual(response.json().get('detail')[0].get('msg'), 'Field required')
+
     def test_with_missing_source_vertex_id(self):
         # Act
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
@@ -224,6 +241,7 @@ class TestEdgeCreate(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
             'name': 'performs',
             'properties': [],
+            'multi_edge': True,
             'source_vertex_id': self.person_vertex.get('id'),
             'target_vertex_id': self.person_vertex.get('id')
         })
@@ -238,6 +256,7 @@ class TestEdgeCreate(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
             'name': 'likes',
             'properties': [],
+            'multi_edge': False,
             'source_vertex_id': self.person_vertex.get('id'),
             'target_vertex_id': self.person_vertex.get('id')
         })
@@ -247,6 +266,7 @@ class TestEdgeCreate(unittest.TestCase):
         self.assertIsInstance(response.json().get('id'), str)
         self.assertEqual(response.json().get('name'), 'likes')
         self.assertEqual(len(response.json().get('properties')), 0)
+        self.assertEqual(response.json().get('multi_edge'), False)
         self.assertEqual(response.json().get('source_vertex_id'), self.person_vertex.get('id'))
         self.assertEqual(response.json().get('target_vertex_id'), self.person_vertex.get('id'))
 
@@ -260,6 +280,7 @@ class TestEdgeCreate(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
             'name': 'performs',
             'properties': [],
+            'multi_edge': False,
             'source_vertex_id': self.person_vertex.get('id'),
             'target_vertex_id': self.hobby_vertex.get('id')
         })
@@ -274,6 +295,7 @@ class TestEdgeCreate(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
             'name': 'performs',
             'properties': [],
+            'multi_edge': True,
             'source_vertex_id': self.hobby_vertex.get('id'),
             'target_vertex_id': self.person_vertex.get('id')
         })
@@ -285,6 +307,7 @@ class TestEdgeCreate(unittest.TestCase):
         self.assertEqual(len(response.json().get('properties')), 0)
         self.assertEqual(response.json().get('source_vertex_id'), self.hobby_vertex.get('id'))
         self.assertEqual(response.json().get('target_vertex_id'), self.person_vertex.get('id'))
+        self.assertEqual(response.json().get('multi_edge'), True)
 
         person_vertex = self.client.get(
             f"/api/v1/projects/{self.project.get('id')}/vertices/{self.person_vertex.get('id')}")
@@ -301,6 +324,7 @@ class TestEdgeCreate(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
             'name': 'creates',
             'properties': [],
+            'multi_edge': False,
             'source_vertex_id': self.person_vertex.get('id'),
             'target_vertex_id': self.hobby_vertex.get('id')
         })
@@ -315,6 +339,7 @@ class TestEdgeCreate(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
             'name': 'checks',
             'properties': [],
+            'multi_edge': True,
             'source_vertex_id': self.person_vertex.get('id'),
             'target_vertex_id': self.hobby_vertex.get('id')
         })

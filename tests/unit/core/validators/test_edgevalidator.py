@@ -2,6 +2,7 @@ import unittest
 import uuid
 
 from app.core.entities import Graph, Vertex, Edge, Property
+from app.core.entities.property import Datatype
 from app.core.exceptions import EdgeException
 from app.core.validators import EdgeValidator
 
@@ -37,17 +38,20 @@ class TestEdgeValidatorValidateConnectedVerticesConnectionsWithExistingOutEdgeAn
         self.performs_edge = Edge(
             _id=str(uuid.uuid4()),
             name='performs',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
         self.new_performs_edge = Edge(
             _id=str(uuid.uuid4()),
             name='performs',
-            properties=[]
+            properties=[],
+            multi_edge=False
         )
         self.new_likes_edge = Edge(
             _id=str(uuid.uuid4()),
             name='likes',
-            properties=[]
+            properties=[],
+            multi_edge=False
         )
         # Build Graph
         self.graph = Graph()
@@ -128,17 +132,20 @@ class TestEdgeValidatorValidateConnectedVerticesConnectionsWithExistingInEdgeAnd
         self.performs_edge = Edge(
             _id=str(uuid.uuid4()),
             name='performs',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
         self.new_performs_edge = Edge(
             _id=str(uuid.uuid4()),
             name='performs',
-            properties=[]
+            properties=[],
+            multi_edge=False
         )
         self.new_likes_edge = Edge(
             _id=str(uuid.uuid4()),
             name='likes',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
         # Build Graph
         self.graph = Graph()
@@ -210,17 +217,20 @@ class TestEdgeValidatorValidateConnectedVerticesConnectionsWithExistingOutEdgeAn
         self.performs_edge = Edge(
             _id=str(uuid.uuid4()),
             name='performs',
-            properties=[]
+            properties=[],
+            multi_edge=False
         )
         self.new_performs_edge = Edge(
             _id=str(uuid.uuid4()),
             name='performs',
-            properties=[]
+            properties=[],
+            multi_edge=False
         )
         self.new_likes_edge = Edge(
             _id=str(uuid.uuid4()),
             name='likes',
-            properties=[]
+            properties=[],
+            multi_edge=False
         )
         # Build Graph
         self.graph = Graph()
@@ -292,17 +302,20 @@ class TestEdgeValidatorValidateConnectedVerticesConnectionsWithExistingInEdgeAnd
         self.performs_edge = Edge(
             _id=str(uuid.uuid4()),
             name='performs',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
         self.new_performs_edge = Edge(
             _id=str(uuid.uuid4()),
             name='performs',
-            properties=[]
+            properties=[],
+            multi_edge=False
         )
         self.new_likes_edge = Edge(
             _id=str(uuid.uuid4()),
             name='likes',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
         # Build Graph
         self.graph = Graph()
@@ -374,17 +387,20 @@ class TestEdgeValidatorValidateConnectedVerticesConnectionsWithRecursion(unittes
         self.likes_edge = Edge(
             _id=str(uuid.uuid4()),
             name='likes',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
         self.new_likes_edge = Edge(
             _id=str(uuid.uuid4()),
             name='likes',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
         self.new_performs_edge = Edge(
             _id=str(uuid.uuid4()),
             name='performs',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
         # Build Graph
         self.graph = Graph()
@@ -482,16 +498,17 @@ class TestValidateConnectVerticesProperties(unittest.TestCase):
     def test_with_conflicting_source_vertex_property(self):
         # Arrange
         source_vertex_properties = [
-            Property(key='nameOut', required=True, datatype='String'),
-            Property(key='age', required=False, datatype='Int')
+            Property(key='nameOut', required=True, datatype=Datatype.STRING),
+            Property(key='age', required=False, datatype=Datatype.INT)
         ]
         target_vertex_properties = [
-            Property(key='key', required=True, datatype='Float')
+            Property(key='key', required=True, datatype=Datatype.FLOAT)
         ]
         new_edge = Edge(
             _id=str(uuid.uuid4()),
             name='name',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
 
         # Act
@@ -508,16 +525,17 @@ class TestValidateConnectVerticesProperties(unittest.TestCase):
     def test_with_conflicting_target_vertex_property(self):
         # Arrange
         source_vertex_properties = [
-            Property(key='name', required=True, datatype='String'),
-            Property(key='age', required=False, datatype='Int')
+            Property(key='name', required=True, datatype=Datatype.STRING),
+            Property(key='age', required=False, datatype=Datatype.INT)
         ]
         target_vertex_properties = [
-            Property(key='keyIn', required=True, datatype='Float')
+            Property(key='keyIn', required=True, datatype=Datatype.FLOAT)
         ]
         new_edge = Edge(
             _id=str(uuid.uuid4()),
             name='key',
-            properties=[]
+            properties=[],
+            multi_edge=False
         )
 
         # Act
@@ -534,16 +552,17 @@ class TestValidateConnectVerticesProperties(unittest.TestCase):
     def test_with_valid_properties(self):
         # Arrange
         source_vertex_properties = [
-            Property(key='name', required=True, datatype='String'),
-            Property(key='age', required=False, datatype='Int')
+            Property(key='name', required=True, datatype=Datatype.STRING),
+            Property(key='age', required=False, datatype=Datatype.INT)
         ]
         target_vertex_properties = [
-            Property(key='key', required=True, datatype='Float')
+            Property(key='key', required=True, datatype=Datatype.FLOAT)
         ]
         new_edge = Edge(
             _id=str(uuid.uuid4()),
             name='name',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
 
         # Act

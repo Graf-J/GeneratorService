@@ -54,6 +54,7 @@ class TestVertexDelete(unittest.TestCase):
         first_edge_res = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
             'name': 'recursive',
             'properties': [],
+            'multi_edge': True,
             'source_vertex_id': self.first_vertex.get('id'),
             'target_vertex_id': self.first_vertex.get('id')
         })
@@ -61,6 +62,7 @@ class TestVertexDelete(unittest.TestCase):
         second_edge_res = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
             'name': 'ordinary',
             'properties': [],
+            'multi_edge': False,
             'source_vertex_id': self.first_vertex.get('id'),
             'target_vertex_id': self.second_vertex.get('id')
         })

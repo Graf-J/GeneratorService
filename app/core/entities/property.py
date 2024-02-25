@@ -2,6 +2,7 @@ class Datatype:
     STRING = 'String'
     INT = 'Int'
     FLOAT = 'Float'
+    BOOLEAN = 'Boolean'
 
 
 class Property:

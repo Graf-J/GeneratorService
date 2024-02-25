@@ -16,6 +16,11 @@ class TemplateStorage(ITemplateStorage):
 
         return schema_template
 
+    def get_app_template(self) -> Template:
+        app_template = self.folder_adapter.get_app_template()
+
+        return app_template
+
     def get_static_files(self) -> List[File]:
         files = self.folder_adapter.get_static_files()
 

@@ -14,12 +14,12 @@
         {#- Edge Mutations #}
         {%- for edge in graph.edges %}
         {#- Add Edge #}
-        connect{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}(from: ID!, to: ID!{%- if edge.has_properties() %}, data: {{ edge.add_input_name }}!{%- endif %}): Boolean!
+        connect{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}(source: ID!, target: ID!{%- if edge.has_properties() %}, data: {{ edge.add_input_name }}!{%- endif %}): Boolean!
         {#- Delete Edge #}
-        disconnect{{ edge.source_vertex.name_upper }}From{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}(from: ID!, to: ID!): Boolean!
+        disconnect{{ edge.source_vertex.name_upper }}From{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}(source: ID!, target: ID!): Boolean!
         {#- Update Edge #}
         {%- if edge.has_properties() %}
-        update{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}(from: ID!, to: ID!, data: {{ edge.update_input_name }}!): Boolean!
+        update{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}(source: ID!, target: ID!, data: {{ edge.update_input_name }}!): Boolean!
         {%- endif %}{{ "\n" if loop.nextitem }}
         {%- endfor %}
     }

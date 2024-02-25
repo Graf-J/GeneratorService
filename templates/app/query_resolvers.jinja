@@ -1,0 +1,11 @@
+{% for vertex in graph.vertices %}
+# {{ vertex.name_upper }} Query-Resolvers
+@query.field('{{ vertex.name_lower }}')
+def resolve_{{ vertex.name_lower }}(_, info, id):
+    return None
+
+
+@query.field('{{ vertex.name_lower }}List')
+def resolve_{{ vertex.name_lower }}List(_, info, **arguments):
+    return []
+{% endfor %}

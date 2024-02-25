@@ -3,6 +3,7 @@ import uuid
 
 from app.api.dto import EdgeRequestDto, EdgeResponseDto, PropertyDto
 from app.core.entities import Vertex, Edge, Property
+from app.core.entities.property import Datatype
 from app.mappers import EdgeMapper
 
 
@@ -14,8 +15,9 @@ class TestEdgeMapperToEntity(unittest.TestCase):
             properties=[
                 PropertyDto(key='TestProperty', required=True, datatype='String')
             ],
+            multi_edge=True,
             source_vertex_id='ab02b44c-e95a-4645-80c9-2a5067dd671d',
-            target_vertex_id='033633af-fed2-40a6-b7e3-138e3bfe421e'
+            target_vertex_id='033633af-fed2-40a6-b7e3-138e3bfe421e',
         )
 
         # Act
@@ -31,6 +33,7 @@ class TestEdgeMapperToEntity(unittest.TestCase):
         self.assertEqual(entity.properties[0].key, 'TestProperty')
         self.assertEqual(entity.properties[0].required, True)
         self.assertEqual(entity.properties[0].datatype, 'String')
+        self.assertEqual(entity.multi_edge, True)
 
     def test_without_properties(self):
         # Arange
@@ -38,7 +41,8 @@ class TestEdgeMapperToEntity(unittest.TestCase):
             name='TestEdge',
             properties=[],
             source_vertex_id='ab02b44c-e95a-4645-80c9-2a5067dd671d',
-            target_vertex_id='033633af-fed2-40a6-b7e3-138e3bfe421e'
+            target_vertex_id='033633af-fed2-40a6-b7e3-138e3bfe421e',
+            multi_edge=False
         )
 
         # Act
@@ -52,6 +56,7 @@ class TestEdgeMapperToEntity(unittest.TestCase):
         self.assertEqual(entity.target_vertex, None)
         self.assertIsInstance(entity.properties, list)
         self.assertEqual(len(entity.properties), 0)
+        self.assertEqual(entity.multi_edge, False)
 
 
 class TestEdgeMapperToDto(unittest.TestCase):
@@ -81,8 +86,9 @@ class TestEdgeMapperToDto(unittest.TestCase):
             _id=str(edge_id),
             name='TestEdge',
             properties=[
-                Property(key='TestProperty', required=True, datatype='String')
+                Property(key='TestProperty', required=True, datatype=Datatype.STRING)
             ],
+            multi_edge=False
         )
         entity.source_vertex = vertex_1
         entity.target_vertex = vertex_2
@@ -128,6 +134,7 @@ class TestEdgeMapperToDto(unittest.TestCase):
             _id=str(edge_id),
             name='TestEdge',
             properties=[],
+            multi_edge=True
         )
         entity.source_vertex = vertex_1
         entity.target_vertex = vertex_2

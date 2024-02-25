@@ -42,6 +42,7 @@ class TestVertexGetAll(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
             'name': 'performs',
             'properties': [],
+            'multi_edge': False,
             'source_vertex_id': self.person_vertex.get('id'),
             'target_vertex_id': self.hobby_vertex.get('id')
         })
@@ -49,6 +50,7 @@ class TestVertexGetAll(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/edges", json={
             'name': 'likes',
             'properties': [],
+            'multi_edge': True,
             'source_vertex_id': self.person_vertex.get('id'),
             'target_vertex_id': self.person_vertex.get('id')
         })

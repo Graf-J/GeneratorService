@@ -2,6 +2,7 @@ import unittest
 import uuid
 
 from app.core.entities import Graph, Vertex, Edge, Property
+from app.core.entities.property import Datatype
 from app.core.exceptions import EdgeNotFoundException, VertexNotFoundException, VertexException, EdgeException
 
 
@@ -126,7 +127,7 @@ class TestGraphUpdateVertex(unittest.TestCase):
             position_x=0,
             position_y=0,
             radius=20,
-            properties=[Property(key='name', required=True, datatype='String')]
+            properties=[Property(key='name', required=True, datatype=Datatype.STRING)]
         )
         self.hobby_vertex_id = str(uuid.uuid4())
         self.hobby_vertex = Vertex(
@@ -142,7 +143,8 @@ class TestGraphUpdateVertex(unittest.TestCase):
         self.performs_edge = Edge(
             _id=self.performs_edge_id,
             name='performs',
-            properties=[]
+            properties=[],
+            multi_edge=False
         )
         # Build Graph
         self.graph = Graph()
@@ -221,8 +223,8 @@ class TestGraphUpdateVertex(unittest.TestCase):
             position_y=10,
             radius=30,
             properties=[
-                Property(key='type', required=True, datatype='String'),
-                Property(key='difficulty', required=False, datatype='Int')
+                Property(key='type', required=True, datatype=Datatype.STRING),
+                Property(key='difficulty', required=False, datatype=Datatype.INT)
             ]
         )
 
@@ -257,7 +259,7 @@ class TestGraphDeleteVertex(unittest.TestCase):
             position_x=0,
             position_y=0,
             radius=20,
-            properties=[Property(key='name', required=True, datatype='String')]
+            properties=[Property(key='name', required=True, datatype=Datatype.STRING)]
         )
         self.hobby_vertex_id = str(uuid.uuid4())
         self.hobby_vertex = Vertex(
@@ -273,13 +275,15 @@ class TestGraphDeleteVertex(unittest.TestCase):
         self.performs_edge = Edge(
             _id=self.performs_edge_id,
             name='performs',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
         self.likes_edge_id = str(uuid.uuid4())
         self.likes_edge = Edge(
             _id=self.likes_edge_id,
             name='likes',
-            properties=[Property(key='strength', required=True, datatype='Float')]
+            properties=[Property(key='strength', required=True, datatype=Datatype.FLOAT)],
+            multi_edge=True
         )
         # Build Graph
         self.graph = Graph()
@@ -340,7 +344,8 @@ class TestGraphFindEdgeById(unittest.TestCase):
         self.edge = Edge(
             _id=self.edge_id,
             name='Edge1',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
 
         self.graph = Graph()
@@ -395,7 +400,8 @@ class TestGraphAddEdge(unittest.TestCase):
         performs_edge = Edge(
             _id=performs_edge_id,
             name='performs',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
 
         # Act
@@ -411,6 +417,7 @@ class TestGraphAddEdge(unittest.TestCase):
         self.assertEqual(len(self.person_vertex.in_edges), 0)
         self.assertEqual(len(self.hobby_vertex.out_edges), 0)
         self.assertEqual(len(self.hobby_vertex.in_edges), 1)
+        self.assertEqual(new_edge.multi_edge, True)
 
     def test_new_edge_recursive(self):
         # Arrange
@@ -418,7 +425,8 @@ class TestGraphAddEdge(unittest.TestCase):
         likes_edge = Edge(
             _id=likes_edge_id,
             name='likes',
-            properties=[]
+            properties=[],
+            multi_edge=False
         )
 
         # Act
@@ -434,6 +442,7 @@ class TestGraphAddEdge(unittest.TestCase):
         self.assertEqual(len(self.person_vertex.in_edges), 1)
         self.assertEqual(len(self.hobby_vertex.out_edges), 0)
         self.assertEqual(len(self.hobby_vertex.in_edges), 0)
+        self.assertEqual(new_edge.multi_edge, False)
 
 
 class TestGraphUpdateEdge(unittest.TestCase):
@@ -462,18 +471,21 @@ class TestGraphUpdateEdge(unittest.TestCase):
         self.performs_edge = Edge(
             _id=self.performs_edge_id,
             name='performs',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
         self.likes_edge_id = str(uuid.uuid4())
         self.likes_edge = Edge(
             _id=self.likes_edge_id,
             name='likes',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
         self.new_edge = Edge(
             _id='',
             name='new',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
         # Build Graph
         self.graph = Graph()
@@ -497,8 +509,9 @@ class TestGraphUpdateEdge(unittest.TestCase):
             _id='',
             name='likes_new',
             properties=[
-                Property(key='strength', required=True, datatype='Float')
-            ]
+                Property(key='strength', required=True, datatype=Datatype.FLOAT)
+            ],
+            multi_edge=False
         )
 
         # Act
@@ -510,13 +523,15 @@ class TestGraphUpdateEdge(unittest.TestCase):
         self.assertEqual(self.graph.edges[1].properties[0].key, 'strength')
         self.assertEqual(self.graph.edges[1].properties[0].required, True)
         self.assertEqual(self.graph.edges[1].properties[0].datatype, 'Float')
+        self.assertEqual(self.graph.edges[1].multi_edge, False)
 
     def test_recursive_edge_with_duplicate_name(self):
         # Arrange
         duplicate_edge = Edge(
             _id='',
             name='performs',
-            properties=[]
+            properties=[],
+            multi_edge=False
         )
 
         # Act
@@ -532,7 +547,8 @@ class TestGraphUpdateEdge(unittest.TestCase):
         duplicate_edge = Edge(
             _id='',
             name='likes',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
 
         # Act
@@ -697,13 +713,15 @@ class TestGraphDeleteEdge(unittest.TestCase):
         self.performs_edge = Edge(
             _id=self.performs_edge_id,
             name='performs',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
         self.likes_edge_id = str(uuid.uuid4())
         self.likes_edge = Edge(
             _id=self.likes_edge_id,
             name='likes',
-            properties=[]
+            properties=[],
+            multi_edge=True
         )
         # Build Graph
         self.graph = Graph()

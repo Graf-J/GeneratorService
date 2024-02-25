@@ -10,16 +10,18 @@ class Edge:
             _id: str,
             name: str,
             properties: List['Property'],
+            multi_edge: bool
     ):
         self.id = _id
         self.name = name
         self.properties = properties
+        self.multi_edge = multi_edge
         self.source_vertex: Vertex | None = None
         self.target_vertex: Vertex | None = None
 
     @property
     def name_upper(self) -> str:
-        return self.name.capitalize()
+        return self.name[0].upper() + self.name[1:]
 
     @property
     def name_lower(self) -> str:

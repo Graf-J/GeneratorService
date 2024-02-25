@@ -1,0 +1,33 @@
+{% for vertex in graph.vertices %}
+{{ "\n" }}
+# {{ vertex.name_upper }} Vertex Mutation-Resolvers
+{#- Add Vertex Resolver #}
+@mutation.field('add{{ vertex.name_upper }}')
+def resolve_add{{ vertex.name_upper }}(_, info{%- if vertex.has_properties() %}, data{%- endif %}):
+    with GraphDatabase() as db:
+    {%- if vertex.has_properties() %}
+        vertex_id = db.add_vertex('{{ vertex.name }}', data)
+    {%- else %}
+        vertex_id = db.add_empty_vertex('{{ vertex.name }}')
+    {%- endif %}
+
+    return vertex_id
+{{ "\n" }}
+{#- Update Vertex Resolver #}
+{%- if vertex.has_properties() %}
+@mutation.field('update{{ vertex.name_upper }}')
+def resolve_update{{ vertex.name_upper }}(_, info, id, data):
+    return 'ID'
+{%- endif %}
+{{ "\n" }}
+{#- Delete Vertex Resolver #}
+@mutation.field('delete{{ vertex.name_upper }}')
+def resolve_delete{{ vertex.name_upper }}(_, info, id):
+    with GraphDatabase() as db:
+        if not db.vertex_exists(id):
+            raise Exception(f"{{ vertex.name }} with ID '{id}' does not exist")
+
+        db.delete_vertex(id)
+
+    return id
+{% endfor %}

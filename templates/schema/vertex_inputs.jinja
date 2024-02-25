@@ -9,7 +9,7 @@
     {#- Update Input #}
     input {{ vertex.update_input_name }} {
         {%- for property in vertex.properties %}
-        {{ property.key }}: {{ property.datatype.value }}
+        {{ property.key }}: {{ property.datatype.value }}{%- if property.required %}!{%- endif %}
         {%- endfor %}
     }
     {%- endif %}

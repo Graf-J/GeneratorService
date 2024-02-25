@@ -16,6 +16,11 @@ class TemplateRepository(ITemplateRepository):
 
         return schema_template
 
+    def get_app_template(self) -> Template:
+        app_template = self.storage.get_app_template()
+
+        return app_template
+
     def get_static_files(self) -> List[File]:
         static_files = self.storage.get_static_files()
 
