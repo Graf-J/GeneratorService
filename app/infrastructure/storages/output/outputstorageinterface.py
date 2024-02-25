@@ -10,9 +10,9 @@ class IOutputStorage(ABC):
         pass
 
     @abstractmethod
-    def save_file(self, folder_name: str, schema_file: File):
+    def save_file(self, path: List[str], schema_file: File):
         pass
 
     @abstractmethod
-    def save_files(self, folder_name: str, static_files: List[File]):
+    def save_files(self, path: List[str], files: List[File]):
         pass

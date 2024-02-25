@@ -10,9 +10,9 @@ class IOutputRepository(ABC):
         pass
 
     @abstractmethod
-    def save_file(self, project_name: str, file: File):
+    def save_file(self, path: List[str], file: File):
         pass
 
     @abstractmethod
-    def save_files(self, project_name: str, files: List[File]):
+    def save_files(self, path: List[str], files: List[File]):
         pass

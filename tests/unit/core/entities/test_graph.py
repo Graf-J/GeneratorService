@@ -773,3 +773,65 @@ class TestGraphDeleteEdge(unittest.TestCase):
 
         self.assertEqual(len(self.hobby_vertex.in_edges), 1)
         self.assertEqual(self.hobby_vertex.in_edges[0].id, self.performs_edge_id)
+
+
+class TestGraphToDict(unittest.TestCase):
+    def test(self):
+        # Arrange
+        vertex = Vertex(
+            _id='1',
+            name='MyVertex',
+            position_x=10,
+            position_y=20,
+            radius=30,
+            properties=[
+                Property(key='name', required=True, datatype=Datatype.STRING),
+                Property(key='age', required=False, datatype=Datatype.INT)
+            ]
+        )
+        edge = Edge(
+            _id='2',
+            name='MyEdge',
+            properties=[
+                Property(key='strength', required=True, datatype=Datatype.FLOAT),
+                Property(key='isMarried', required=False, datatype=Datatype.BOOLEAN)
+            ],
+            multi_edge=True
+        )
+        graph = Graph()
+        graph.add_vertex(vertex)
+        graph.add_edge(edge, '1', '1')
+
+        # Act
+        graph_dict = graph.to_dict()
+
+        # Assert
+        expected = {
+            'vertices': [
+                {
+                    'id': '1',
+                    'label': 'MyVertex',
+                    'single_field_name': 'myVertex',
+                    'multiple_field_name': 'myVertexList',
+                    'properties': [
+                        {'field_name': 'name'},
+                        {'field_name': 'age'}
+                    ]
+                }
+            ],
+            'edges': [
+                {
+                    'label': 'MyEdge',
+                    'out_field_name': 'myEdgeOut',
+                    'in_field_name': 'myEdgeIn',
+                    'source_vertex_id': '1',
+                    'target_vertex_id': '1',
+                    'multi_edge': True,
+                    'properties': [
+                        {'field_name': 'strength'},
+                        {'field_name': 'isMarried'}
+                    ]
+                }
+            ]
+        }
+        self.assertEqual(graph_dict, expected)

@@ -1,7 +1,10 @@
+import json
+
 from app.core.exceptions import BuildException
 from app.core.operations import RenderOperation
 from app.core.repositories import IGraphRepository, IProjectRepository, IOutputRepository, ITemplateRepository
 from app.core.services.build.buildserviceinterface import IBuildService
+from app.core.valueobjects import File
 
 
 class BuildService(IBuildService):
@@ -32,13 +35,26 @@ class BuildService(IBuildService):
         # Generate and Move GraphQL Schema to Output
         schema_template = self.template_repository.get_schema_template()
         schema_file = RenderOperation.render_schema(schema_template, graph)
-        self.output_repository.save_file(project.name, schema_file)
+        self.output_repository.save_file([project.name], schema_file)
 
-        # Generate and Move main.py with all the Resolvers to Output
+        # Generate and Move main.py to Output
         app_template = self.template_repository.get_app_template()
         app_file = RenderOperation.render_app(app_template, graph)
-        self.output_repository.save_file(project.name, app_file)
+        self.output_repository.save_file([project.name], app_file)
 
-        # Copy all the remaining Files to Output
+        # TODO: Generate Dockerfile
+
+        # Serialize and Save Graph as JSON
+        graph_dict = graph.to_dict()
+        graph_json_file = File('graph.json', json.dumps(graph_dict, indent=4).encode('utf-8'))
+        self.output_repository.save_file([project.name], graph_json_file)
+
+        # TODO: Copy Algorithm
+
+        # Copy Graph-Datastructure Files to Output
+        graph_files = self.template_repository.get_graph_files()
+        self.output_repository.save_files([project.name, 'graph'], graph_files)
+
+        # Copy Static Files to Output
         static_files = self.template_repository.get_static_files()
-        self.output_repository.save_files(project.name, static_files)
+        self.output_repository.save_files([project.name], static_files)

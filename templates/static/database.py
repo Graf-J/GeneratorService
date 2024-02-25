@@ -13,8 +13,8 @@ class GraphDatabase:
     def g(self):
         return traversal().withRemote(self.connection)
 
-    def vertex_exists(self, vertex_id):
-        return self.g.V(vertex_id).hasNext()
+    def vertex_exists(self, vertex_id, label):
+        return self.g.V(vertex_id).hasLabel(label).hasNext()
 
     def add_vertex(self, label, properties):
         # Add Label
@@ -30,6 +30,17 @@ class GraphDatabase:
     def add_empty_vertex(self, label):
         # Add empty Vertex
         g = self.g.addV(label)
+        # Execute Query
+        vertex = g.next()
+
+        return vertex.id
+
+    def update_vertex(self, vertex_id, data, property_field_names):
+        # Get Vertex By ID
+        g = self.g.V(vertex_id)
+        # Add Properties
+        for property_field_name in property_field_names:
+            g = g.property(property_field_name, data.get(property_field_name))
         # Execute Query
         vertex = g.next()
 

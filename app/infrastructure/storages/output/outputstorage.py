@@ -12,10 +12,11 @@ class OutputStorage(IOutputStorage):
     def create_folder_structure(self, folder_name: str):
         self.folder_adapter.delete_output_folder_if_exists(folder_name)
         self.folder_adapter.create_output_folder(folder_name)
+        self.folder_adapter.create_graph_folder(folder_name)
 
-    def save_file(self, folder_name: str, file: File):
-        self.folder_adapter.save_file(folder_name, file)
+    def save_file(self, path: List[str], file: File):
+        self.folder_adapter.save_file(path, file)
 
-    def save_files(self, folder_name: str, files: List[File]):
+    def save_files(self, path: List[str], files: List[File]):
         for file in files:
-            self.folder_adapter.save_file(folder_name, file)
+            self.folder_adapter.save_file(path, file)

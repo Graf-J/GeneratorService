@@ -1,17 +1,9 @@
-
     {%- for edge in graph.edges %}
     {%- if edge.has_properties() %}
-    {#- Add Input #}
-    input {{ edge.add_input_name }} {
+    input {{ edge.manipulate_input_name }} {
         {%- for property in edge.properties %}
         {{ property.key }}: {{ property.datatype.value }}{%- if property.required %}!{%- endif %}
         {%- endfor %}
     }{{ "\n" }}
-    {#- Update Input  #}
-    input {{ edge.update_input_name }} {
-        {%- for property in edge.properties %}
-        {{ property.key }}: {{ property.datatype.value }}{%- if property.required %}!{%- endif %}
-        {%- endfor %}
-    }
     {%- endif %}{{ "\n" if loop.nextitem }}
     {%- endfor %}

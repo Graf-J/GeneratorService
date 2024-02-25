@@ -17,14 +17,22 @@ def resolve_add{{ vertex.name_upper }}(_, info{%- if vertex.has_properties() %},
 {%- if vertex.has_properties() %}
 @mutation.field('update{{ vertex.name_upper }}')
 def resolve_update{{ vertex.name_upper }}(_, info, id, data):
-    return 'ID'
+    with GraphDatabase() as db:
+        if not db.vertex_exists(id, '{{ vertex.name }}'):
+            raise Exception(f"Person with ID '{id}' does not exist")
+
+        vertex_node = graph.find_vertex_by_id('{{ vertex.id }}')
+        property_field_names = [prop.field_name for prop in vertex_node.properties]
+        vertex_id = db.update_vertex(id, data, property_field_names)
+
+    return vertex_id
 {%- endif %}
 {{ "\n" }}
 {#- Delete Vertex Resolver #}
 @mutation.field('delete{{ vertex.name_upper }}')
 def resolve_delete{{ vertex.name_upper }}(_, info, id):
     with GraphDatabase() as db:
-        if not db.vertex_exists(id):
+        if not db.vertex_exists(id, '{{ vertex.name }}'):
             raise Exception(f"{{ vertex.name }} with ID '{id}' does not exist")
 
         db.delete_vertex(id)

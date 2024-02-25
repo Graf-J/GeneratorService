@@ -6,15 +6,14 @@ from app.infrastructure.storages.output.outputstorageinterface import IOutputSto
 
 
 class OutputRepository(IOutputRepository):
-
     def __init__(self, storage: IOutputStorage):
         self.storage = storage
 
     def create_folder_structure(self, project_name: str):
         self.storage.create_folder_structure(project_name)
 
-    def save_file(self, project_name: str, file: File):
-        self.storage.save_file(project_name, file)
+    def save_file(self, path: List[str], file: File):
+        self.storage.save_file(path, file)
 
-    def save_files(self, project_name: str, files: List[File]):
-        self.storage.save_files(project_name, files)
+    def save_files(self, path: List[str], files: List[File]):
+        self.storage.save_files(path, files)

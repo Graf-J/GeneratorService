@@ -11,5 +11,5 @@ class VertexValidator:
         for vertex in vertices:
             if new_vertex.id == vertex.id:
                 raise VertexException(f"Vertex with Id '{vertex.id}' already exists")
-            if new_vertex.name == vertex.name:
+            if new_vertex.name_upper == vertex.name_upper:
                 raise VertexException(f"Vertex with Name '{vertex.name}' already exists")

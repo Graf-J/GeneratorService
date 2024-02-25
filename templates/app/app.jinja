@@ -1,9 +1,17 @@
+import json
 from fastapi import FastAPI
 from ariadne import QueryType, MutationType, make_executable_schema
 from ariadne.asgi import GraphQL
 from schema import type_defs
 from database import GraphDatabase
+from graph.graphdirector import GraphDirector
 
+# Load Graph into Memory
+with open('graph.json', 'r') as file:
+    graph_dict = json.load(file)
+    graph = GraphDirector.construct(graph_dict)
+
+# Initialize Query and Mutation Type
 query = QueryType()
 mutation = MutationType()
 

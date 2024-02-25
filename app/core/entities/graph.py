@@ -139,3 +139,12 @@ class Graph:
         edge.source_vertex.out_edges.remove(edge)
         edge.target_vertex.in_edges.remove(edge)
         self.edges.remove(edge)
+
+    #########
+    # Other #
+    #########
+    def to_dict(self) -> dict:
+        return {
+            'vertices': [vertex.to_dict() for vertex in self.vertices],
+            'edges': [edge.to_dict() for edge in self.edges]
+        }

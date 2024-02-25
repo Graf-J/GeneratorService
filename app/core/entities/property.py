@@ -10,3 +10,8 @@ class Property:
         self.key = key
         self.required = required
         self.datatype = datatype
+
+    def to_dict(self) -> dict:
+        return {
+            'field_name': self.key
+        }

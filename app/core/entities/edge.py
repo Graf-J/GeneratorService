@@ -52,12 +52,8 @@ class Edge:
         return self.source_vertex.name_upper + 'To' + self.target_vertex.name_upper + self.name_upper + 'EdgeOrderByInput'
 
     @property
-    def add_input_name(self) -> str:
-        return 'Add' + self.source_vertex.name_upper + 'To' + self.target_vertex.name_upper + 'Via' + self.name_upper + 'EdgeInput'
-
-    @property
-    def update_input_name(self):
-        return 'Update' + self.source_vertex.name_upper + 'To' + self.target_vertex.name_upper + 'Via' + self.name_upper + 'EdgeInput'
+    def manipulate_input_name(self) -> str:
+        return self.source_vertex.name_upper + 'To' + self.target_vertex.name_upper + 'Via' + self.name_upper + 'EdgeInput'
 
     @property
     def property_name(self) -> str:
@@ -68,3 +64,14 @@ class Edge:
 
     def is_recursive(self) -> bool:
         return self.source_vertex == self.target_vertex
+
+    def to_dict(self) -> dict:
+        return {
+            'label': self.name,
+            'out_field_name': self.out_field_name,
+            'in_field_name': self.in_field_name,
+            'source_vertex_id': self.source_vertex.id,
+            'target_vertex_id': self.target_vertex.id,
+            'multi_edge': self.multi_edge,
+            'properties': [prop.to_dict() for prop in self.properties]
+        }

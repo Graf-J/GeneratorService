@@ -45,12 +45,8 @@ class Vertex:
         return self.name_upper + 'VertexOrderByInput'
 
     @property
-    def add_input_name(self) -> str:
-        return 'Add' + self.name_upper + 'VertexInput'
-
-    @property
-    def update_input_name(self) -> str:
-        return 'Update' + self.name_upper + 'VertexInput'
+    def manipulate_input_name(self) -> str:
+        return self.name_upper + 'VertexInput'
 
     @property
     def property_name(self) -> str:
@@ -64,3 +60,12 @@ class Vertex:
 
     def add_in_edge(self, edge: 'Edge'):
         self.in_edges.append(edge)
+
+    def to_dict(self) -> dict:
+        return {
+            'id': self.id,
+            'label': self.name,
+            'single_field_name': self.name_lower,
+            'multiple_field_name': self.name_lower + 'List',
+            'properties': [prop.to_dict() for prop in self.properties]
+        }
