@@ -21,7 +21,15 @@ def resolve_connect{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.na
 {#- Update Edge Resolver #}
 @mutation.field('update{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}{{ edge.name_upper }}Edge')
 def resolve_update{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}{{ edge.name_upper }}Edge(_, info, id, data):
-    return 'ID'
+    with GraphDatabase() as db:
+        if not db.edge_with_label_between_vertices_with_label_exists(id, '{{ edge.name }}', '{{ edge.source_vertex.name }}', '{{ edge.target_vertex.name }}'):
+            raise Exception(f"From {{ edge.source_vertex.name }} to {{ edge.target_vertex.name }} no Edge '{{ edge.name }}' with ID '{id}' exists")
+
+        edge_node = graph.find_edge_by_id('{{ edge.id }}')
+        property_field_names = [prop.field_name for prop in edge_node.properties]
+        edge_id = db.update_edge(id, data, property_field_names)
+
+    return edge_id
 {%- endif %}
 {% endfor %}
 {#- Delete Edge Resolver #}

@@ -1,21 +1,9 @@
 from gremlin_python.driver.aiohttp.transport import AiohttpTransport
 from gremlin_python.driver.driver_remote_connection import DriverRemoteConnection
+from gremlin_python.driver.protocol import GremlinServerError
 from gremlin_python.process.anonymous_traversal import traversal
 from gremlin_python.process.graph_traversal import __
 from gremlin_python.structure.io import graphsonV3d0
-
-
-# Define custom Deserializer for Edge-ID
-class RelationIdentifierJanusDeserializer(graphsonV3d0._GraphSONTypeIO):
-    graphson_type = "janusgraph:RelationIdentifier"
-
-    @classmethod
-    def objectify(cls, d, reader):
-        return d['relationId']
-
-
-# Add custom Deserializer for Edge-ID
-graphsonV3d0._deserializers['janusgraph:RelationIdentifier'] = RelationIdentifierJanusDeserializer
 
 
 class GraphDatabase:
@@ -39,11 +27,19 @@ class GraphDatabase:
     def vertex_exists(self, vertex_id):
         return self.g.V(vertex_id).hasNext()
 
-    def edge_with_label_exists(self, edge_id, label):
-        return self.g.E(edge_id).hasLabel(label).hasNext()
+    def edge_with_label_between_vertices_with_label_exists(self, edge_id, edge_label, source_vertex_label,
+                                                           target_vertex_label):
+        try:
+            return self.g.V().hasLabel(source_vertex_label).outE(edge_label).has_id(edge_id).inV().hasLabel(
+                target_vertex_label).hasNext()
+        except GremlinServerError:
+            return False
 
     def edge_exists(self, edge_id):
-        return self.g.E(edge_id).hasNext()
+        try:
+            return self.g.E(edge_id).hasNext()
+        except GremlinServerError:
+            return False
 
     def add_vertex(self, label, properties):
         # Add Label
@@ -104,12 +100,23 @@ class GraphDatabase:
             ).count().next()
             if count > 0:
                 raise Exception(
-                    f"From Vertex with ID {source_vertex_id} to Vertex with ID {target_vertex_id} a edge with Label '{label}' already exists")
+                    f"From Vertex with ID '{source_vertex_id}' to Vertex with ID '{target_vertex_id}' a edge with Label '{label}' already exists")
 
         # Execute Query
         edge = self.g.V(source_vertex_id).as_('source').V(target_vertex_id).as_('target').addE(label).from_(
             'source').to(
             'target').next()
+
+        return edge.id
+
+    def update_edge(self, edge_id, data, property_field_names):
+        # Get Vertex By ID
+        g = self.g.E(edge_id)
+        # Add Properties
+        for property_field_name in property_field_names:
+            g = g.property(property_field_name, data.get(property_field_name))
+        # Execute Query
+        edge = g.next()
 
         return edge.id
 

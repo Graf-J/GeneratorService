@@ -2,6 +2,7 @@ import json
 from fastapi import FastAPI
 from ariadne import QueryType, MutationType, make_executable_schema
 from ariadne.asgi import GraphQL
+import gremlin_extensions
 from schema import type_defs
 from database import GraphDatabase
 from graph.graphdirector import GraphDirector
