@@ -67,6 +67,7 @@ class Edge:
 
     def to_dict(self) -> dict:
         return {
+            'id': self.id,
             'label': self.name,
             'out_field_name': self.out_field_name,
             'in_field_name': self.in_field_name,

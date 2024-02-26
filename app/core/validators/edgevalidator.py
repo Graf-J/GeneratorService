@@ -1,6 +1,6 @@
 from typing import List
 
-from app.core.entities import Edge, Property
+from app.core.entities import Vertex, Edge, Property
 from app.core.exceptions import EdgeException
 
 
@@ -36,3 +36,12 @@ class EdgeValidator:
         for prop in target_vertex_properties:
             if new_edge.in_field_name == prop.key:
                 raise EdgeException(f"Edge name has conflict with property '{prop.key}' of Target-Vertex")
+
+    @staticmethod
+    def validate_edge_properties(new_edge: Edge, source_vertex: Vertex, target_vertex: Vertex):
+        for prop in new_edge.properties:
+            if prop.key == source_vertex.name_lower:
+                raise EdgeException(f"Edge property '{prop.key}' has conflict with Source-Vertex")
+
+            if prop.key == target_vertex.name_lower:
+                raise EdgeException(f"Edge property '{prop.key}' has conflict with Target-Vertex")

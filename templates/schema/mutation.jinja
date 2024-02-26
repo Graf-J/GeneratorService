@@ -3,23 +3,23 @@
         {#- Vertex Mutations #}
         {%- for vertex in graph.vertices %}
         {#- Add Vertex #}
-        add{{ vertex.name_upper }}{%- if vertex.has_properties() %}(data: {{ vertex.manipulate_input_name }}!){%- endif %}: ID!
+        add{{ vertex.name_upper }}Vertex{%- if vertex.has_properties() %}(data: {{ vertex.manipulate_input_name }}!){%- endif %}: ID!
         {#- Update Vertex #}
         {%- if vertex.has_properties() %}
-        update{{ vertex.name_upper }}(id: ID!, data: {{ vertex.manipulate_input_name }}!): ID!
-        {%- endif %}
-        {#- Delete Vertex #}
-        delete{{ vertex.name_upper }}(id: ID!): ID!{{ "\n" if loop.nextitem }}
-        {%- endfor %}{{ "\n" if graph.edges|length > 0 }}
-        {#- Edge Mutations #}
-        {%- for edge in graph.edges %}
-        {#- Add Edge #}
-        connect{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}(source: ID!, target: ID!{%- if edge.has_properties() %}, data: {{ edge.manipulate_input_name }}!{%- endif %}): Boolean!
-        {#- Delete Edge #}
-        disconnect{{ edge.source_vertex.name_upper }}From{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}(source: ID!, target: ID!): Boolean!
-        {#- Update Edge #}
-        {%- if edge.has_properties() %}
-        update{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}(source: ID!, target: ID!, data: {{ edge.manipulate_input_name }}!): Boolean!
+        update{{ vertex.name_upper }}Vertex(id: ID!, data: {{ vertex.manipulate_input_name }}!): ID!
         {%- endif %}{{ "\n" if loop.nextitem }}
         {%- endfor %}
+        {# Delete Vertex #}
+        deleteVertex(id: ID!): ID!
+        {# Edge Mutations #}
+        {%- for edge in graph.edges %}
+        {#- Add Edge #}
+        connect{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}Edge(source_{{ edge.source_vertex.name_lower }}_id: ID!, target_{{ edge.target_vertex.name_lower }}_id: ID!{%- if edge.has_properties() %}, data: {{ edge.manipulate_input_name }}!{%- endif %}): ID!
+        {#- Update Edge #}
+        {%- if edge.has_properties() %}
+        update{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}{{ edge.name_upper }}Edge(id: ID!, data: {{ edge.manipulate_input_name }}!): ID!
+        {%- endif %}{{ "\n" if loop.nextitem }}
+        {%- endfor %}
+        {# Delete Edge #}
+        deleteEdge(id: ID!): ID!
     }

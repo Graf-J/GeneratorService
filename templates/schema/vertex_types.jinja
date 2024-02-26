@@ -1,11 +1,6 @@
-    {#- Interface every Vertex inherits from #}
-    interface VertexInterface {
-        id: ID!
-        label: String!
-    }{{ "\n" }}
-    {#- One Type for each Vertex #}
+ {#- One Type for each Vertex #}
     {%- for vertex in graph.vertices %}
-    type {{ vertex.type_name }} implements VertexInterface {
+    type {{ vertex.type_name }} implements GraphElement {
         {#- Property Fields #}
         id: ID!
         label: String!

@@ -1,12 +1,9 @@
-    {#- Interface every Edge inherits from #}
-    interface EdgeInterface {
-        label: String!
-    }
     {#- Two Types (In and Out) for each Edge (for recursive Edge only one) #}
     {%- for edge in graph.edges %}
     {# Source -> Target #}
-    type {{ edge.out_type_name }} implements EdgeInterface {
+    type {{ edge.out_type_name }} implements GraphElement {
         {#- Property Fields #}
+        id: ID!
         label: String!
         {%- for property in edge.properties %}
         {{ property.key }}: {{ property.datatype.value }}{%- if property.required %}!{%- endif %}
@@ -17,8 +14,9 @@
 
     {%- if not edge.is_recursive() %}
     {# Target -> Source #}
-    type {{ edge.in_type_name }} implements EdgeInterface {
+    type {{ edge.in_type_name }} implements GraphElement {
         {#- Property Fields #}
+        id: ID!
         label: String!
         {%- for property in edge.properties %}
         {{ property.key }}: {{ property.datatype.value }}{%- if property.required %}!{%- endif %}

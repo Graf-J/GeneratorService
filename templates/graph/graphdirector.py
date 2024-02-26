@@ -1,8 +1,8 @@
+from graph.edge import Edge
 from graph.graph import Graph
 from graph.graphbuilder import GraphBuilder
-from graph.vertex import Vertex
-from graph.edge import Edge
 from graph.property import Property
+from graph.vertex import Vertex
 
 
 class GraphDirector:
@@ -24,6 +24,7 @@ class GraphDirector:
         for edge in graph_dict['edges']:
             builder.add_edge(
                 Edge(
+                    _id=edge['id'],
                     label=edge['label'],
                     out_field_name=edge['out_field_name'],
                     in_field_name=edge['in_field_name'],
@@ -36,4 +37,3 @@ class GraphDirector:
 
         graph = builder.build()
         return graph
-

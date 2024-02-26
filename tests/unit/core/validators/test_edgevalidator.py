@@ -571,3 +571,82 @@ class TestValidateConnectVerticesProperties(unittest.TestCase):
             source_vertex_properties,
             target_vertex_properties
         )
+
+
+class TestEdgeValidatorValidateEdgeProperties(unittest.TestCase):
+    def setUp(self):
+        self.person_vertex_id = str(uuid.uuid4())
+        self.person_vertex = Vertex(
+            _id=self.person_vertex_id,
+            name='Person',
+            properties=[],
+            position_x=10,
+            position_y=20,
+            radius=30
+        )
+        self.hobby_vertex_id = str(uuid.uuid4())
+        self.hobby_vertex = Vertex(
+            _id=self.hobby_vertex_id,
+            name='Hobby',
+            properties=[],
+            position_x=10,
+            position_y=20,
+            radius=30
+        )
+
+    def test_with_conflicting_edge_property_name_on_source_vertex(self):
+        # Arrange
+        edge = Edge(
+            _id=str(uuid.uuid4()),
+            name='likes',
+            multi_edge=True,
+            properties=[
+                Property(key='strength', required=True, datatype=Datatype.FLOAT),
+                Property(key='person', required=False, datatype=Datatype.BOOLEAN)
+            ]
+        )
+
+        # Act
+        with self.assertRaises(EdgeException) as context:
+            EdgeValidator.validate_edge_properties(edge, self.person_vertex, self.hobby_vertex)
+
+        # Assert
+        self.assertEqual(context.exception.message, f"Edge property 'person' has conflict with Source-Vertex")
+
+    def test_with_conflicting_edge_property_name_on_target_vertex(self):
+        # Arrange
+        edge = Edge(
+            _id=str(uuid.uuid4()),
+            name='likes',
+            multi_edge=True,
+            properties=[
+                Property(key='strength', required=True, datatype=Datatype.FLOAT),
+                Property(key='person', required=False, datatype=Datatype.BOOLEAN)
+            ]
+        )
+
+        # Act
+        with self.assertRaises(EdgeException) as context:
+            EdgeValidator.validate_edge_properties(edge, self.hobby_vertex, self.person_vertex)
+
+        # Assert
+        self.assertEqual(context.exception.message, f"Edge property 'person' has conflict with Target-Vertex")
+
+    def test_with_conflicting_edge_property_name_with_recursion(self):
+        # Arrange
+        edge = Edge(
+            _id=str(uuid.uuid4()),
+            name='likes',
+            multi_edge=True,
+            properties=[
+                Property(key='strength', required=True, datatype=Datatype.FLOAT),
+                Property(key='person', required=False, datatype=Datatype.BOOLEAN)
+            ]
+        )
+
+        # Act
+        with self.assertRaises(EdgeException) as context:
+            EdgeValidator.validate_edge_properties(edge, self.person_vertex, self.person_vertex)
+
+        # Assert
+        self.assertEqual(context.exception.message, f"Edge property 'person' has conflict with Source-Vertex")

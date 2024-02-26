@@ -2,40 +2,39 @@
 {{ "\n" }}
 # {{ vertex.name_upper }} Vertex Mutation-Resolvers
 {#- Add Vertex Resolver #}
-@mutation.field('add{{ vertex.name_upper }}')
-def resolve_add{{ vertex.name_upper }}(_, info{%- if vertex.has_properties() %}, data{%- endif %}):
+@mutation.field('add{{ vertex.name_upper }}Vertex')
+def resolve_add{{ vertex.name_upper }}Vertex(_, info{%- if vertex.has_properties() %}, data{%- endif %}):
     with GraphDatabase() as db:
     {%- if vertex.has_properties() %}
         vertex_id = db.add_vertex('{{ vertex.name }}', data)
     {%- else %}
-        vertex_id = db.add_empty_vertex('{{ vertex.name }}')
+        vertex_id = db.add_vertex_empty('{{ vertex.name }}')
     {%- endif %}
 
     return vertex_id
 {{ "\n" }}
 {#- Update Vertex Resolver #}
 {%- if vertex.has_properties() %}
-@mutation.field('update{{ vertex.name_upper }}')
-def resolve_update{{ vertex.name_upper }}(_, info, id, data):
+@mutation.field('update{{ vertex.name_upper }}Vertex')
+def resolve_update{{ vertex.name_upper }}Vertex(_, info, id, data):
     with GraphDatabase() as db:
-        if not db.vertex_exists(id, '{{ vertex.name }}'):
-            raise Exception(f"Person with ID '{id}' does not exist")
+        if not db.vertex_with_label_exists(id, '{{ vertex.name }}'):
+            raise Exception(f"{{ vertex.name }} with ID '{id}' does not exist")
 
         vertex_node = graph.find_vertex_by_id('{{ vertex.id }}')
         property_field_names = [prop.field_name for prop in vertex_node.properties]
         vertex_id = db.update_vertex(id, data, property_field_names)
 
     return vertex_id
-{%- endif %}
-{{ "\n" }}
+{%- endif %}{{ "\n" }}
+{% endfor %}
 {#- Delete Vertex Resolver #}
-@mutation.field('delete{{ vertex.name_upper }}')
-def resolve_delete{{ vertex.name_upper }}(_, info, id):
+@mutation.field('deleteVertex')
+def resolve_deleteVertex(_, info, id):
     with GraphDatabase() as db:
-        if not db.vertex_exists(id, '{{ vertex.name }}'):
-            raise Exception(f"{{ vertex.name }} with ID '{id}' does not exist")
+        if not db.vertex_exists(id):
+            raise Exception(f"Vertex with ID '{id}' does not exist")
 
         db.delete_vertex(id)
 
     return id
-{% endfor %}

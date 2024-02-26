@@ -12,3 +12,10 @@ class Graph:
                 return vertex
 
         raise Exception(f"Vertex with Id '{vertex_id}' not found")
+
+    def find_edge_by_id(self, edge_id) -> Vertex:
+        for edge in self.edges:
+            if edge.id == edge_id:
+                return edge
+
+        raise Exception(f"Edge with Id '{edge_id}' not found")

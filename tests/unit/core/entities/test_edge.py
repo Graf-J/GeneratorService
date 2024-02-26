@@ -32,6 +32,7 @@ class TestEdgeToDict(unittest.TestCase):
 
         # Assert
         expected = {
+            'id': '2',
             'label': 'MyEdge',
             'out_field_name': 'myEdgeOut',
             'in_field_name': 'myEdgeIn',
