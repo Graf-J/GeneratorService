@@ -19,6 +19,9 @@ class OutputRepository(IOutputRepository):
     def save_app_file(self, project: Project, app_file: File):
         self.storage.save_app_file(project, app_file)
 
+    def save_docker_compose_file(self, project: Project, docker_compose_file: File):
+        self.storage.save_docker_compose_file(project, docker_compose_file)
+
     def save_graph_json_file(self, project: Project, graph_json_file: File):
         self.storage.save_graph_json_file(project, graph_json_file)
 

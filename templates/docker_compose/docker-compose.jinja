@@ -1,0 +1,22 @@
+version: '3'
+services:
+  janusgraph:
+    container_name: JanusGraph-Database
+    image: janusgraph/janusgraph:1.1.0-20240222-121632.1530f0a
+    {%- if build_config.volume is not none %}
+    volumes:
+      - {{ build_config.volume }}:/var/lib/janusgraph
+    {%- endif %}
+    command: ["janusgraph", "server", "start"]
+
+  service:
+    container_name: GraphQL-Service
+    build: .
+    ports:
+      - {{ build_config.port }}:3000
+    depends_on:
+      - janusgraph
+{% if build_config.volume is not none %}
+volumes:
+  {{ build_config.volume }}:
+{%- endif %}

@@ -1,6 +1,6 @@
 import unittest
 import uuid
-from pydantic import UUID4
+
 from app.api.dto import ProjectRequestDto, ProjectResponseDto
 from app.core.entities import Project
 from app.mappers import ProjectMapper

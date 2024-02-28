@@ -11,12 +11,14 @@ class TemplateStorage(ITemplateStorage):
     template_folder = 'templates'
     schema_folder = 'schema'
     app_folder = 'app'
+    docker_compose_folder = 'docker_compose'
     graph_folder = 'graph'
     querybuilder_folder = 'querybuilder'
     arguments_folder = 'arguments'
     static_folder = 'static'
     schema_template_file_name = 'schema.jinja'
     app_template_file_name = 'app.jinja'
+    docker_compose_template_file_name = 'docker-compose.jinja'
 
     def __init__(self, folder_adapter: TemplateFolderAdapter):
         self.folder_adapter = folder_adapter
@@ -32,6 +34,12 @@ class TemplateStorage(ITemplateStorage):
                                                         self.app_template_file_name)
 
         return app_template
+
+    def get_docker_compose_template(self) -> Template:
+        docker_compose_template = self.folder_adapter.get_template([self.template_folder, self.docker_compose_folder],
+                                                                   self.docker_compose_template_file_name)
+
+        return docker_compose_template
 
     def get_graph_files(self) -> List[File]:
         files = self.folder_adapter.get_files([self.template_folder, self.graph_folder])

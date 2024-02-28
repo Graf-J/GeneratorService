@@ -1,6 +1,7 @@
 from typing import List
 
-from app.core.entities import Vertex, Edge
+from app.core.entities.edge import Edge
+from app.core.entities.vertex import Vertex
 from app.core.exceptions import VertexNotFoundException, EdgeNotFoundException
 from app.core.validators import VertexValidator, EdgeValidator
 

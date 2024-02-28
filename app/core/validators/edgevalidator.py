@@ -1,6 +1,8 @@
 from typing import List
 
-from app.core.entities import Vertex, Edge, Property
+from app.core.entities.edge import Edge
+from app.core.entities.property import Property
+from app.core.entities.vertex import Vertex
 from app.core.exceptions import EdgeException
 
 

@@ -1,4 +1,5 @@
 from .common.propertydto import PropertyDto
+from .request.buildrequestdto import BuildRequestDto
 from .request.edgerequestdto import EdgeRequestDto
 from .request.projectrequestdto import ProjectRequestDto
 from .request.vertexrequestdto import VertexRequestDto

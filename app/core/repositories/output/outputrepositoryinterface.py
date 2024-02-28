@@ -19,6 +19,10 @@ class IOutputRepository(ABC):
         pass
 
     @abstractmethod
+    def save_docker_compose_file(self, project: Project, docker_compose_file: File):
+        pass
+
+    @abstractmethod
     def save_graph_json_file(self, project: Project, graph_json_file: File):
         pass
 

@@ -1,6 +1,6 @@
 from jinja2 import Template
 
-from app.core.entities import Graph
+from app.core.entities import Graph, Build
 from app.core.valueobjects import File
 
 
@@ -23,6 +23,17 @@ class RenderOperation:
         file = File(
             file_name='app.py',
             byte_content=app.encode('utf-8')
+        )
+
+        return file
+
+    @staticmethod
+    def render_docker_compose(template: Template, build_config: Build) -> File:
+        docker_compose = template.render(build_config=build_config)
+
+        file = File(
+            file_name='docker-compose.yaml',
+            byte_content=docker_compose.encode('utf-8')
         )
 
         return file

@@ -9,7 +9,7 @@ from gremlin_python.structure.io import graphsonV3d0
 
 class GraphDatabase:
     def __init__(self, pool_size=5):
-        uri = f'ws://localhost:8182/gremlin'
+        uri = 'ws://janusgraph:8182/gremlin'
         self.connection_manager = DriverRemoteConnection(
             uri,
             pool_size=pool_size,

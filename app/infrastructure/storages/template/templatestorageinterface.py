@@ -16,6 +16,10 @@ class ITemplateStorage(ABC):
         pass
 
     @abstractmethod
+    def get_docker_compose_template(self) -> Template:
+        pass
+
+    @abstractmethod
     def get_graph_files(self) -> List[File]:
         pass
 

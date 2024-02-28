@@ -1,6 +1,6 @@
 from typing import List
 
-from app.core.entities import Vertex
+from app.core.entities.vertex import Vertex
 from app.core.exceptions import VertexException
 
 

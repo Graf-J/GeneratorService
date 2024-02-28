@@ -27,6 +27,9 @@ class OutputStorage(IOutputStorage):
     def save_app_file(self, project: Project, app_file: File):
         self.folder_adapter.save_file([project.name], app_file)
 
+    def save_docker_compose_file(self, project: Project, docker_compose_file: File):
+        self.folder_adapter.save_file([project.name], docker_compose_file)
+
     def save_graph_json_file(self, project: Project, graph_json_file: File):
         self.folder_adapter.save_file([project.name], graph_json_file)
 

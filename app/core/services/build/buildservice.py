@@ -1,5 +1,6 @@
 import json
 
+from app.core.entities import Build
 from app.core.exceptions import BuildException
 from app.core.operations import RenderOperation
 from app.core.repositories import IGraphRepository, IProjectRepository, IOutputRepository, ITemplateRepository
@@ -20,7 +21,7 @@ class BuildService(IBuildService):
         self.template_repository = template_repository
         self.output_repository = output_repository
 
-    def build_project(self, project_id: str):
+    def build_project(self, project_id: str, build_config: Build):
         # Get and Check Graph
         graph = self.graph_repository.get_graph(project_id)
         if len(graph.vertices) == 0:
@@ -42,7 +43,10 @@ class BuildService(IBuildService):
         app_file = RenderOperation.render_app(app_template, graph)
         self.output_repository.save_app_file(project, app_file)
 
-        # TODO: Generate Dockerfile
+        # Generate and Move docker-compose.yaml to Output
+        docker_compose_template = self.template_repository.get_docker_compose_template()
+        docker_compose_file = RenderOperation.render_docker_compose(docker_compose_template, build_config)
+        self.output_repository.save_docker_compose_file(project, docker_compose_file)
 
         # Serialize and Save Graph as JSON
         graph_dict = graph.to_dict()
