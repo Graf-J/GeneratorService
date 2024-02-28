@@ -21,12 +21,7 @@ class TemplateStorage(ITemplateStorage):
 
         return app_template
 
-    def get_graph_files(self) -> List[File]:
-        files = self.folder_adapter.get_graph_files()
-
-        return files
-
-    def get_static_files(self) -> List[File]:
-        files = self.folder_adapter.get_static_files()
+    def get_files(self, path: List[str]) -> List[File]:
+        files = self.folder_adapter.get_files(path)
 
         return files

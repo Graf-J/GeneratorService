@@ -49,12 +49,16 @@ class BuildService(IBuildService):
         graph_json_file = File('graph.json', json.dumps(graph_dict, indent=4).encode('utf-8'))
         self.output_repository.save_file([project.name], graph_json_file)
 
-        # TODO: Copy Algorithm
-
         # Copy Graph-Datastructure Files to Output
-        graph_files = self.template_repository.get_graph_files()
+        graph_files = self.template_repository.get_files(['graph'])
         self.output_repository.save_files([project.name, 'graph'], graph_files)
 
+        # Copy Query-Builder Files to Output
+        querybuilder_files = self.template_repository.get_files(['querybuilder'])
+        self.output_repository.save_files([project.name, 'querybuilder'], querybuilder_files)
+        quereybuilder_argument_files = self.template_repository.get_files(['querybuilder', 'arguments'])
+        self.output_repository.save_files([project.name, 'querybuilder', 'arguments'], quereybuilder_argument_files)
+
         # Copy Static Files to Output
-        static_files = self.template_repository.get_static_files()
+        static_files = self.template_repository.get_files(['static'])
         self.output_repository.save_files([project.name], static_files)

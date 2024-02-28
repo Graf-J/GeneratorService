@@ -2,6 +2,7 @@ from gremlin_python.driver.aiohttp.transport import AiohttpTransport
 from gremlin_python.driver.driver_remote_connection import DriverRemoteConnection
 from gremlin_python.driver.protocol import GremlinServerError
 from gremlin_python.process.anonymous_traversal import traversal
+from gremlin_python.process.graph_traversal import GraphTraversalSource
 from gremlin_python.process.graph_traversal import __
 from gremlin_python.structure.io import graphsonV3d0
 
@@ -18,32 +19,32 @@ class GraphDatabase:
         )
 
     @property
-    def g(self):
+    def g(self) -> GraphTraversalSource:
         return traversal().withRemote(self.connection)
 
-    def vertex_with_label_exists(self, vertex_id, label):
-        return self.g.V(vertex_id).hasLabel(label).hasNext()
+    def vertex_with_label_exists(self, vertex_id: str, label: str) -> bool:
+        return self.g.V(vertex_id).has_label(label).has_next()
 
-    def vertex_exists(self, vertex_id):
-        return self.g.V(vertex_id).hasNext()
+    def vertex_exists(self, vertex_id: str) -> bool:
+        return self.g.V(vertex_id).has_next()
 
-    def edge_with_label_between_vertices_with_label_exists(self, edge_id, edge_label, source_vertex_label,
-                                                           target_vertex_label):
+    def edge_with_label_between_vertices_with_label_exists(self, edge_id: str, edge_label: str,
+                                                           source_vertex_label: str, target_vertex_label: str) -> bool:
         try:
-            return self.g.V().hasLabel(source_vertex_label).outE(edge_label).has_id(edge_id).inV().hasLabel(
-                target_vertex_label).hasNext()
+            return self.g.V().has_label(source_vertex_label).outE(edge_label).has_id(edge_id).inV().has_label(
+                target_vertex_label).has_next()
         except GremlinServerError:
             return False
 
-    def edge_exists(self, edge_id):
+    def edge_exists(self, edge_id: str) -> bool:
         try:
-            return self.g.E(edge_id).hasNext()
+            return self.g.E(edge_id).has_next()
         except GremlinServerError:
             return False
 
-    def add_vertex(self, label, properties):
+    def add_vertex(self, label: str, properties: dict) -> str:
         # Add Label
-        g = self.g.addV(label)
+        g = self.g.add_v(label)
         # Add Properties
         for key, value in properties.items():
             g = g.property(key, value)
@@ -52,13 +53,13 @@ class GraphDatabase:
 
         return vertex.id
 
-    def add_vertex_empty(self, label):
+    def add_vertex_empty(self, label: str) -> str:
         # Execute Query
-        vertex = self.g.addV(label).next()
+        vertex = self.g.add_v(label).next()
 
         return vertex.id
 
-    def update_vertex(self, vertex_id, data, property_field_names):
+    def update_vertex(self, vertex_id: str, data: dict, property_field_names: list) -> str:
         # Get Vertex By ID
         g = self.g.V(vertex_id)
         # Add Properties
@@ -72,10 +73,11 @@ class GraphDatabase:
     def delete_vertex(self, vertex_id):
         self.g.V(vertex_id).drop().iterate()
 
-    def connect_vertices(self, source_vertex_id, target_vertex_id, label, data, *, multi_edge):
+    def connect_vertices(self, source_vertex_id: str, target_vertex_id: str, label: str, data: dict, *,
+                         multi_edge: bool) -> str:
         # Check for Multi-Edge condition
         if not multi_edge:
-            count = self.g.V(source_vertex_id).outE().hasLabel(label).where(
+            count = self.g.V(source_vertex_id).out_e().has_label(label).where(
                 __.in_v().has_id(target_vertex_id)
             ).count().next()
             if count > 0:
@@ -92,7 +94,8 @@ class GraphDatabase:
 
         return edge.id
 
-    def connect_vertices_empty(self, source_vertex_id, target_vertex_id, label, *, multi_edge):
+    def connect_vertices_empty(self, source_vertex_id: str, target_vertex_id: str, label: str, *,
+                               multi_edge: bool) -> str:
         # Check for Multi-Edge condition
         if not multi_edge:
             count = self.g.V(source_vertex_id).outE().hasLabel(label).where(
@@ -109,7 +112,7 @@ class GraphDatabase:
 
         return edge.id
 
-    def update_edge(self, edge_id, data, property_field_names):
+    def update_edge(self, edge_id: str, data: dict, property_field_names: list) -> str:
         # Get Vertex By ID
         g = self.g.E(edge_id)
         # Add Properties
@@ -120,7 +123,7 @@ class GraphDatabase:
 
         return edge.id
 
-    def delete_edge(self, edge_id):
+    def delete_edge(self, edge_id: str):
         self.g.E(edge_id).drop().iterate()
 
     def __enter__(self):

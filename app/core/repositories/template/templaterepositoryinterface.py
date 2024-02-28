@@ -16,9 +16,5 @@ class ITemplateRepository(ABC):
         pass
 
     @abstractmethod
-    def get_graph_files(self) -> List[File]:
-        pass
-
-    @abstractmethod
-    def get_static_files(self) -> List[File]:
+    def get_files(self, path: List[str]) -> List[File]:
         pass

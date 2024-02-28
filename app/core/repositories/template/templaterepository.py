@@ -21,12 +21,7 @@ class TemplateRepository(ITemplateRepository):
 
         return app_template
 
-    def get_graph_files(self) -> List[File]:
-        graph_files = self.storage.get_graph_files()
+    def get_files(self, path: List[str]) -> List[File]:
+        files = self.storage.get_files(path)
 
-        return graph_files
-
-    def get_static_files(self) -> List[File]:
-        static_files = self.storage.get_static_files()
-
-        return static_files
+        return files

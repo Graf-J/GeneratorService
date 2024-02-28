@@ -1,11 +1,24 @@
 {% for vertex in graph.vertices %}
 # {{ vertex.name_upper }} Query-Resolvers
 @query.field('{{ vertex.name_lower }}')
-def resolve_{{ vertex.name_lower }}(_, info, id):
-    return None
+def resolve_{{ vertex.name_lower }}(_, info: GraphQLResolveInfo, id: str):
+    with (GraphDatabase() as db):
+        try:
+            vertex = graph.find_vertex_by_id('{{ vertex.id }}')
+            traversal = QueryBuilder(vertex).build_single_entity_query(db.g, info, id)
+            result = traversal.next()
+
+            return result
+        except StopIteration:
+            raise Exception(f"Vertex with ID '{id}' not found")
 
 
 @query.field('{{ vertex.name_lower }}List')
-def resolve_{{ vertex.name_lower }}List(_, info, **arguments):
-    return []
+def resolve_{{ vertex.name_lower }}List(_, info: GraphQLResolveInfo, **_arguments):
+    with (GraphDatabase() as db):
+        vertex = graph.find_vertex_by_id('{{ vertex.id }}')
+        traversal = QueryBuilder(vertex).build_multiple_entities_query(db.g, info)
+        result = traversal.to_list()
+
+        return result
 {% endfor %}

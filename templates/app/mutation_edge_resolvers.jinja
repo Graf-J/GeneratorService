@@ -2,7 +2,7 @@
 # {{ edge.name_upper }} Edge Mutation-Resolvers
 {#- Add Edge Resolver #}
 @mutation.field('connect{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}Edge')
-def resolve_connect{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}Edge(_, info, source_{{ edge.source_vertex.name_lower }}_id, target_{{ edge.target_vertex.name_lower }}_id{%- if edge.has_properties() %}, data{%- endif %}):
+def resolve_connect{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}Via{{ edge.name_upper }}Edge(_, info: GraphQLResolveInfo, source_{{ edge.source_vertex.name_lower }}_id: str, target_{{ edge.target_vertex.name_lower }}_id: str{%- if edge.has_properties() %}, data: dict{%- endif %}):
     with GraphDatabase() as db:
         if not db.vertex_with_label_exists(source_{{ edge.source_vertex.name_lower }}_id, '{{ edge.source_vertex.name }}'):
             raise Exception(f"{{ edge.source_vertex.name }} with ID '{source_{{ edge.source_vertex.name_lower }}_id}' does not exist")
@@ -20,7 +20,7 @@ def resolve_connect{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.na
 {{ "\n" }}
 {#- Update Edge Resolver #}
 @mutation.field('update{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}{{ edge.name_upper }}Edge')
-def resolve_update{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}{{ edge.name_upper }}Edge(_, info, id, data):
+def resolve_update{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.name_upper }}{{ edge.name_upper }}Edge(_, info: GraphQLResolveInfo, id: str, data: dict):
     with GraphDatabase() as db:
         if not db.edge_with_label_between_vertices_with_label_exists(id, '{{ edge.name }}', '{{ edge.source_vertex.name }}', '{{ edge.target_vertex.name }}'):
             raise Exception(f"From {{ edge.source_vertex.name }} to {{ edge.target_vertex.name }} no Edge '{{ edge.name }}' with ID '{id}' exists")
@@ -34,7 +34,7 @@ def resolve_update{{ edge.source_vertex.name_upper }}To{{ edge.target_vertex.nam
 {% endfor %}
 {#- Delete Edge Resolver #}
 @mutation.field('deleteEdge')
-def resolve_deleteEdge(_, info, id):
+def resolve_deleteEdge(_, info: GraphQLResolveInfo, id: str):
     with GraphDatabase() as db:
         if not db.edge_exists(id):
             raise Exception(f"Edge with ID '{id}' does not exist")

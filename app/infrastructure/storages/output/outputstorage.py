@@ -13,6 +13,7 @@ class OutputStorage(IOutputStorage):
         self.folder_adapter.delete_output_folder_if_exists(folder_name)
         self.folder_adapter.create_output_folder(folder_name)
         self.folder_adapter.create_graph_folder(folder_name)
+        self.folder_adapter.create_querybuilder_folder(folder_name)
 
     def save_file(self, path: List[str], file: File):
         self.folder_adapter.save_file(path, file)

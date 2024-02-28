@@ -3,7 +3,7 @@
 # {{ vertex.name_upper }} Vertex Mutation-Resolvers
 {#- Add Vertex Resolver #}
 @mutation.field('add{{ vertex.name_upper }}Vertex')
-def resolve_add{{ vertex.name_upper }}Vertex(_, info{%- if vertex.has_properties() %}, data{%- endif %}):
+def resolve_add{{ vertex.name_upper }}Vertex(_, info: GraphQLResolveInfo{%- if vertex.has_properties() %}, data: dict{%- endif %}):
     with GraphDatabase() as db:
     {%- if vertex.has_properties() %}
         vertex_id = db.add_vertex('{{ vertex.name }}', data)
@@ -16,7 +16,7 @@ def resolve_add{{ vertex.name_upper }}Vertex(_, info{%- if vertex.has_properties
 {#- Update Vertex Resolver #}
 {%- if vertex.has_properties() %}
 @mutation.field('update{{ vertex.name_upper }}Vertex')
-def resolve_update{{ vertex.name_upper }}Vertex(_, info, id, data):
+def resolve_update{{ vertex.name_upper }}Vertex(_, info: GraphQLResolveInfo, id: str, data: dict):
     with GraphDatabase() as db:
         if not db.vertex_with_label_exists(id, '{{ vertex.name }}'):
             raise Exception(f"{{ vertex.name }} with ID '{id}' does not exist")

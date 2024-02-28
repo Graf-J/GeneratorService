@@ -1,11 +1,20 @@
 import json
-from fastapi import FastAPI
+
 from ariadne import QueryType, MutationType, make_executable_schema
 from ariadne.asgi import GraphQL
+from fastapi import FastAPI
+from graphql.type.definition import GraphQLResolveInfo
+
 import gremlin_extensions
-from schema import type_defs
 from database import GraphDatabase
-from graph.graphdirector import GraphDirector
+from graph import GraphDirector
+from querybuilder import QueryBuilder
+from schema import type_defs
+
+################################################################
+# APPLY FIXES TO JANUS-GRAPH IN COMBINATION WITH GREMLIN_PYTHON #
+################################################################
+gremlin_extensions.load()
 
 # Load Graph into Memory
 with open('graph.json', 'r') as file:
@@ -27,9 +36,10 @@ schema = make_executable_schema(type_defs, query, mutation)
 app = FastAPI()
 
 # Mount GraphQL as Sub-Application for FastAPI
-app.mount('/graphql/', GraphQL(schema, debug=True))
+app.mount('/graphql/', GraphQL(schema))
 
 # Run App
 if __name__ == '__main__':
     import uvicorn
+
     uvicorn.run(app='app:app', host='0.0.0.0', port=3000, reload=True)
