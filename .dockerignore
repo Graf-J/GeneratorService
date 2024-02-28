@@ -1,0 +1,7 @@
+tests/
+**/.gitkeep
+.venv/
+.gitignore
+README.md
+.idea/
+.git/

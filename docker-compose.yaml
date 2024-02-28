@@ -1,0 +1,13 @@
+version: '3'
+services:
+  service:
+    container_name: 'Generator-Service'
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - project-volume:/app/projects
+      - C:\Users\Johannes\Programming\Mounts:/app/outputs
+
+volumes:
+  project-volume:
