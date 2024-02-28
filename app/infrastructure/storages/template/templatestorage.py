@@ -8,20 +8,47 @@ from app.infrastructure.storages.template.templatestorageinterface import ITempl
 
 
 class TemplateStorage(ITemplateStorage):
+    template_folder = 'templates'
+    schema_folder = 'schema'
+    app_folder = 'app'
+    graph_folder = 'graph'
+    querybuilder_folder = 'querybuilder'
+    arguments_folder = 'arguments'
+    static_folder = 'static'
+    schema_template_file_name = 'schema.jinja'
+    app_template_file_name = 'app.jinja'
+
     def __init__(self, folder_adapter: TemplateFolderAdapter):
         self.folder_adapter = folder_adapter
 
     def get_schema_template(self) -> Template:
-        schema_template = self.folder_adapter.get_schema_template()
+        schema_template = self.folder_adapter.get_template([self.template_folder, self.schema_folder],
+                                                           self.schema_template_file_name)
 
         return schema_template
 
     def get_app_template(self) -> Template:
-        app_template = self.folder_adapter.get_app_template()
+        app_template = self.folder_adapter.get_template([self.template_folder, self.app_folder],
+                                                        self.app_template_file_name)
 
         return app_template
 
-    def get_files(self, path: List[str]) -> List[File]:
-        files = self.folder_adapter.get_files(path)
+    def get_graph_files(self) -> List[File]:
+        files = self.folder_adapter.get_files([self.template_folder, self.graph_folder])
+
+        return files
+
+    def get_querybuilder_files(self) -> List[File]:
+        files = self.folder_adapter.get_files([self.template_folder, self.querybuilder_folder])
+
+        return files
+
+    def get_querybuilder_argument_files(self) -> List[File]:
+        files = self.folder_adapter.get_files([self.template_folder, self.querybuilder_folder, self.arguments_folder])
+
+        return files
+
+    def get_static_files(self) -> List[File]:
+        files = self.folder_adapter.get_files([self.template_folder, self.static_folder])
 
         return files

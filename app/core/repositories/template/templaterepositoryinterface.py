@@ -16,5 +16,17 @@ class ITemplateRepository(ABC):
         pass
 
     @abstractmethod
-    def get_files(self, path: List[str]) -> List[File]:
+    def get_graph_files(self) -> List[File]:
+        pass
+
+    @abstractmethod
+    def get_querybuilder_files(self) -> List[File]:
+        pass
+
+    @abstractmethod
+    def get_querybuilder_argument_files(self) -> List[File]:
+        pass
+
+    @abstractmethod
+    def get_static_files(self) -> List[File]:
         pass

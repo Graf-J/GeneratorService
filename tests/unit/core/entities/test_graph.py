@@ -811,8 +811,7 @@ class TestGraphToDict(unittest.TestCase):
                 {
                     'id': '1',
                     'label': 'MyVertex',
-                    'single_field_name': 'myVertex',
-                    'multiple_field_name': 'myVertexList',
+                    'field_name': 'myVertex',
                     'properties': [
                         {'field_name': 'name'},
                         {'field_name': 'age'}

@@ -65,7 +65,6 @@ class Vertex:
         return {
             'id': self.id,
             'label': self.name,
-            'single_field_name': self.name_lower,
-            'multiple_field_name': self.name_lower + 'List',
+            'field_name': self.name_lower,
             'properties': [prop.to_dict() for prop in self.properties]
         }

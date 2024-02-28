@@ -1,13 +1,12 @@
 from typing import List, Tuple
 
+from graph.edge import Edge
+from graph.vertex import Vertex
 from graphql.type.definition import GraphQLResolveInfo, FieldNode
 from gremlin_python.process.graph_traversal import GraphTraversalSource, GraphTraversal
 from gremlin_python.process.graph_traversal import __
 from gremlin_python.process.traversal import Order as GremlinOrder
 from gremlin_python.process.traversal import P
-
-from graph.edge import Edge
-from graph.vertex import Vertex
 from querybuilder.arguments import ArgumentDirector, Order, OrderDirection, Argument, Pagination, Logic
 from querybuilder.stack import Stack
 from querybuilder.utils import manipulate_graphql_context
@@ -192,7 +191,7 @@ class QueryBuilder:
                 continue
             # Check if Field-Name of Target-Vertex of outgoing Edge matches the Field-Name of GraphQL Field
             target_vertex = self.edge_stack.peek().target_vertex
-            if field == target_vertex.single_field_name and out_edge:
+            if field == target_vertex.field_name and out_edge:
                 # Push Target-Vertex on Stack
                 self.vertex_stack.push(target_vertex)
                 # Build Query
@@ -203,7 +202,7 @@ class QueryBuilder:
                 continue
             # Check if Field-Name of Source-Vertex of incoming Edge matches the Field-Name of GraphQL Field
             source_vertex = self.edge_stack.peek().source_vertex
-            if field == source_vertex.single_field_name and not out_edge:
+            if field == source_vertex.field_name and not out_edge:
                 # Push Source-Vertex on Stack
                 self.vertex_stack.push(source_vertex)
                 # Build Query

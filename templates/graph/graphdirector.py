@@ -15,8 +15,7 @@ class GraphDirector:
                 Vertex(
                     _id=vertex['id'],
                     label=vertex['label'],
-                    single_field_name=vertex['single_field_name'],
-                    multiple_field_name=vertex['multiple_field_name'],
+                    field_name=vertex['field_name'],
                     properties=[Property(field_name=prop['field_name']) for prop in vertex['properties']]
                 )
             )
