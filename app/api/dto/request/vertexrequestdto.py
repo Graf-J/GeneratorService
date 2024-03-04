@@ -10,7 +10,7 @@ class VertexRequestDto(BaseModel):
     name: str = Field(..., min_length=1)
     position_x: int
     position_y: int
-    radius: int
+    radius: int = Field(..., ge=1)
     properties: List[PropertyDto]
 
     @field_validator('name')

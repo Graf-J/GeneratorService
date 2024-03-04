@@ -1,7 +1,7 @@
 version: '3'
 services:
   janusgraph:
-    container_name: JanusGraph-Database
+    container_name: JanusGraph-Database-{{ random_id }}
     image: janusgraph/janusgraph:1.1.0-20240222-121632.1530f0a
     {%- if build_config.volume is not none %}
     volumes:
@@ -10,7 +10,7 @@ services:
     command: ["janusgraph", "server", "start"]
 
   service:
-    container_name: GraphQL-Service
+    container_name: GraphQL-Service-{{ random_id }}
     build: .
     ports:
       - {{ build_config.port }}:3000

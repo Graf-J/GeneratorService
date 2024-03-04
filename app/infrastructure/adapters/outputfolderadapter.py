@@ -2,6 +2,7 @@ import os
 import shutil
 from typing import List
 
+from app.core.exceptions import BuildException
 from app.core.valueobjects import File
 
 
@@ -19,11 +20,14 @@ class OutputFolderAdapter:
         self.querybuilder_arguments_folder = querybuilder_arguments_folder
 
     def delete_output_folder_if_exists(self, folder_name: str):
-        base_directory = os.getcwd()
-        path = os.path.join(base_directory, self.output_folder, folder_name)
+        try:
+            base_directory = os.getcwd()
+            path = os.path.join(base_directory, self.output_folder, folder_name)
 
-        if os.path.exists(path):
-            shutil.rmtree(path)
+            if os.path.exists(path):
+                shutil.rmtree(path)
+        except PermissionError:
+            raise BuildException("Another Process is accessing the output folder")
 
     def create_output_folder(self, folder_name: str):
         base_directory = os.getcwd()

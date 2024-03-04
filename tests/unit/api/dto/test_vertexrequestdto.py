@@ -84,6 +84,16 @@ class TestVertexRequestDto(unittest.TestCase):
                 properties=[]
             )
 
+    def test_with_radius_smaller_than_1(self):
+        with self.assertRaises(ValidationError):
+            VertexRequestDto(
+                name='name',
+                position_x=1,
+                position_y=1,
+                radius=0,
+                properties=[]
+            )
+
     def test_with_missing_properties(self):
         with self.assertRaises(ValidationError):
             VertexRequestDto(
