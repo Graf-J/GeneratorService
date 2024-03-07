@@ -15,11 +15,13 @@ class OutputStorage(IOutputStorage):
     def __init__(self, folder_adapter: OutputFolderAdapter):
         self.folder_adapter = folder_adapter
 
-    def create_folder_structure(self, folder_name: str):
-        self.folder_adapter.delete_output_folder_if_exists(folder_name)
-        self.folder_adapter.create_output_folder(folder_name)
-        self.folder_adapter.create_graph_folder(folder_name)
-        self.folder_adapter.create_querybuilder_folder(folder_name)
+    def delete_output_folder_if_exists(self, project: Project):
+        self.folder_adapter.delete_output_folder_if_exists(project.name)
+
+    def create_folder_structure(self, project: Project):
+        self.folder_adapter.create_output_folder(project.name)
+        self.folder_adapter.create_graph_folder(project.name)
+        self.folder_adapter.create_querybuilder_folder(project.name)
 
     def save_schema_file(self, project: Project, schema_file: File):
         self.folder_adapter.save_file([project.name], schema_file)

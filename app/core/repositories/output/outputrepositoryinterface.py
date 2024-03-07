@@ -7,7 +7,11 @@ from app.core.valueobjects import File
 
 class IOutputRepository(ABC):
     @abstractmethod
-    def create_folder_structure(self, project_name: str):
+    def delete_output_folder_if_exists(self, project: Project):
+        pass
+
+    @abstractmethod
+    def create_folder_structure(self, project: Project):
         pass
 
     @abstractmethod

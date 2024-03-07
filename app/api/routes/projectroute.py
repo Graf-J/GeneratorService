@@ -45,8 +45,12 @@ def create_project(
 
 
 @router.delete('/{project_id}')
-def delete_project(project_id: str, service: IProjectService = Depends(get_project_service)):
+def delete_project(
+        project_id: str,
+        delete_output: bool = False,
+        service: IProjectService = Depends(get_project_service)
+):
     try:
-        service.delete_project(project_id)
+        service.delete_project(project_id, delete_output)
     except ProjectNotFoundException as ex:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])

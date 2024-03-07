@@ -1,4 +1,4 @@
-from graphql import FragmentSpreadNode, DirectiveNode
+from graphql import FragmentSpreadNode, DirectiveNode, VariableNode
 from graphql.type.definition import GraphQLResolveInfo
 
 
@@ -156,6 +156,10 @@ def inject_argument_variable(value_node, variables):
     elif value_node.kind == 'list_value':
         for node in value_node.values:
             inject_argument_variable(node, variables)
+    # If the Value Node contains an actual Variable, insert the Value for the Variable into the Datastructure
+    elif value_node.kind == 'variable':
+        value_node.value = VariableNode()
+        setattr(value_node.value, 'value', variables[value_node.name.value])
     else:
         # If Field Node check what is behind the Field
         # If an Object Node is behind the Field call function again for all Nodes of the fields in the Object
@@ -166,6 +170,6 @@ def inject_argument_variable(value_node, variables):
         elif value_node.value.kind == 'list_value':
             for node in value_node.value.values:
                 inject_argument_variable(node, variables)
-        # If the Value Node contains a actual Variable, insert the Value for the Variable into the Datastructure
+        # If the Value Node contains an actual Variable, insert the Value for the Variable into the Datastructure
         elif value_node.value.kind == 'variable':
             setattr(value_node.value, 'value', variables[value_node.value.name.value])

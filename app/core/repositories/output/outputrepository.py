@@ -10,8 +10,11 @@ class OutputRepository(IOutputRepository):
     def __init__(self, storage: IOutputStorage):
         self.storage = storage
 
-    def create_folder_structure(self, project_name: str):
-        self.storage.create_folder_structure(project_name)
+    def delete_output_folder_if_exists(self, project: Project):
+        self.storage.delete_output_folder_if_exists(project)
+
+    def create_folder_structure(self, project: Project):
+        self.storage.create_folder_structure(project)
 
     def save_schema_file(self, project: Project, schema_file: File):
         self.storage.save_schema_file(project, schema_file)

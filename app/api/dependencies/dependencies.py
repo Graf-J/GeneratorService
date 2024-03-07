@@ -104,8 +104,11 @@ def get_edge_service(edge_repository: IEdgeRepository = Depends(get_edge_reposit
     return EdgeService(edge_repository)
 
 
-def get_project_service(project_repository: IProjectRepository = Depends(get_project_repository)) -> IProjectService:
-    return ProjectService(project_repository)
+def get_project_service(
+        project_repository: IProjectRepository = Depends(get_project_repository),
+        output_repository: IOutputRepository = Depends(get_output_repository)
+) -> IProjectService:
+    return ProjectService(project_repository, output_repository)
 
 
 def get_graph_service(graph_repository: IGraphRepository = Depends(get_graph_repository)) -> IGraphService:

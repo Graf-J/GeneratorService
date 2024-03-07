@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List
+
 from app.core.entities import Project
 
 
@@ -17,5 +18,5 @@ class IProjectService(ABC):
         pass
 
     @abstractmethod
-    def delete_project(self, project_id: str):
+    def delete_project(self, project_id: str, delete_output: bool):
         pass

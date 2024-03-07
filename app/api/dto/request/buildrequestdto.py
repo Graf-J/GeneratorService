@@ -16,7 +16,8 @@ class BuildRequestDto(BaseModel):
 
     @field_validator('volume')
     def validate_volume(cls, value: str):
-        if not all(char.isalnum() or char in {'_', '-'} for char in value):
-            raise ValueError('Volume name must contain only alphanumeric characters, underscores, or hyphens')
+        if value is not None:
+            if not all(char.isalnum() or char in {'_', '-'} for char in value):
+                raise ValueError('Volume name must contain only alphanumeric characters, underscores, or hyphens')
 
-        return value
+            return value

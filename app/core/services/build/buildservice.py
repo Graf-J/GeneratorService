@@ -31,7 +31,8 @@ class BuildService(IBuildService):
         project = self.project_repository.get_project(project_id)
 
         # Create Output Folders
-        self.output_repository.create_folder_structure(project.name)
+        self.output_repository.delete_output_folder_if_exists(project)
+        self.output_repository.create_folder_structure(project)
 
         # Generate and Move GraphQL Schema to Output
         schema_template = self.template_repository.get_schema_template()
