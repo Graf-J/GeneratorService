@@ -25,7 +25,7 @@ class ProjectService(IProjectService):
 
     def delete_project(self, project_id: str, delete_output: bool):
         project = self.project_repository.get_project(project_id)
-        self.project_repository.delete_project(project_id)
-
         if delete_output:
             self.output_repository.delete_output_folder_if_exists(project)
+
+        self.project_repository.delete_project(project_id)
