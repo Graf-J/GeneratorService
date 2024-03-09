@@ -57,7 +57,7 @@ def create_vertex(
     except ProjectNotFoundException as ex:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
     except VertexException as ex:
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=[{'msg': ex.message}])
+        raise HTTPException(status_code=ex.status_code, detail=[{'msg': ex.message, 'loc': ['body', ex.loc]}])
 
 
 @router.put('/{vertex_id}')
@@ -76,7 +76,7 @@ def update_vertex(
     except VertexNotFoundException as ex:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
     except VertexException as ex:
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=[{'msg': ex.message}])
+        raise HTTPException(status_code=ex.status_code, detail=[{'msg': ex.message, 'loc': ['body', ex.loc]}])
 
 
 @router.delete('/{vertex_id}')

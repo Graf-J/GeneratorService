@@ -235,7 +235,7 @@ class TestVertexUpdate(unittest.TestCase):
             })
 
         # Assert
-        self.assertEqual(response.status_code, 409)
+        self.assertEqual(response.status_code, 422)
         self.assertEqual(response.json().get('detail')[0].get('msg'), "Vertex with Name 'SecondVertex' already exists")
 
     def test_with_valid_vertex(self):

@@ -597,7 +597,7 @@ class TestEdgeValidatorValidateEdgeProperties(unittest.TestCase):
             EdgeValidator.validate_edge_properties(edge, self.person_vertex, self.hobby_vertex)
 
         # Assert
-        self.assertEqual(context.exception.message, f"Edge property 'person' has conflict with Source-Vertex")
+        self.assertEqual(context.exception.message, f"Edge property 'person' has conflict with Source-Vertex name")
 
     def test_with_conflicting_edge_property_name_on_target_vertex(self):
         # Arrange
@@ -616,7 +616,7 @@ class TestEdgeValidatorValidateEdgeProperties(unittest.TestCase):
             EdgeValidator.validate_edge_properties(edge, self.hobby_vertex, self.person_vertex)
 
         # Assert
-        self.assertEqual(context.exception.message, f"Edge property 'person' has conflict with Target-Vertex")
+        self.assertEqual(context.exception.message, f"Edge property 'person' has conflict with Target-Vertex name")
 
     def test_with_conflicting_edge_property_name_with_recursion(self):
         # Arrange
@@ -635,4 +635,4 @@ class TestEdgeValidatorValidateEdgeProperties(unittest.TestCase):
             EdgeValidator.validate_edge_properties(edge, self.person_vertex, self.person_vertex)
 
         # Assert
-        self.assertEqual(context.exception.message, f"Edge property 'person' has conflict with Source-Vertex")
+        self.assertEqual(context.exception.message, f"Edge property 'person' has conflict with Source-Vertex name")

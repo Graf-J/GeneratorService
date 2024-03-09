@@ -63,7 +63,7 @@ def create_edge(
     except VertexNotFoundException as ex:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
     except EdgeException as ex:
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=[{'msg': ex.message}])
+        raise HTTPException(status_code=ex.status_code, detail=[{'msg': ex.message, 'loc': ex.loc}])
 
 
 @router.put('/{edge_id}')
@@ -90,7 +90,7 @@ def update_edge(
     except EdgeNotFoundException as ex:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
     except EdgeException as ex:
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=[{'msg': ex.message}])
+        raise HTTPException(status_code=ex.status_code, detail=[{'msg': ex.message, 'loc': ex.loc}])
 
 
 @router.delete('/{edge_id}')

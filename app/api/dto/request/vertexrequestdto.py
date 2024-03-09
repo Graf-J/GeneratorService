@@ -31,17 +31,7 @@ class VertexRequestDto(BaseModel):
         for prop in properties:
             # Check for Duplicate
             if prop.key in keys_seen:
-                raise ValueError(f"Duplicate key found in properties: {prop.key}")
-
-            # Check for forbidden keys ("id" or "label")
-            if prop.key == 'id':
-                raise ValueError("Property with key 'id' is not allowed")
-            if prop.key == 'label':
-                raise ValueError("Property with key 'label' is not allowed")
-
-            # Check if key starts with two underscores
-            if prop.key.startswith('__'):
-                raise ValueError("Property with key that starts with '__' is not allowed")
+                raise ValueError(f"Duplicate key detected in properties: {prop.key}")
 
             keys_seen.add(prop.key)
 

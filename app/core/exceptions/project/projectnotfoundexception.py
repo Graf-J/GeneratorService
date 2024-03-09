@@ -1,7 +1,4 @@
-from app.core.exceptions import ProjectException
-
-
-class ProjectNotFoundException(ProjectException):
+class ProjectNotFoundException(Exception):
     def __init__(self, message):
         self.message = message
         super().__init__(message)

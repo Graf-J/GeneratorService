@@ -1,4 +1,6 @@
 class EdgeException(Exception):
-    def __init__(self, message):
+    def __init__(self, message: str, status_code: int, loc: list):
         self.message = message
+        self.status_code = status_code
+        self.loc = loc
         super().__init__(self.message)
