@@ -39,9 +39,9 @@ class BuildService(IBuildService):
         schema_file = RenderOperation.render_schema(schema_template, graph)
         self.output_repository.save_schema_file(project, schema_file)
 
-        # Generate and Move main.py to Output
+        # Generate and Move app.py to Output
         app_template = self.template_repository.get_app_template()
-        app_file = RenderOperation.render_app(app_template, graph)
+        app_file = RenderOperation.render_app(app_template, graph, build_config.port)
         self.output_repository.save_app_file(project, app_file)
 
         # Generate and Move docker-compose.yaml to Output

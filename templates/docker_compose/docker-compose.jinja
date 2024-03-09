@@ -13,7 +13,7 @@ services:
     container_name: GraphQL-Service-{{ random_id }}
     build: .
     ports:
-      - {{ build_config.port }}:3000
+      - {{ build_config.port }}:{{ build_config.port }}
     depends_on:
       - janusgraph
 {% if build_config.volume is not none %}

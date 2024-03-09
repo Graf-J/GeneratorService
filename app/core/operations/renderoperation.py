@@ -19,8 +19,8 @@ class RenderOperation:
         return file
 
     @staticmethod
-    def render_app(template: Template, graph: Graph) -> File:
-        app = template.render(graph=graph)
+    def render_app(template: Template, graph: Graph, port: int) -> File:
+        app = template.render(graph=graph, port=port)
 
         file = File(
             file_name='app.py',

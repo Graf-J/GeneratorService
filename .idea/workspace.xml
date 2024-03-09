@@ -6,20 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="d47d788c-d4c3-4792-812e-655e60aa184d" name="Changes" comment="Include Permission Error for conflict in opening Project Folder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/dto/common/propertydto.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/dto/common/propertydto.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/dto/request/vertexrequestdto.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/dto/request/vertexrequestdto.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/routes/edgeroute.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/routes/edgeroute.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/routes/vertexroute.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/routes/vertexroute.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/exceptions/edge/edgeexception.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/exceptions/edge/edgeexception.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/exceptions/edge/edgenotfoundexception.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/exceptions/edge/edgenotfoundexception.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/exceptions/project/projectnotfoundexception.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/exceptions/project/projectnotfoundexception.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/exceptions/vertex/vertexexception.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/exceptions/vertex/vertexexception.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/exceptions/vertex/vertexnotfoundexception.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/exceptions/vertex/vertexnotfoundexception.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/validators/edgevalidator.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/validators/edgevalidator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/validators/vertexvalidator.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/validators/vertexvalidator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/integration/vertex/test_create.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integration/vertex/test_create.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/integration/vertex/test_update.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integration/vertex/test_update.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/core/validators/test_edgevalidator.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/core/validators/test_edgevalidator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/operations/renderoperation.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/operations/renderoperation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/services/build/buildservice.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/services/build/buildservice.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/app/app.jinja" beforeDir="false" afterPath="$PROJECT_DIR$/templates/app/app.jinja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/docker_compose/docker-compose.jinja" beforeDir="false" afterPath="$PROJECT_DIR$/templates/docker_compose/docker-compose.jinja" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -610,7 +600,7 @@
       <workItem from="1709757414556" duration="6948000" />
       <workItem from="1709853070334" duration="633000" />
       <workItem from="1709932113594" duration="1692000" />
-      <workItem from="1709996321831" duration="3836000" />
+      <workItem from="1709996321831" duration="4797000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -881,7 +871,7 @@
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_vertexrequestdto_TestVertexRequestDto_test_with_missing_position_x.coverage" NAME="Unittests for test_vertexrequestdto.TestVertexRequestDto.test_with_missing_position_x Coverage Results" MODIFIED="1708636115563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/api/dto" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_update_TestEdgeCreate_test_redirect_recursive_edge_to_ordinary.coverage" NAME="Unittests for test_update.TestEdgeCreate.test_redirect_recursive_edge_to_ordinary Coverage Results" MODIFIED="1708619680654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/edge" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_get_TestVertexGetAll_test_with_wrong_project_id.coverage" NAME="Unittests for test_get.TestVertexGetAll.test_with_wrong_project_id Coverage Results" MODIFIED="1708626798703" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration/graph" />
-    <SUITE FILE_PATH="coverage/GeneratorService$GeneratorService.coverage" NAME="GeneratorService Coverage Results" MODIFIED="1710000160363" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/GeneratorService$GeneratorService.coverage" NAME="GeneratorService Coverage Results" MODIFIED="1710001122676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_in_integration.coverage" NAME="Integrationtests Coverage Results" MODIFIED="1708299142857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_vertex_TestVertexCreate_test_with_missing_position_x.coverage" NAME="Unittests for test_vertex.TestVertexCreate.test_with_missing_position_x Coverage Results" MODIFIED="1708529280609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/integration" />
     <SUITE FILE_PATH="coverage/GeneratorService$Unittests_for_test_edgevalidator_TestEdgeValidatorValidateNewEdgeWithRecursion_test_one_recursive_edge_plus_edge_with_same_name_to_other_vertex.coverage" NAME="Unittests for test_edgevalidator.TestEdgeValidatorValidateNewEdgeWithRecursion.test_one_recursive_edge_plus_edge_with_same_name_to_other_vertex Coverage Results" MODIFIED="1708470170702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit/core/validators" />
