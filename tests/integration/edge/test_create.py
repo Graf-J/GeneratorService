@@ -245,7 +245,7 @@ class TestEdgeCreate(unittest.TestCase):
         })
 
         # Assume
-        self.assertEqual(response.status_code, 409)
+        self.assertEqual(response.status_code, 422)
         self.assertEqual(response.json().get('detail')[0].get('msg'),
                          "Source-Vertex already has an outgoing edge with name 'performs'")
 
@@ -284,7 +284,7 @@ class TestEdgeCreate(unittest.TestCase):
         })
 
         # Assume
-        self.assertEqual(response.status_code, 409)
+        self.assertEqual(response.status_code, 422)
         self.assertEqual(response.json().get('detail')[0].get('msg'),
                          "Source-Vertex already has an outgoing edge with name 'performs'")
 
@@ -328,7 +328,7 @@ class TestEdgeCreate(unittest.TestCase):
         })
 
         # Assume
-        self.assertEqual(response.status_code, 409)
+        self.assertEqual(response.status_code, 422)
         self.assertEqual(response.json().get('detail')[0].get('msg'),
                          "Edge name has conflict with property 'createsOut' of Source-Vertex")
 
@@ -343,6 +343,6 @@ class TestEdgeCreate(unittest.TestCase):
         })
 
         # Assume
-        self.assertEqual(response.status_code, 409)
+        self.assertEqual(response.status_code, 422)
         self.assertEqual(response.json().get('detail')[0].get('msg'),
                          "Edge name has conflict with property 'checksIn' of Target-Vertex")

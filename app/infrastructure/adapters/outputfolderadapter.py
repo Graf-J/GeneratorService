@@ -2,7 +2,7 @@ import os
 import shutil
 from typing import List
 
-from app.core.exceptions import BuildException
+from app.core.exceptions import DeleteOutputException
 from app.core.valueobjects import File
 
 
@@ -27,7 +27,7 @@ class OutputFolderAdapter:
             if os.path.exists(path):
                 shutil.rmtree(path)
         except PermissionError:
-            raise BuildException("Another Process is accessing the output folder")
+            raise DeleteOutputException("Another Process is accessing the output folder")
 
     def create_output_folder(self, folder_name: str):
         base_directory = os.getcwd()

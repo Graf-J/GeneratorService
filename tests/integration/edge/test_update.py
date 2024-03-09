@@ -338,7 +338,7 @@ class TestEdgeUpdate(unittest.TestCase):
             })
 
         # Assert
-        self.assertEqual(response.status_code, 409)
+        self.assertEqual(response.status_code, 422)
         self.assertEqual(response.json().get('detail')[0].get('msg'),
                          "Source-Vertex already has an outgoing edge with name 'likes'")
 
@@ -355,7 +355,7 @@ class TestEdgeUpdate(unittest.TestCase):
             })
 
         # Assert
-        self.assertEqual(response.status_code, 409)
+        self.assertEqual(response.status_code, 422)
         self.assertEqual(response.json().get('detail')[0].get('msg'),
                          "Source-Vertex already has an outgoing edge with name 'performs'")
 

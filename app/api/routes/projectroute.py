@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 
 from app.api.dependencies import get_project_service
 from app.api.dto import ProjectRequestDto, ProjectResponseDto
-from app.core.exceptions import ProjectException, ProjectNotFoundException
+from app.core.exceptions import ProjectException, ProjectNotFoundException, DeleteOutputException
 from app.core.services import IProjectService
 from app.mappers import ProjectMapper
 
@@ -54,3 +54,5 @@ def delete_project(
         service.delete_project(project_id, delete_output)
     except ProjectNotFoundException as ex:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=[{'msg': ex.message}])
+    except DeleteOutputException as ex:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=[{'msg': ex.message}])

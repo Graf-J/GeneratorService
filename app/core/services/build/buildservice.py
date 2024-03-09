@@ -2,6 +2,7 @@ import json
 
 from app.core.entities import Build
 from app.core.exceptions import BuildException
+from app.core.exceptions import DeleteOutputException
 from app.core.operations import RenderOperation
 from app.core.repositories import IGraphRepository, IProjectRepository, IOutputRepository, ITemplateRepository
 from app.core.services.build.buildserviceinterface import IBuildService
@@ -30,8 +31,13 @@ class BuildService(IBuildService):
         # Get Project
         project = self.project_repository.get_project(project_id)
 
-        # Create Output Folders
-        self.output_repository.delete_output_folder_if_exists(project)
+        # Try to Delete Output Folder
+        try:
+            self.output_repository.delete_output_folder_if_exists(project)
+        except DeleteOutputException as ex:
+            raise BuildException(ex.message)
+
+        # Create Output Folder-Structure
         self.output_repository.create_folder_structure(project)
 
         # Generate and Move GraphQL Schema to Output
