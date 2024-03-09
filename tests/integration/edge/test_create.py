@@ -26,7 +26,6 @@ class TestEdgeCreate(unittest.TestCase):
             'name': 'Person',
             'position_x': 10,
             'position_y': 20,
-            'radius': 30,
             'properties': [
                 {
                     'key': 'createsOut',
@@ -40,7 +39,6 @@ class TestEdgeCreate(unittest.TestCase):
             'name': 'Hobby',
             'position_x': 40,
             'position_y': 50,
-            'radius': 60,
             'properties': [
                 {
                     'key': 'checksIn',

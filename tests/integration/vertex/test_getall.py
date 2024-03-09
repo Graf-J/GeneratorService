@@ -25,7 +25,6 @@ class TestVertexGetAll(unittest.TestCase):
             'name': 'TestVertex',
             'position_x': 10,
             'position_y': 20,
-            'radius': 30,
             'properties': [
                 {
                     'key': 'test_prop',

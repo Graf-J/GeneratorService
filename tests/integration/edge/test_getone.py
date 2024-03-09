@@ -25,7 +25,6 @@ class TestEdgeCreate(unittest.TestCase):
             'name': 'Person',
             'position_x': 10,
             'position_y': 20,
-            'radius': 30,
             'properties': []
         })
         self.person_vertex = response.json()
@@ -33,7 +32,6 @@ class TestEdgeCreate(unittest.TestCase):
             'name': 'Hobby',
             'position_x': 40,
             'position_y': 50,
-            'radius': 60,
             'properties': []
         })
         self.hobby_vertex = response.json()

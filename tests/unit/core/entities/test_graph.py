@@ -14,7 +14,6 @@ class TestGraphFindVertexById(unittest.TestCase):
             name='Vertex1',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
 
@@ -24,7 +23,6 @@ class TestGraphFindVertexById(unittest.TestCase):
             name='Vertex2',
             position_x=30,
             position_y=30,
-            radius=15,
             properties=[],
         )
 
@@ -58,7 +56,6 @@ class TestGraphAddVertex(unittest.TestCase):
             name='TestVertex',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         self.graph.add_vertex(vertex)
@@ -70,7 +67,6 @@ class TestGraphAddVertex(unittest.TestCase):
             name='NewVertex',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
 
@@ -87,7 +83,6 @@ class TestGraphAddVertex(unittest.TestCase):
             name='NewVertex',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
 
@@ -105,7 +100,6 @@ class TestGraphAddVertex(unittest.TestCase):
             name='TestVertex',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
 
@@ -126,7 +120,6 @@ class TestGraphUpdateVertex(unittest.TestCase):
             name='Person',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[Property(key='name', required=True, datatype=Datatype.STRING)]
         )
         self.hobby_vertex_id = str(uuid.uuid4())
@@ -135,7 +128,6 @@ class TestGraphUpdateVertex(unittest.TestCase):
             name='Hobby',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[]
         )
         # Edge
@@ -159,7 +151,6 @@ class TestGraphUpdateVertex(unittest.TestCase):
             name='Surgery',
             position_x=10,
             position_y=10,
-            radius=30,
             properties=[]
         )
 
@@ -177,7 +168,6 @@ class TestGraphUpdateVertex(unittest.TestCase):
             name='Person',
             position_x=10,
             position_y=10,
-            radius=30,
             properties=[]
         )
 
@@ -196,7 +186,6 @@ class TestGraphUpdateVertex(unittest.TestCase):
             name='Surgery',
             position_x=10,
             position_y=10,
-            radius=30,
             properties=[]
         )
 
@@ -209,7 +198,6 @@ class TestGraphUpdateVertex(unittest.TestCase):
         self.assertEqual(updated_vertex.name, 'Surgery')
         self.assertEqual(updated_vertex.position_x, 10)
         self.assertEqual(updated_vertex.position_y, 10)
-        self.assertEqual(updated_vertex.radius, 30)
         self.assertIsInstance(updated_vertex.properties, list)
         self.assertEqual(len(updated_vertex.properties), 0)
         self.assertEqual(len(self.graph.vertices), 2)
@@ -221,7 +209,6 @@ class TestGraphUpdateVertex(unittest.TestCase):
             name='Surgery',
             position_x=10,
             position_y=10,
-            radius=30,
             properties=[
                 Property(key='type', required=True, datatype=Datatype.STRING),
                 Property(key='difficulty', required=False, datatype=Datatype.INT)
@@ -237,7 +224,6 @@ class TestGraphUpdateVertex(unittest.TestCase):
         self.assertEqual(updated_vertex.name, 'Surgery')
         self.assertEqual(updated_vertex.position_x, 10)
         self.assertEqual(updated_vertex.position_y, 10)
-        self.assertEqual(updated_vertex.radius, 30)
         self.assertIsInstance(updated_vertex.properties, list)
         self.assertEqual(len(updated_vertex.properties), 2)
         self.assertEqual(updated_vertex.properties[0].key, 'type')
@@ -258,7 +244,6 @@ class TestGraphDeleteVertex(unittest.TestCase):
             name='Person',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[Property(key='name', required=True, datatype=Datatype.STRING)]
         )
         self.hobby_vertex_id = str(uuid.uuid4())
@@ -267,7 +252,6 @@ class TestGraphDeleteVertex(unittest.TestCase):
             name='Hobby',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[]
         )
         # Edge
@@ -336,7 +320,6 @@ class TestGraphFindEdgeById(unittest.TestCase):
             name='TestVertex',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
 
@@ -377,7 +360,6 @@ class TestGraphAddEdge(unittest.TestCase):
             name='Person',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         self.hobby_vertex_id = str(uuid.uuid4())
@@ -386,7 +368,6 @@ class TestGraphAddEdge(unittest.TestCase):
             name='Hobby',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
 
@@ -454,7 +435,6 @@ class TestGraphUpdateEdge(unittest.TestCase):
             name='Person',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         self.hobby_vertex_id = str(uuid.uuid4())
@@ -463,7 +443,6 @@ class TestGraphUpdateEdge(unittest.TestCase):
             name='Hobby',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         # Edges
@@ -696,7 +675,6 @@ class TestGraphDeleteEdge(unittest.TestCase):
             name='Person',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         self.hobby_vertex_id = str(uuid.uuid4())
@@ -705,7 +683,6 @@ class TestGraphDeleteEdge(unittest.TestCase):
             name='Hobby',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         # Edges
@@ -783,7 +760,6 @@ class TestGraphToDict(unittest.TestCase):
             name='MyVertex',
             position_x=10,
             position_y=20,
-            radius=30,
             properties=[
                 Property(key='name', required=True, datatype=Datatype.STRING),
                 Property(key='age', required=False, datatype=Datatype.INT)

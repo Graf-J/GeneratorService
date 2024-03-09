@@ -14,7 +14,6 @@ class TestVertexValidator(unittest.TestCase):
             name="FirstVertex",
             position_x=10,
             position_y=20,
-            radius=5,
             properties=[]
         )
         self.second_vertex_id = str(uuid.uuid4())
@@ -23,7 +22,6 @@ class TestVertexValidator(unittest.TestCase):
             name="SecondVertex",
             position_x=10,
             position_y=20,
-            radius=5,
             properties=[]
         )
 
@@ -45,7 +43,6 @@ class TestVertexValidator(unittest.TestCase):
             name="NewVertex",
             position_x=20,
             position_y=43,
-            radius=10,
             properties=[]
         )
         vertices = [self.first_vertex, self.second_vertex]
@@ -64,7 +61,6 @@ class TestVertexValidator(unittest.TestCase):
             name=self.second_vertex.name,
             position_x=20,
             position_y=43,
-            radius=10,
             properties=[]
         )
         vertices = [self.first_vertex, self.second_vertex]

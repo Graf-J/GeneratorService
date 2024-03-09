@@ -25,7 +25,6 @@ class TestVertexCreate(unittest.TestCase):
             'name': 'TestVertex',
             'position_x': 10,
             'position_y': 20,
-            'radius': 30,
             'properties': [
                 {
                     'key': 'test_prop',
@@ -47,7 +46,6 @@ class TestVertexCreate(unittest.TestCase):
             'name': 'NewVertex',
             'position_x': 10,
             'position_y': 20,
-            'radius': 30,
             'properties': []
         })
 
@@ -60,7 +58,6 @@ class TestVertexCreate(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/vertices", json={
             'position_x': 10,
             'position_y': 20,
-            'radius': 30,
             'properties': []
         })
 
@@ -74,7 +71,6 @@ class TestVertexCreate(unittest.TestCase):
             'name': '',
             'position_x': 10,
             'position_y': 20,
-            'radius': 30,
             'properties': []
         })
 
@@ -88,7 +84,6 @@ class TestVertexCreate(unittest.TestCase):
             'name': '1-New-Vertex',
             'position_x': 10,
             'position_y': 20,
-            'radius': 30,
             'properties': []
         })
 
@@ -103,7 +98,6 @@ class TestVertexCreate(unittest.TestCase):
             'name': 'New-Vertex',
             'position_x': 10,
             'position_y': 20,
-            'radius': 30,
             'properties': []
         })
 
@@ -117,7 +111,6 @@ class TestVertexCreate(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/vertices", json={
             'name': 'NewVertex',
             'position_y': 20,
-            'radius': 30,
             'properties': []
         })
 
@@ -130,20 +123,6 @@ class TestVertexCreate(unittest.TestCase):
         response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/vertices", json={
             'name': 'NewVertex',
             'position_x': 10,
-            'radius': 30,
-            'properties': []
-        })
-
-        # Assert
-        self.assertEqual(response.status_code, 422)
-        self.assertEqual(response.json().get('detail')[0].get('msg'), 'Field required')
-
-    def test_with_missing_radius(self):
-        # Act
-        response = self.client.post(f"/api/v1/projects/{self.project.get('id')}/vertices", json={
-            'name': 'NewVertex',
-            'position_x': 10,
-            'position_y': 20,
             'properties': []
         })
 
@@ -157,7 +136,6 @@ class TestVertexCreate(unittest.TestCase):
             'name': 'NewVertex',
             'position_x': 10,
             'position_y': 20,
-            'radius': 30,
         })
 
         # Assert
@@ -170,7 +148,6 @@ class TestVertexCreate(unittest.TestCase):
             'name': 'NewVertex',
             'position_x': 10,
             'position_y': 20,
-            'radius': 30,
             'properties': [
                 {
                     'key': '1name',
@@ -191,7 +168,6 @@ class TestVertexCreate(unittest.TestCase):
             'name': 'NewVertex',
             'position_x': 10,
             'position_y': 20,
-            'radius': 30,
             'properties': [
                 {
                     'key': 'new-name',
@@ -212,7 +188,6 @@ class TestVertexCreate(unittest.TestCase):
             'name': 'TestVertex',
             'position_x': 10,
             'position_y': 20,
-            'radius': 30,
             'properties': [
                 {
                     'key': 'name',
@@ -232,7 +207,6 @@ class TestVertexCreate(unittest.TestCase):
             'name': 'NewVertex',
             'position_x': 10,
             'position_y': 20,
-            'radius': 30,
             'properties': [
                 {
                     'key': 'name',
@@ -248,7 +222,6 @@ class TestVertexCreate(unittest.TestCase):
         self.assertEqual(response.json().get('name'), 'NewVertex')
         self.assertEqual(response.json().get('position_x'), 10)
         self.assertEqual(response.json().get('position_y'), 20)
-        self.assertEqual(response.json().get('radius'), 30)
         self.assertIsInstance(response.json().get('properties'), list)
         self.assertEqual(len(response.json().get('properties')), 1)
         self.assertEqual(response.json().get('properties')[0].get('key'), 'name')

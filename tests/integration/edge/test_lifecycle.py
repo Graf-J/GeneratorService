@@ -36,7 +36,6 @@ class TestEdgeCreate(unittest.TestCase):
             'name': 'FirstVertex',
             'position_x': 10,
             'position_y': 20,
-            'radius': 30,
             'properties': []
         })
         person_vertex = response.json()
@@ -44,7 +43,6 @@ class TestEdgeCreate(unittest.TestCase):
             'name': 'SecondVertex',
             'position_x': 50,
             'position_y': 60,
-            'radius': 70,
             'properties': []
         })
         hobby_vertex = response.json()

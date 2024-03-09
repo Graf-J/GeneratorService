@@ -13,7 +13,6 @@ class TestVertexRequestDto(unittest.TestCase):
             VertexRequestDto(
                 position_x=1,
                 position_y=1,
-                radius=1,
                 properties=[]
             )
 
@@ -23,7 +22,6 @@ class TestVertexRequestDto(unittest.TestCase):
                 name='',
                 position_x=1,
                 position_y=1,
-                radius=1,
                 properties=[]
             )
 
@@ -33,7 +31,6 @@ class TestVertexRequestDto(unittest.TestCase):
                 name='1name',
                 position_x=1,
                 position_y=1,
-                radius=1,
                 properties=[]
             )
 
@@ -43,7 +40,6 @@ class TestVertexRequestDto(unittest.TestCase):
                 name='__name',
                 position_x=1,
                 position_y=1,
-                radius=1,
                 properties=[]
             )
 
@@ -53,7 +49,6 @@ class TestVertexRequestDto(unittest.TestCase):
                 name='a-name',
                 position_x=1,
                 position_y=1,
-                radius=1,
                 properties=[]
             )
 
@@ -62,7 +57,6 @@ class TestVertexRequestDto(unittest.TestCase):
             VertexRequestDto(
                 name='name',
                 position_y=1,
-                radius=1,
                 properties=[]
             )
 
@@ -71,26 +65,6 @@ class TestVertexRequestDto(unittest.TestCase):
             VertexRequestDto(
                 name='name',
                 position_x=1,
-                radius=1,
-                properties=[]
-            )
-
-    def test_with_missing_radius(self):
-        with self.assertRaises(ValidationError):
-            VertexRequestDto(
-                name='name',
-                position_x=1,
-                position_y=1,
-                properties=[]
-            )
-
-    def test_with_radius_smaller_than_1(self):
-        with self.assertRaises(ValidationError):
-            VertexRequestDto(
-                name='name',
-                position_x=1,
-                position_y=1,
-                radius=0,
                 properties=[]
             )
 
@@ -100,7 +74,6 @@ class TestVertexRequestDto(unittest.TestCase):
                 name='name',
                 position_x=1,
                 position_y=1,
-                radius=1
             )
 
     def test_with_duplicate_property_keys(self):
@@ -109,7 +82,6 @@ class TestVertexRequestDto(unittest.TestCase):
                 name='name',
                 position_x=1,
                 position_y=1,
-                radius=1,
                 properties=[
                     PropertyDto(key='key', required=True, datatype=Datatype.STRING),
                     PropertyDto(key='key', required=False, datatype=Datatype.INT)
@@ -122,7 +94,6 @@ class TestVertexRequestDto(unittest.TestCase):
                 name='name',
                 position_x=1,
                 position_y=1,
-                radius=1,
                 properties=[
                     PropertyDto(key='id', required=False, datatype=Datatype.INT)
                 ]
@@ -134,7 +105,6 @@ class TestVertexRequestDto(unittest.TestCase):
                 name='name',
                 position_x=1,
                 position_y=1,
-                radius=1,
                 properties=[
                     PropertyDto(key='label', required=False, datatype=Datatype.INT)
                 ]
@@ -146,7 +116,6 @@ class TestVertexRequestDto(unittest.TestCase):
                 name='name',
                 position_x=1,
                 position_y=1,
-                radius=1,
                 properties=[
                     PropertyDto(key='__key', required=False, datatype=Datatype.INT)
                 ]
@@ -158,7 +127,6 @@ class TestVertexRequestDto(unittest.TestCase):
                 name='name',
                 position_x=1,
                 position_y=1,
-                radius=1,
                 properties=[
                     PropertyDto(key='key', required=False, datatype='ID')
                 ]

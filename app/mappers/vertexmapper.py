@@ -19,7 +19,6 @@ class VertexMapper(Mapper):
             name=dto.name,
             position_x=dto.position_x,
             position_y=dto.position_y,
-            radius=dto.radius,
             properties=properties
         )
 
@@ -36,7 +35,6 @@ class VertexMapper(Mapper):
             name=entity.name,
             position_x=entity.position_x,
             position_y=entity.position_y,
-            radius=entity.radius,
             properties=properties,
             out_edges=[EdgeMapper.to_dto(out_edge) for out_edge in entity.out_edges],
             in_edges=[EdgeMapper.to_dto(in_edge) for in_edge in entity.in_edges]

@@ -36,7 +36,6 @@ class TestVertexLifecycle(unittest.TestCase):
             'name': 'FirstVertex',
             'position_x': 10,
             'position_y': 20,
-            'radius': 30,
             'properties': []
         })
         first_vertex = response.json()
@@ -44,7 +43,6 @@ class TestVertexLifecycle(unittest.TestCase):
             'name': 'SecondVertex',
             'position_x': 50,
             'position_y': 60,
-            'radius': 70,
             'properties': []
         })
         second_vertex = response.json()
@@ -87,7 +85,6 @@ class TestVertexLifecycle(unittest.TestCase):
                 'name': 'UpdatedVertex',
                 'position_x': 1,
                 'position_y': 2,
-                'radius': 3,
                 'properties': [
                     {
                         'key': 'name',
@@ -107,7 +104,6 @@ class TestVertexLifecycle(unittest.TestCase):
         self.assertEqual(response.json().get('name'), 'UpdatedVertex')
         self.assertEqual(response.json().get('position_x'), 1)
         self.assertEqual(response.json().get('position_y'), 2)
-        self.assertEqual(response.json().get('radius'), 3)
         self.assertIsInstance(response.json().get('properties'), list)
         self.assertEqual(len(response.json().get('properties')), 1)
         self.assertEqual(len(response.json().get('out_edges')), 2)

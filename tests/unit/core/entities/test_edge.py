@@ -12,7 +12,6 @@ class TestEdgeToDict(unittest.TestCase):
             name='MyVertex',
             position_x=10,
             position_y=20,
-            radius=30,
             properties=[]
         )
         edge = Edge(

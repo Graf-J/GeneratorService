@@ -11,14 +11,12 @@ class Vertex:
             name: str,
             position_x: int,
             position_y: int,
-            radius: int,
             properties: List['Property']
     ):
         self.id = _id
         self.name = name
         self.position_x = position_x
         self.position_y = position_y
-        self.radius = radius
         self.properties = properties
 
         self.out_edges: List[Edge] = []

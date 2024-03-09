@@ -68,7 +68,6 @@ class TestEdgeMapperToDto(unittest.TestCase):
             name="Vertex1",
             position_x=10,
             position_y=20,
-            radius=5,
             properties=[]
         )
         vertex_2_id = uuid.uuid4()
@@ -77,7 +76,6 @@ class TestEdgeMapperToDto(unittest.TestCase):
             name="Vertex1",
             position_x=10,
             position_y=20,
-            radius=5,
             properties=[]
         )
 
@@ -116,7 +114,6 @@ class TestEdgeMapperToDto(unittest.TestCase):
             name="Vertex1",
             position_x=10,
             position_y=20,
-            radius=5,
             properties=[]
         )
         vertex_2_id = uuid.uuid4()
@@ -125,7 +122,6 @@ class TestEdgeMapperToDto(unittest.TestCase):
             name="Vertex1",
             position_x=10,
             position_y=20,
-            radius=5,
             properties=[]
         )
 

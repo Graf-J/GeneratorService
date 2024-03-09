@@ -13,7 +13,6 @@ class TestVertexMapperToEntity(unittest.TestCase):
             name="TestVertex",
             position_x=10,
             position_y=20,
-            radius=5,
             properties=[
                 PropertyDto(key="name", required=False, datatype="String"),
                 PropertyDto(key="age", required=True, datatype="Int"),
@@ -31,7 +30,6 @@ class TestVertexMapperToEntity(unittest.TestCase):
         self.assertEqual(entity.name, "TestVertex")
         self.assertEqual(entity.position_x, 10)
         self.assertEqual(entity.position_y, 20)
-        self.assertEqual(entity.radius, 5)
         self.assertEqual(len(entity.properties), 4)
         self.assertIsInstance(entity.properties[0], Property)
         self.assertIsInstance(entity.properties[1], Property)
@@ -56,7 +54,6 @@ class TestVertexMapperToEntity(unittest.TestCase):
             name="TestVertex",
             position_x=10,
             position_y=20,
-            radius=5,
             properties=[]
         )
 
@@ -69,7 +66,6 @@ class TestVertexMapperToEntity(unittest.TestCase):
         self.assertEqual(entity.name, "TestVertex")
         self.assertEqual(entity.position_x, 10)
         self.assertEqual(entity.position_y, 20)
-        self.assertEqual(entity.radius, 5)
         self.assertIsInstance(entity.properties, list)
         self.assertEqual(len(entity.properties), 0)
 
@@ -83,7 +79,6 @@ class TestVertexMapperToDto(unittest.TestCase):
             name="TestVertex",
             position_x=10,
             position_y=20,
-            radius=5,
             properties=[
                 Property(key="name", required=False, datatype="String"),
                 Property(key="age", required=True, datatype="Int"),
@@ -101,7 +96,6 @@ class TestVertexMapperToDto(unittest.TestCase):
         self.assertEqual(dto.name, "TestVertex")
         self.assertEqual(dto.position_x, 10)
         self.assertEqual(dto.position_y, 20)
-        self.assertEqual(dto.radius, 5)
         self.assertEqual(len(dto.properties), 4)
         self.assertIsInstance(dto.properties[0], PropertyDto)
         self.assertIsInstance(dto.properties[1], PropertyDto)
@@ -132,7 +126,6 @@ class TestVertexMapperToDto(unittest.TestCase):
             name="TestVertex",
             position_x=10,
             position_y=20,
-            radius=5,
             properties=[]
         )
 
@@ -145,7 +138,6 @@ class TestVertexMapperToDto(unittest.TestCase):
         self.assertEqual(dto.name, "TestVertex")
         self.assertEqual(dto.position_x, 10)
         self.assertEqual(dto.position_y, 20)
-        self.assertEqual(dto.radius, 5)
         self.assertEqual(len(dto.properties), 0)
         self.assertIsInstance(dto.properties, list)
         self.assertIsInstance(dto.out_edges, list)
@@ -161,7 +153,6 @@ class TestVertexMapperToDto(unittest.TestCase):
             name="TestVertex",
             position_x=10,
             position_y=20,
-            radius=5,
             properties=[]
         )
         edge_id = uuid.uuid4()
@@ -184,7 +175,6 @@ class TestVertexMapperToDto(unittest.TestCase):
         self.assertEqual(dto.name, "TestVertex")
         self.assertEqual(dto.position_x, 10)
         self.assertEqual(dto.position_y, 20)
-        self.assertEqual(dto.radius, 5)
         self.assertIsInstance(dto.properties, list)
         self.assertEqual(len(dto.properties), 0)
         self.assertIsInstance(dto.out_edges, list)

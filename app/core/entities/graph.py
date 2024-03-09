@@ -39,7 +39,6 @@ class Graph:
         vertex.name = new_vertex.name
         vertex.position_x = new_vertex.position_x
         vertex.position_y = new_vertex.position_y
-        vertex.radius = new_vertex.radius
         vertex.properties = new_vertex.properties
 
         return vertex

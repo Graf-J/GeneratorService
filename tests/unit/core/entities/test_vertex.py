@@ -12,7 +12,6 @@ class TestVertexToDict(unittest.TestCase):
             name='MyVertex',
             position_x=10,
             position_y=20,
-            radius=30,
             properties=[
                 Property(key='name', required=True, datatype=Datatype.STRING),
                 Property(key='age', required=False, datatype=Datatype.INT)

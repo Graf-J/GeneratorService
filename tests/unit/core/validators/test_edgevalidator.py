@@ -15,7 +15,6 @@ class TestEdgeValidatorValidateConnectedVerticesConnectionsWithExistingOutEdgeAn
             name='Person',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         self.hobby_vertex = Vertex(
@@ -23,7 +22,6 @@ class TestEdgeValidatorValidateConnectedVerticesConnectionsWithExistingOutEdgeAn
             name='Hobby',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         self.new_vertex = Vertex(
@@ -31,7 +29,6 @@ class TestEdgeValidatorValidateConnectedVerticesConnectionsWithExistingOutEdgeAn
             name='New-Vertex',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         # Edges
@@ -109,7 +106,6 @@ class TestEdgeValidatorValidateConnectedVerticesConnectionsWithExistingInEdgeAnd
             name='Person',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         self.hobby_vertex = Vertex(
@@ -117,7 +113,6 @@ class TestEdgeValidatorValidateConnectedVerticesConnectionsWithExistingInEdgeAnd
             name='Hobby',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         self.new_vertex = Vertex(
@@ -125,7 +120,6 @@ class TestEdgeValidatorValidateConnectedVerticesConnectionsWithExistingInEdgeAnd
             name='New-Vertex',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         # Edges
@@ -202,7 +196,6 @@ class TestEdgeValidatorValidateConnectedVerticesConnectionsWithExistingOutEdgeAn
             name='Person',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         self.hobby_vertex = Vertex(
@@ -210,7 +203,6 @@ class TestEdgeValidatorValidateConnectedVerticesConnectionsWithExistingOutEdgeAn
             name='Hobby',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         # Edges
@@ -287,7 +279,6 @@ class TestEdgeValidatorValidateConnectedVerticesConnectionsWithExistingInEdgeAnd
             name='Person',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         self.hobby_vertex = Vertex(
@@ -295,7 +286,6 @@ class TestEdgeValidatorValidateConnectedVerticesConnectionsWithExistingInEdgeAnd
             name='Hobby',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         # Edges
@@ -372,7 +362,6 @@ class TestEdgeValidatorValidateConnectedVerticesConnectionsWithRecursion(unittes
             name='Person',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         self.hobby_vertex = Vertex(
@@ -380,7 +369,6 @@ class TestEdgeValidatorValidateConnectedVerticesConnectionsWithRecursion(unittes
             name='Hobby',
             position_x=0,
             position_y=0,
-            radius=20,
             properties=[],
         )
         # Edges
@@ -582,7 +570,6 @@ class TestEdgeValidatorValidateEdgeProperties(unittest.TestCase):
             properties=[],
             position_x=10,
             position_y=20,
-            radius=30
         )
         self.hobby_vertex_id = str(uuid.uuid4())
         self.hobby_vertex = Vertex(
@@ -591,7 +578,6 @@ class TestEdgeValidatorValidateEdgeProperties(unittest.TestCase):
             properties=[],
             position_x=10,
             position_y=20,
-            radius=30
         )
 
     def test_with_conflicting_edge_property_name_on_source_vertex(self):
